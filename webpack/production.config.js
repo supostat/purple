@@ -1,4 +1,4 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const dotenv = require('dotenv');
 
 const getConfig = require('../webpack.config');
 

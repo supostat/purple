@@ -1,0 +1,80 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Alias
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-alias"
+
+#{$block}
+  display: block
+  width: 100%
+
+
+  // $Alias link
+  &__link
+    display: block
+    outline: none
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    color: $c-text-primary
+    text-decoration: none
+
+    &:hover,
+    &:focus
+      outline: none
+      text-decoration: none
+
+
+  // $Alias icon
+  &__icon
+    display: block
+    text-align: center
+    width: 40px
+    height: 40px
+    margin: 0 auto 10px
+    font-family: $f-sans
+    font-size: 20px
+    line-height: 37px
+    font-weight: 300
+    color: $c-text-secondary
+    transition: all .3s
+
+    #{$block}__link:hover &
+      color: $c-text-primary
+
+    // $Alias icon MOD: type solid
+    &_type_solid
+      background-color: $c-gray-medium
+      border: 1px solid $c-gray-medium
+      border-radius: 50%
+      color: $c-text-light
+
+      #{$block}__link:hover &
+        background-color: transparent !important
+        border-color: $c-gray-dark !important
+
+
+  // $Alias text
+  &__text
+    display: block
+    text-align: center
+    font-size: 14px
+    color: $c-text-secondary
+    transition: all .3s
+
+    #{$block}__link:hover &
+      color: $c-text-primary !important
+
+    @media screen and (max-width: 480px)
+      font-size: 12px
+

@@ -1,0 +1,374 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common button
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+=button-common($background-color: $c-gray-dark, $color: $c-text-light )
+  background-color: $background-color
+  color: $color
+
+
+=button-common-hover($background-color, $amount: 5%)
+
+  &:not(.purple-button_type_no-behavior):hover
+    background-color: lighten($background-color, $amount)
+
+
+=button-bordered($color: $c-gray-dark, $border-color: $c-gray-dark, $border-width: 2px, $border-radius: 4px, $bg-color: $c-bg-light)
+  border: $border-width solid $border-color
+  border-radius: $border-radius
+  background-color: $bg-color
+  color: $color
+
+
+=button-bordered-hover($color:$c-text-light, $border-color:$c-gray-dark, $bg-color: $c-gray-dark)
+
+  &:not(.purple-button_type_no-behavior):hover
+    color: $color
+    border-color: $border-color
+    background-color: $bg-color
+
+
+=button-bordered-active($color: $c-text-light, $border-color: $c-gray-dark, $bg-color: $c-gray-dark)
+
+  &#{$block}_state_active
+    color: $color
+    border-color: $border-color
+    background-color: $bg-color
+
+
+=button-with-icon-left($icon: '', $icon-color: inherit, $icon-hover-color: inherit, $icon-active-color: inherit, $size: 18px)
+
+  &:before
+    content: '#{$icon}'
+    display: inline-block
+    margin-right: 8px
+    font-family: icons
+    font-size: $size
+    line-height: 14px
+    color: $icon-color
+    font-weight: normal
+    vertical-align: middle
+
+  &:empty
+    &:before
+      margin-right: 0
+
+  &:hover
+    &:before
+      color: $icon-hover-color
+
+  &#{$block}_state_active
+    &:before
+      color: $icon-active-color
+
+
+=button-with-icon-right($icon: '', $icon-color: inherit, $icon-hover-color: inherit, $icon-active-color: inherit, $size: 18px)
+
+  &:after
+    content: '#{$icon}'
+    display: inline-block
+    margin-left: 8px
+    font-family: icons
+    font-size: $size
+    line-height: 1
+    color: $icon-color
+    font-weight: normal
+    vertical-align: middle
+
+  &:empty
+    &:after
+      margin-left: 0
+
+  &:hover
+    &:after
+      color: $icon-hover-color
+
+  &#{$block}_state_active
+    &:after
+      color: $icon-active-color
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-button"
+
+#{$block}
+  $background-color: $c-gray-dark
+
+  +button-common($background-color: $background-color)
+  +button-common-hover($background-color: $background-color)
+
+  display: inline-block
+  padding: 12px 25px
+  border-radius: 4px
+  font-family: $f-sans
+  font-size: 14px
+  line-height: 1
+  font-weight: 300
+  text-decoration: none
+  white-space: nowrap
+  vertical-align: middle
+  text-align: center
+  outline: none
+  cursor: pointer
+  border: none
+  transition: all .3s
+
+  &:focus
+    outline: none
+
+  &_size_full-xs
+    @media screen and (max-width: 400px)
+      width: 100%
+
+  // $Common button MOD: size extra large
+  &_size_xl
+    padding: 17px 35px
+
+    &:empty
+      padding: 17px
+
+  // $Common button MOD: size large
+  &_size_l
+    padding: 15px 30px
+
+    &:empty
+      padding: 15px
+
+  // $Common button MOD: size medium
+  &_size_m
+    padding: 12px 25px
+
+    &:empty
+      padding: 12px
+
+  // $Common button MOD: size small
+  &_size_s
+    padding: 10px 20px
+
+    &:empty
+      padding: 10px
+
+  // $Common button MOD: size extra small
+  &_size_xs
+    padding: 7px 15px
+
+    &:empty
+      padding: 7px
+
+  // $Common button MOD: size 2 extra small
+  &_size_xxs
+    padding: 5px 10px
+
+    &:empty
+      padding: 5px
+
+  // $Common button MOD: space left
+  &_space_left
+    margin-left: 15px
+
+  // $Common button MOD: space right
+  &_space_right
+    margin-right: 15px
+
+  // $Common button MOD: state disabled
+  &_state_disabled[disabled],
+  &_state_disabled,
+  &[disabled],
+    background-color: $c-gray-extra-light !important
+    cursor: not-allowed
+
+    &:hover,
+    &:focus
+      background-color: $c-gray-extra-light
+
+  // $Common button MOD: state visible
+  &_state_visible
+    display: inline-block
+
+  // $Common button MOD: state hidden
+  &_state_hidden
+    display: none
+
+  &_type_no-behavior
+    cursor: default !important
+
+  &_adjust_field
+    margin-top: 25px
+
+    @media screen and (max-width: 960px)
+      margin-top: 0
+
+
+  // $Common button text
+  &__text
+    vertical-align: middle
+
+
+  // $Common button variations:
+
+  // Color modifiers
+  &_color_accent-primary
+    $background-color: $c-accent-primary
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-red
+    $background-color: $c-accent-red
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-orange
+    $background-color: $c-accent-orange
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-yellow
+    $background-color: $c-accent-yellow
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-green
+    $background-color: $c-accent-green
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  // Color modifiers
+  &_color_accent-blue
+    $background-color: $c-accent-blue
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-purple
+    $background-color: $c-accent-purple
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_accent-pink
+    $background-color: $c-accent-pink
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+  &_color_gray-light
+    $background-color: $c-gray-light
+    +button-common($background-color: $background-color)
+    +button-common-hover($background-color: $background-color)
+
+
+  // Border modifiers
+  &_border_accent-primary
+    +button-bordered($color: $c-accent-primary, $bg-color: transparent, $border-color: $c-accent-primary)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-primary, $border-color: $c-accent-primary)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-primary, $border-color: $c-accent-primary)
+
+  &_border_accent-red
+    +button-bordered($color: $c-accent-red, $bg-color: transparent, $border-color: $c-accent-red)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-red, $border-color: $c-accent-red)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-red, $border-color: $c-accent-red)
+
+  &_border_accent-orange
+    +button-bordered($color: $c-accent-orange, $bg-color: transparent, $border-color: $c-accent-orange)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-orange, $border-color: $c-accent-orange)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-orange, $border-color: $c-accent-orange)
+
+  &_border_accent-yellow
+    +button-bordered($color: $c-accent-yellow, $bg-color: transparent, $border-color: $c-accent-yellow)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-yellow, $border-color: $c-accent-yellow)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-yellow, $border-color: $c-accent-yellow)
+
+  &_border_accent-green
+    +button-bordered($color: $c-accent-green, $bg-color: transparent, $border-color: $c-accent-green)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-green, $border-color: $c-accent-green)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-green, $border-color: $c-accent-green)
+
+  &_border_accent-blue
+    +button-bordered($color: $c-accent-blue, $bg-color: transparent, $border-color: $c-accent-blue)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-blue, $border-color: $c-accent-blue)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-blue, $border-color: $c-accent-blue)
+
+  &_border_accent-purple
+    +button-bordered($color: $c-accent-purple, $bg-color: transparent, $border-color: $c-accent-purple)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-purple, $border-color: $c-accent-purple)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-purple, $border-color: $c-accent-purple)
+
+  &_border_accent-pink
+    +button-bordered($color: $c-accent-pink, $bg-color: transparent, $border-color: $c-accent-pink)
+    +button-bordered-hover($color: $c-text-light, $bg-color: $c-accent-pink, $border-color: $c-accent-pink)
+    +button-bordered-active($color: $c-text-light, $bg-color: $c-accent-pink, $border-color: $c-accent-pink)
+
+
+
+  // Icon modifiers
+  // $Common button MOD: icon plus
+  &_icon_plus
+    +button-with-icon-left($icon: '\e90a')
+
+  // $Common button MOD: icon check
+  &_icon_check
+    +button-with-icon-left($icon: '\e90d')
+
+  // $Common button MOD: icon close
+  &_icon_close
+    +button-with-icon-left($icon: '\e909')
+
+  // $Common button MOD: icon refresh
+  &_icon_refresh
+    +button-with-icon-left($icon: '\e906')
+
+  // $Common button MOD: icon rotate left
+  &_icon_rotate-left
+    +button-with-icon-left($icon: '\e931', $size: 14px)
+
+  // $Common button MOD: icon rotate right
+  &_icon_rotate-right
+    +button-with-icon-left($icon: '\e932', $size: 14px)
+
+  // $Common button MOD: icon text-paper
+  &_icon_text-paper
+    +button-with-icon-left($icon: '\e927', $size: 14px)
+
+  // $Common button MOD: icon pencil
+  &_icon_pencil
+    +button-with-icon-left($icon: '\e91d', $size: 14px)
+
+  // $Common button MOD: icon zoom-minus
+  &_icon_zoom-minus
+    +button-with-icon-left($icon: '\e920', $size: 14px)
+
+  // $Common button MOD: icon zoom-plus
+  &_icon_zoom-plus
+    +button-with-icon-left($icon: '\e921', $size: 14px)
+
+  // $Common button MOD: icon copy
+  &_icon_copy
+    +button-with-icon-left($icon: '\e92c', $size: 16px)
+
+  // $Common button MOD: icon power
+  &_icon_power
+    +button-with-icon-left($icon: '\e907', $size: 16px)
+
+  // $Common button MOD: icon block
+  &_icon_block
+    +button-with-icon-left($icon: '\e928', $size: 14px)
+
+  // $Common button MOD: icon table
+  &_icon_table
+    +button-with-icon-left($icon: '\ea71', $size: 14px)
+
+  // $Common button MOD: icon chart
+  &_icon_chart-line
+    +button-with-icon-left($icon: '\e99b', $size: 14px)
+
+  // $Common button MOD: icon chart
+  &_icon_chart-pie
+    +button-with-icon-left($icon: '\e99a', $size: 14px)
+
+
+  // Specific buttons

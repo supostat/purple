@@ -1,0 +1,151 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Content
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-content"
+
+#{$block}
+  display: block
+  width: 100%
+
+
+  // $Content horizontal rule
+  & hr
+    border: 0
+    border-top: 1px solid $c-border-primary
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  & b,
+  & strong
+    font-weight: 800
+
+  & i,
+  & em
+    font-style: italic
+    font-weight: 300
+
+
+  // $Content headings
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6
+    font-family: $f-sans
+    font-weight: 600
+    line-height: 1.2
+    color: $c-text-primary
+    font-style: normal
+
+    &:not(:last-child)
+      margin-bottom: 10px
+
+  & h1
+    font-size: 28px
+
+  & h2
+    font-size: 24px
+
+  & h3
+    font-size: 20px
+
+  & h4
+    font-size: 16px
+
+  & h5
+    font-size: 14px
+
+  & h6
+    font-size: 12px
+
+
+  // $Content paragraph
+  & p
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1.4
+    font-weight: 400
+    color: $c-text-primary
+    font-style: normal
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+
+  // $Content lists
+  & ul,
+  & ol
+    list-style: none
+    margin: 0
+    padding: 0
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+    & li
+      position: relative
+      font-family: $f-sans
+      font-size: 14px
+      line-height: 1.4
+      color: $c-text-primary
+
+      &:not(:last-child)
+        margin-bottom: 10px
+
+
+  // $Content unordered list
+  & ul
+    & li
+      padding-left: 15px
+
+      &:before
+        content: "-"
+        position: absolute
+        left: 0
+        top: 0
+        display: inline-block
+
+
+  // $Content ordered list
+  & ol
+    counter-reset: item
+
+    & li
+      padding-left: 15px
+
+      &:before
+        content: counter(item) ". "
+        counter-increment: item
+        position: absolute
+        left: 0
+        top: 0
+        display: inline-block
+
+
+  // $Content sublists
+  & ul ul,
+  & ol ol
+    padding-left: 30px
+    margin-bottom: 0
+
+  // $Content preformatted text
+  & pre
+    font-family: monospace
+    font-size: 14px
+    line-height: 1.4
+
+    &:not(:last-child)
+      margin-bottom: 15px

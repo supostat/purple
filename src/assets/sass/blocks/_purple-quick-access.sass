@@ -1,0 +1,99 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Quick access
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-quick-access"
+
+#{$block}
+  display: block
+  width: 100%
+  background-color: $c-bg-light
+
+
+  // $Quick access group
+  &__group
+    margin-bottom: 20px
+
+    @media screen and (max-width: 1280px)
+      margin-bottom: 15px
+
+
+  // $Quick access group header
+  &__group-header
+    display: block
+    width: 100%
+    text-align: center
+    overflow: hidden
+
+
+  // $Quick access group title
+  &__group-title
+    position: relative
+    display: inline-block
+    padding: 0 20px
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    font-weight: 600
+    color: $c-text-primary
+
+    &:before,
+    &:after
+      content: ""
+      position: absolute
+      top: 50%
+      display: block
+      width: 1000px
+      height: 0
+      border-top: 2px solid $c-border-secondary
+
+    &:before
+      right: 100%
+
+    &:after
+      left: 100%
+
+
+  // $Quick access aliases
+  &__aliases
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    flex-wrap: wrap
+    width: 100%
+    padding: 10px 0 5px
+
+
+  // $Quick access alias
+  &__alias
+    flex-grow: 0
+    flex-shrink: 0
+    width: 14.2%
+    padding: 10px
+
+    @media screen and (max-width: 1120px)
+      width: 16.6%
+
+    @media screen and (max-width: 960px)
+      width: 20%
+
+    @media screen and (max-width: 800px)
+      width: 25%
+
+    @media screen and (max-width: 640px)
+      width: 33.3%
+
+    @media screen and (max-width: 480px)
+      padding: 10px 5px
+

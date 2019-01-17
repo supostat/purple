@@ -1,0 +1,183 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form checkbox
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-checkbox"
+
+#{$block}
+  display: inline-block
+
+  // $Common form checkbox MOD: role control
+  &_role_control
+
+  // $Common form checkbox MOD: role control reversed
+  &_role_control-reverse
+
+  // $Common form checkbox MOD: adjust no top label
+  &_adjust_no-label
+    padding-top: 20px
+
+
+  // $Common form checkbox label
+  &__label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1.2
+    text-align: left
+
+    // $Common form field label-text CONTEXT: $Common form field MOD: type required field
+    #{$block}_type_required &
+      &:after
+        content: '*'
+        margin-left: 2px
+
+
+  // $Common form checkbox label text
+  &__label-text
+
+
+  // $Common form checkbox label text faded
+  &__label-text-faded
+    color: $c-text-secondary
+
+
+  // $Common form checkbox input
+  &__input
+    display: none
+
+
+  // $Common form checkbox input label
+  &__input-label
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    cursor: pointer
+
+    // Fix nowrap issue in IE11
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+      display: block
+
+    // $Common form checkbox input label MOD: adjust field
+    // $Common form checkbox input label MOD: adjust field fluid
+    &_adjust_field,
+    &_adjust_field-fluid
+      height: 50px
+      justify-content: center
+
+      #{$block}__label + &
+        justify-content: flex-start
+
+
+    // $Common form checkbox input label MOD: adjust fluid field
+    &_adjust_field-fluid
+      @media screen and (max-width: 960px)
+        height: auto
+
+
+  // $Common form checkbox input label text
+  &__input-label-text
+    position: relative
+    display: inline-block
+    min-height: 25px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 400
+    line-height: 25px
+    padding-left: 35px
+
+    #{$block}__input:disabled ~ &
+      cursor: not-allowed
+
+    &:before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      display: block
+      width: 25px
+      height: 25px
+      background-color: $c-bg-light
+      border: 1px solid $c-border-primary
+      border-radius: 2px
+
+      #{$block}__input:checked ~ &
+        background-color: $c-accent-primary
+        border-color: $c-accent-primary
+
+      #{$block}__input:disabled ~ &,
+      #{$block}__input:checked:disabled ~ &,
+        background-color: $c-gray-ultra-light
+        border-color: $c-border-primary
+
+    &:after
+      content: "\e914"
+      box-sizing: border-box
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      display: block
+      width: 25px
+      height: 25px
+      padding-left: 2px
+      font-family: icons
+      font-size: 18px
+      line-height: 25px
+      color: $c-text-light
+      text-align: center
+      visibility: hidden
+
+      #{$block}__input:checked ~ &
+        visibility: visible
+
+      #{$block}__input:checked:disabled ~ &
+        color: $c-text-primary
+
+    // $Common form checkbox input label text MOD: no-label text
+    &:empty
+      padding-left: 25px
+
+    // $Common form checkbox input label text MOD: no-wrap text
+    &_adjust_no-wrap
+      white-space: nowrap
+
+    // $Common form checkbox input label text MOD: type reversed label text
+    &_type_reversed
+      padding-left: 0
+      padding-right: 35px
+
+      &:before
+        left: auto
+        right: 0
+
+      &:after
+        left: auto
+        right: 0
+        padding-left: 0
+        padding-right: 2px
+
+      &:empty
+        padding-left: 0
+        padding-right: 25px
+
+    // $Common form checkbox input label text MOD: small text
+    &_size_s
+      font-size: 12px

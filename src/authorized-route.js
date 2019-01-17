@@ -1,7 +1,7 @@
 import React from 'react';
 import { HttpError, Route } from 'found';
 import AuthService from '~/utils/auth-service';
-import { LoadingIndicator } from './components/UI';
+import { LoadingIndicator } from './components';
 
 export default class AuthorizedRoute extends Route {
   render({ Component, props }) {

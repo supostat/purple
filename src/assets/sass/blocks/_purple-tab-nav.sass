@@ -1,0 +1,308 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Tab navigation
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-tab-nav"
+
+#{$block}
+  position: relative
+  display: block
+  width: 100%
+
+  // $Tab navigation MOD: adjust flow
+  &_adjust_flow
+
+  &_adjust_week-all
+
+
+  // $Tab navigation list
+  &__list
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    width: 100%
+    list-style: none
+
+    #{$block}_adjust_flow &
+      flex-wrap: wrap
+
+    @media screen and (max-width: 640px)
+      #{$block}_adjust_week-all &
+        flex-wrap: wrap
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+      #{$block}_adjust_flow &
+        margin-bottom: 10px
+
+
+  // $Tab navigation item
+  &__item
+    flex-grow: 1
+    flex-shrink: 1
+    display: block
+    text-align: center
+
+    #{$block}_adjust_flow &
+      flex-grow: 0
+      flex-shrink: 0
+      margin-bottom: 10px
+
+    #{$block}_adjust_week-all &
+     flex-basis: 12.5%
+
+
+    @media screen and (max-width: 640px)
+      #{$block}_adjust_week-all &
+        flex-basis: 25%
+        margin-right: -1px
+        margin-top: -1px
+
+    @media screen and (max-width: 480px)
+      #{$block}_adjust_week-all &
+        flex-basis: 50%
+
+    &:not(:last-child)
+      margin-right: 10px
+
+      @media screen and (max-width: 960px)
+        #{$block}_adjust_week-all &
+          margin-right: -1px
+
+
+  // $Tab navigation control
+  &__control
+    position: relative
+    display: block
+    width: 100%
+    margin: 0
+    padding: 20px 10px
+    text-align: center
+    font-size: 16px
+    font-weight: 400
+    font-family: $f-sans
+    color: $c-text-primary
+    white-space: nowrap
+    border: 1px solid $c-border-primary
+    background-color: $c-bg-light
+    text-decoration: none
+    outline: none
+    transition: all .3s
+    cursor: pointer
+
+    #{$block}_adjust_flow &
+      padding-right: 30px
+      padding-left: 30px
+
+    @media screen and (max-width: 960px)
+      #{$block}_adjust_week-all &
+        font-size: 14px
+
+    &:hover,
+    &:focus
+      background-color: $c-accent-primary
+      color: $c-text-light
+      outline: none
+
+    &:disabled
+      background-color: $c-gray-ultra-light
+      color: $c-text-secondary
+      cursor: not-allowed
+
+    &:disabled:hover,
+    &:disabled:focus
+      background-color: $c-gray-ultra-light
+      color: $c-text-secondary
+
+    // $Tab navigation control MOD: size small
+    &_size_s
+      padding: 15px
+      font-size: 14px
+
+    // $Tab navigation control MOD: size large
+    &_size_l
+      padding: 25px
+      font-size: 18px
+
+      @media screen and (max-width: 960px)
+        #{$block}_adjust_week-all &
+          padding: 20px
+          font-size: 14px
+
+    // $Tab navigation control MOD: state ok
+    &_state_ok
+      background-color: $c-accent-green
+      color: $c-text-light
+
+      &:hover
+        background-color: $c-accent-green
+
+    // $Tab navigation control MOD: state warning
+    &_state_warning
+      background-color: $c-accent-orange
+      color: $c-text-light
+
+      &:hover
+        background-color: $c-accent-orange
+
+    // $Tab navigation control MOD: state alert
+    &_state_alert
+      background-color: $c-accent-red
+      color: $c-text-light
+
+      &:hover
+        background-color: $c-accent-red
+
+    // $Tab navigation control MOD: state inactive
+    &_state_inactive
+      background-color: $c-gray-ultra-light
+      color: $c-text-secondary
+      cursor: not-allowed
+
+      &:hover
+        background-color: $c-gray-ultra-light
+        color: $c-text-secondary
+
+    // $Tab navigation control MOD: state active
+    &_state_active
+      background-color: $c-accent-primary
+      color: $c-text-light
+
+      &:hover
+        background-color: $c-accent-primary
+        cursor: default
+
+
+  // $Tab navigation control text
+  &__control-text
+    &:before
+      display: inline
+      margin-right: 5px
+      font-family: 'icons'
+      font-size: inherit
+      line-height: inherit
+      color: inherit
+      vertical-align: baseline
+
+    // $Tab navigation control text MOD: icon user
+    &_icon_user
+      &:before
+        content: '\e904'
+
+    // $Tab navigation control text MOD: icon venue
+    &_icon_venue
+      &:before
+        content: '\e901'
+
+
+  // $Tab navigation control details
+  &__control-details
+    display: none
+
+    // $Tab navigation control details MOD: state visible
+    &_state_visible
+      display: inline
+
+
+  // $Tab navigation control indicator
+  &__control-indicators
+    position: absolute
+    top: 5px
+    left: 5px
+    right: 5px
+    text-align: left
+
+  // $Tab navigation control indicator
+  &__control-indicator
+    display: inline-block
+
+    &:before
+      display: inline-block
+      margin-right: 5px
+      font-family: 'icons'
+      font-size: 14px
+      line-height: 1
+      color: inherit
+      vertical-align: top
+
+    // $Tab navigation control indicator MOD: icon text-paper
+    &_icon_text-paper
+      &:before
+        content: '\e927'
+
+
+  // $Tab navigation meta
+  &__meta
+    display: block
+    width: 100%
+    padding: 0 5px
+
+    @media screen and (max-width: 400px)
+      padding-left: 3px
+      padding-right: 3px
+
+    // $Tab navigation meta MOD: position above
+    &_position_above
+      margin-bottom: 10px
+
+    // $Tab navigation meta MOD: position below
+    &_position_below
+      margin-top: 10px
+
+    &_state_active
+
+
+  // $Tab navigation meta action
+  &__meta-action
+    display: block
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1.2
+    color: $c-accent-blue
+    text-align: center
+    text-decoration: none
+    transition: all .3s
+    cursor: pointer
+
+    &:hover
+      color: $c-accent-blue
+      text-decoration: underline
+
+    &:not(:last-child)
+      margin-bottom: 5px
+
+    // $Tab navigation meta action MOD: role button light
+    &_type_button-light
+      border: 2px solid $c-accent-blue
+      padding: 5px 2px
+      border-radius: 4px
+
+      &:hover
+        color: $c-text-light
+        background-color: $c-accent-blue
+        text-decoration: none
+
+
+  // $Tab navigation meta details
+  &__meta-details
+    display: none
+    font-weight: 400
+
+    @media screen and (max-width: 640px)
+      font-size: 12px
+
+    // $Tab navigation meta details MOD: state visible
+    &_state_visible
+      display: inline

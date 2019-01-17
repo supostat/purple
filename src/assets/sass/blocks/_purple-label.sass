@@ -1,0 +1,413 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common label
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+=label-common($background-color: $c-gray-light, $color: $c-gray-dark )
+  background-color: $background-color
+  color: $color
+
+
+=label-bordered($color: $c-gray-dark, $border-color: $c-gray-light, $border-width: 2px, $border-radius: 4px, $bg-color: $c-bg-light)
+  border: $border-width solid $border-color
+  border-radius: $border-radius
+  background-color: $bg-color
+  color: $color
+
+
+=label-with-icon-left($icon: '', $icon-color: $c-text-light, $size: 18px)
+
+  &:before
+    content: '#{$icon}'
+    display: inline-block
+    margin-right: 8px
+    font-family: icons
+    font-size: $size
+    line-height: 14px
+    color: $icon-color
+    font-weight: normal
+    vertical-align: middle
+
+
+=label-with-icon-right($icon: '', $icon-color: $c-text-light, $size: 18px)
+
+  &:after
+    content: '#{$icon}'
+    display: inline-block
+    margin-left: 8px
+    font-family: icons
+    font-size: $size
+    line-height: 1
+    color: $icon-color
+    font-weight: normal
+    vertical-align: middle
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-label"
+
+#{$block}
+  $background-color: $c-gray-dark
+  $color: $c-text-light
+  +label-common($background-color: $background-color, $color: $color)
+
+  position: relative
+  display: inline-flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+  border-radius: 4px
+  text-decoration: none
+  vertical-align: middle
+  text-align: left
+  outline: none
+  border: none
+  overflow: hidden
+
+  &:not(:only-child)
+    margin-bottom: 10px
+    margin-right: 10px
+
+  &_space_extra:not(:only-child)
+    margin-bottom: 20px
+    margin-right: 20px
+
+  &:last-child
+    margin-right: 0
+
+  &_type_sortable
+    cursor: move
+
+  // $Common label MOD: size extra large
+  &_size_xxl
+    min-height: 55px
+
+  // $Common label MOD: size extra large
+  &_size_xl
+    min-height: 50px
+
+  // $Common label MOD: size large
+  &_size_l
+    min-height: 45px
+
+  // $Common label MOD: size medium
+  &_size_m
+    min-height: 40px
+
+  // $Common label MOD: size small
+  &_size_s
+    min-height: 35px
+
+  // $Common label MOD: size extra small
+  &_size_xs
+    min-height: 30px
+
+  // $Common label MOD: size 2 extra small
+  &_size_xxs
+    min-height: 25px
+
+  // $Common label MOD: state visible
+  &_state_visible
+    display: inline-block
+
+  // $Common label MOD: state hidden
+  &_state_hidden
+    display: none
+
+  // $Common label MOD: role key
+  &_role_key
+    padding-left: 0 !important
+    padding-right: 10px !important
+    font-weight: 600
+    color: $c-gray-dark
+    background-color: transparent !important
+
+  // $Common label MOD: role action
+  &_role_action
+    cursor: pointer
+    transition: all .3s
+
+    &:hover
+      box-shadow: inset 0 0 200px -50px $c-shadow-secondary
+
+
+  // $Common label text
+  &__text
+    flex-grow: 1
+    flex-shrink: 1
+    display: inline-block
+    padding: 10px 25px
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    font-weight: 400
+    vertical-align: middle
+    white-space: normal
+
+    // $Common label MOD: size extra large
+    #{$block}_size_xxl &
+      padding: 10px 40px
+      font-size: 20px
+
+    // $Common label MOD: size extra large
+    #{$block}_size_xl &
+      padding: 10px 35px
+      font-size: 18px
+
+    // $Common label MOD: size large
+    #{$block}_size_l &
+      padding: 10px 30px
+      font-size: 16px
+
+    // $Common label MOD: size medium
+    #{$block}_size_m &
+      padding: 10px 25px
+      font-size: 14px
+
+    // $Common label MOD: size small
+    #{$block}_size_s &
+      padding: 5px 20px
+      font-size: 14px
+
+    // $Common label MOD: size extra small
+    #{$block}_size_xs &
+      padding: 5px 15px
+      font-size: 14px
+
+    // $Common label MOD: size 2 extra small
+    #{$block}_size_xxs &
+      padding: 5px 10px
+      font-size: 14px
+
+
+  // $Common label service area
+  &__service
+    align-self: stretch
+    flex-grow: 0
+    flex-shrink: 0
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    min-width: 40px
+    padding-right: 10px
+    padding-left: 10px
+    font-size: 18px
+    line-height: 1
+    color: $c-text-light
+    text-align: center
+    background-color: rgba(0, 0, 0, .3)
+
+    #{$block}_size_xxl &
+      min-width: 55px
+      min-height: 55px
+      font-size: 24px
+
+    #{$block}_size_xl &
+      min-width: 50px
+      min-height: 50px
+      font-size: 22px
+
+    #{$block}_size_l &
+      min-width: 45px
+      min-height: 45px
+      font-size: 20px
+
+    #{$block}_size_m &
+      min-width: 40px
+      min-height: 40px
+      font-size: 18px
+
+    #{$block}_size_s &
+      min-width: 35px
+      min-height: 35px
+      font-size: 16px
+
+    #{$block}_size_xs &
+      min-width: 30px
+      min-height: 30px
+      font-size: 16px
+
+    #{$block}_size_xxs &
+      min-width: 25px
+      min-height: 25px
+      font-size: 16px
+
+    &_role_action
+      cursor: pointer
+      transition: all .3s
+
+      &:hover
+        background-color: rgba(0, 0, 0, .6)
+
+    &_icon_close
+
+      &:before
+        content: "\e909"
+        font-family: icons
+        font-size: 24px
+        line-height: 1
+
+        #{$block}_size_xxl &
+          font-size: 30px
+
+        #{$block}_size_xl &
+          font-size: 28px
+
+        #{$block}_size_l &
+          font-size: 26px
+
+        #{$block}_size_m &
+          font-size: 24px
+
+        #{$block}_size_s &
+          font-size: 22px
+
+        #{$block}_size_xs &
+          font-size: 20px
+
+        #{$block}_size_xxs &
+          font-size: 18px
+
+
+  // $Common label variations:
+
+  // Color modifiers
+  &_color_accent-red
+    +label-common($background-color: $c-accent-red, $color: $c-text-light)
+
+  &_color_accent-orange
+    +label-common($background-color: $c-accent-orange, $color: $c-text-light)
+
+  &_color_accent-yellow
+    +label-common($background-color: $c-accent-yellow, $color: $c-text-light)
+
+  &_color_accent-green
+    +label-common($background-color: $c-accent-green, $color: $c-text-light)
+
+  &_color_accent-blue
+    +label-common($background-color: $c-accent-blue, $color: $c-text-light)
+
+  &_color_accent-purple
+    +label-common($background-color: $c-accent-purple, $color: $c-text-light)
+
+  &_color_accent-pink
+    +label-common($background-color: $c-accent-pink, $color: $c-text-light)
+
+  &_color_gray
+    +label-common($background-color: $c-gray-medium, $color: $c-text-light)
+
+
+  &_color_accent-red-medium
+    +label-common($background-color: $c-accent-red-medium)
+
+  &_color_accent-orange-medium
+    +label-common($background-color: $c-accent-orange-medium)
+
+  &_color_accent-yellow-medium
+    +label-common($background-color: $c-accent-yellow-medium)
+
+  &_color_accent-green-medium
+    +label-common($background-color: $c-accent-green-medium)
+
+  &_color_accent-blue-medium
+    +label-common($background-color: $c-accent-blue-medium)
+
+  &_color_accent-purple-medium
+    +label-common($background-color: $c-accent-purple-medium)
+
+  &_color_accent-pink-medium
+    +label-common($background-color: $c-accent-pink-medium)
+
+  &_color_gray-medium
+    +label-common($background-color: $c-gray-light, $color: $c-text-light)
+
+
+  &_color_accent-red-light
+    +label-common($background-color: $c-accent-red-light)
+
+  &_color_accent-orange-light
+    +label-common($background-color: $c-accent-orange-light)
+
+  &_color_accent-yellow-light
+    +label-common($background-color: $c-accent-yellow-light)
+
+  &_color_accent-green-light
+    +label-common($background-color: $c-accent-green-light)
+
+  &_color_accent-blue-light
+    +label-common($background-color: $c-accent-blue-light)
+
+  &_color_accent-purple-light
+    +label-common($background-color: $c-accent-purple-light)
+
+  &_color_accent-pink-light
+    +label-common($background-color: $c-accent-pink-light)
+
+  &_color_gray-light
+    +label-common($background-color: $c-gray-extra-light)
+
+
+  // Border modifiers
+  &_border_accent-red
+    +label-bordered($color: $c-accent-red, $bg-color: transparent, $border-color: $c-accent-red)
+
+  &_border_accent-orange
+    +label-bordered($color: $c-accent-orange, $bg-color: transparent, $border-color: $c-accent-orange)
+
+  &_border_accent-yellow
+    +label-bordered($color: $c-accent-yellow, $bg-color: transparent, $border-color: $c-accent-yellow)
+
+  &_border_accent-green
+    +label-bordered($color: $c-accent-green, $bg-color: transparent, $border-color: $c-accent-green)
+
+  &_border_accent-blue
+    +label-bordered($color: $c-accent-blue, $bg-color: transparent, $border-color: $c-accent-blue)
+
+  &_border_accent-purple
+    +label-bordered($color: $c-accent-purple, $bg-color: transparent, $border-color: $c-accent-purple)
+
+  &_border_accent-pink
+    +label-bordered($color: $c-accent-pink, $bg-color: transparent, $border-color: $c-accent-pink)
+
+  &_border_gray
+    +label-bordered($color: $c-gray-medium, $bg-color: transparent, $border-color: $c-gray-medium)
+
+
+  &_border_accent-red-medium
+    +label-bordered($color: $c-accent-red-medium, $bg-color: transparent, $border-color: $c-accent-red-medium)
+
+  &_border_accent-orange-medium
+    +label-bordered($color: $c-accent-orange-medium, $bg-color: transparent, $border-color: $c-accent-orange-medium)
+
+  &_border_accent-yellow-medium
+    +label-bordered($color: $c-accent-yellow-medium, $bg-color: transparent, $border-color: $c-accent-yellow-medium)
+
+  &_border_accent-green-medium
+    +label-bordered($color: $c-accent-green-medium, $bg-color: transparent, $border-color: $c-accent-green-medium)
+
+  &_border_accent-blue-medium
+    +label-bordered($color: $c-accent-blue-medium, $bg-color: transparent, $border-color: $c-accent-blue-medium)
+
+  &_border_accent-purple-medium
+    +label-bordered($color: $c-accent-purple-medium, $bg-color: transparent, $border-color: $c-accent-purple-medium)
+
+  &_border_accent-pink-medium
+    +label-bordered($color: $c-accent-pink-medium, $bg-color: transparent, $border-color: $c-accent-pink-medium)
+
+  &_border_gray-medium
+    +label-bordered($color: $c-gray-light, $bg-color: transparent, $border-color: $c-gray-light)
+
+
+
+  // Icon modifiers
+
+
+  // Specific labels

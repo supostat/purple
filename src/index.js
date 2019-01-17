@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import FarceActions from 'farce/lib/Actions';
 
 import './styles.css';
-import '../assets/sass/index.sass';
+import '~/assets/sass/index.sass';
 
 import configureStore from './redux/configure-store';
 import Router from './router';

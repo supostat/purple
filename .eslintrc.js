@@ -20,6 +20,7 @@ module.exports = {
   },
 
   rules: {
+    'arrow-body-style': 'off',
     'flowtype-errors/show-errors': 2,
     'flowtype-errors/enforce-min-coverage': [2, 30],
     // Forbid the use of extraneous packages
@@ -81,6 +82,7 @@ module.exports = {
       node: {
         moduleDirectory: ['node_modules', 'src'],
       },
+      'babel-plugin-root-import': {}
     },
   },
 };

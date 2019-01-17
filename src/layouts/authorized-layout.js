@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import oFetch from 'o-fetch';
-import { AppHeader } from '../components/UI';
+import { AppHeader } from '~/components';
 import { getAuthUser } from '~/redux/selectors';
 import { userLogout } from '~/redux/actions/auth-user';
 

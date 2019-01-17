@@ -1,0 +1,224 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form interval
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-interval"
+
+#{$block}
+  position: relative
+  width: 100%
+
+  // $Common form interval MOD: role control
+  &_role_control
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+  // $Common form interval MOD: role control reversed
+  &_role_control-reverse
+    display: flex
+    flex-direction: row-reverse
+    justify-content: flex-end
+    align-items: center
+
+  &_adjust_wrap-xs
+
+  &_adjust_clear
+
+
+  // $Common form interval label
+  &__label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1
+    text-align: left
+
+    // $Common form interval label text CONTEXT: $Common form MOD: role control
+    #{$block}_role_control &,
+    #{$block}_role_control-reverse &
+      flex-grow: 0
+      flex-shrink: 0
+      width: auto
+      margin-bottom: 0
+      font-weight: 600
+      white-space: nowrap
+
+    #{$block}_role_control &
+      margin-right: 10px
+
+    #{$block}_role_control-reverse &
+      margin-left: 10px
+
+    // $Common form interval label-text CONTEXT: $Common form interval MOD: type required interval
+    #{$block}_type_required &
+      &:after
+        content: '*'
+        margin-left: 2px
+
+    @media screen and (max-width: 960px)
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        width: 90px
+
+    // $Common form interval label MOD: adjust control fluid
+    &_adjust_control-fluid
+      width: auto
+      @media screen and (max-width: 960px)
+        #{$block}_role_control &,
+        #{$block}_role_control-reverse &
+          width: auto
+
+    // $Common form interval label MOD: adjust control wrap
+    &_adjust_control-wrap
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        white-space: normal
+
+    // $Common form interval label MOD: size small
+    &_size_s
+      font-size: 12px
+
+    // $Common form interval label MOD: size large
+    &_size_l
+      font-size: 16px
+
+    // $Common form interval label MOD: no wrap
+    &_adjust_no-wrap
+      white-space: nowrap
+
+    &_type_border
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        align-self: stretch
+        width: auto
+        min-height: 50px
+        padding: 15px
+        margin: 0
+        border: 1px solid $c-border-primary
+        border-radius: 2px
+        white-space: nowrap
+
+      #{$block}_role_control &
+        border-right: none
+
+      #{$block}_role_control-reverse &
+        border-left: none
+
+
+  // $Common form interval label text
+  &__label-text
+
+
+  // $Common form interval label text faded
+  &__label-text-faded
+    color: $c-text-secondary
+
+
+  // $Common form interval label icon
+  &__label-icon
+    font-family: 'icons'
+    line-height: 1
+    font-weight: 400
+    font-size: inherit
+    color: inherit
+
+
+  // $Common form interval range
+  &__range
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-end
+
+    #{$block}_adjust_clear &
+      padding-right: 22px
+
+    @media screen and (max-width: 400px)
+      #{$block}_adjust_wrap-xs &
+        flex-direction: column
+        align-items: flex-start
+
+
+  // $Common form interval item
+  &__item
+    flex-grow: 1
+    flex-shrink: 1
+    width: 100%
+
+    &:first-child
+      @media screen and (max-width: 400px)
+        #{$block}_adjust_wrap-xs &
+          margin-bottom: 15px
+
+
+  // $Common form interval delimiter
+  &__delimiter
+    flex-grow: 0
+    flex-shrink: 0
+    position: relative
+    display: block
+    width: 30px
+    height: 45px
+
+    @media screen and (max-width: 400px)
+      #{$block}_adjust_wrap-xs &
+        display: none
+
+    &:after
+      content: ""
+      position: absolute
+      top: 50%
+      left: 50%
+      display: block
+      width: 5px
+      height: 0
+      border: 1px solid $c-gray-light
+      transform: translate(-50%, -50%)
+
+
+  // $Common form interval clear
+  &__clear
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-end
+    width: 22px
+    font-size: 0
+    line-height: 0
+    color: transparent
+    background-color: transparent
+    border: none
+    cursor: pointer
+    opacity: .5
+    transition: all .3s
+
+    &:before
+      content: '\e91e'
+      font-family: icons
+      font-size: 14px
+      line-height: 1
+      color: $c-text-primary
+
+    &:hover
+      opacity: 1

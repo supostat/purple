@@ -1,0 +1,97 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Page navigation
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-page-nav"
+
+#{$block}
+  display: block
+  width: 100%
+
+
+  // $Page navigation list
+  &__list
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+    width: 100%
+
+
+  // $Page navigation item
+  &__item
+    flex-grow: 0
+    flex-shrink: 0
+    position: relative
+    display: block
+
+    &:not(:last-child)
+      margin-right: 30px
+
+
+  // $Page navigation link
+  &__link
+    position: relative
+    display: block
+    width: 100%
+    height: 40px
+    color: $c-text-primary
+    font-size: 14px
+    line-height: 40px
+    font-family: $f-sans
+    font-weight: 300
+    text-decoration: none
+    white-space: nowrap
+
+    &:after
+      content: ''
+      position: absolute
+      bottom: -10px
+      left: 0
+      right: 0
+      border-bottom: 5px solid transparent
+      transition: all .3s
+
+    &:hover,
+    &_state_active
+      color: $c-text-primary
+
+      &:after
+        border-color: $c-accent-primary
+
+    &_state_active
+      font-weight: 600
+
+    // $Page navigation link MOD: icon
+    &_icon
+      &:before
+        content: ""
+        display: inline-block
+        margin-right: 10px
+        font-family: icons
+        font-size: 14px
+        line-height: 1
+        color: $c-text-primary
+        vertical-align: baseline
+        transition: all .3s
+
+    // $Page navigation link MOD: icon user
+    &_icon_user
+      &:before
+        content: "\e912"
+
+    // $Page navigation link MOD: icon power
+    &_icon_power
+      &:before
+        content: "\e907"
+        font-size: 16px

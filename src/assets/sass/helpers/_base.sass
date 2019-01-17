@@ -1,0 +1,103 @@
+////////////////////////////////////////
+// Common styles
+////////////////////////////////////////
+
+////////////////////////////////////////Variables
+
+// Colors
+// $c-selection_cl: #fff
+// $c-selection_bg: #000
+
+
+//////////////////////////////////////// Mixins and functions
+
+
+//////////////////////////////////////// Styles
+
+// *::selection
+//  background: $c-selection_bg
+//  color: $c-selection_cl
+
+// *::-moz-selection
+//  background: $c-selection_bg
+//  color: $c-selection_cl
+
+
+html, body
+  width: 100%
+
+
+// Visibility helpers
+
+//Extra small screens
+.purple-hidden_size_xs
+  @media screen and (max-width: 400px)
+    display: none !important
+
+.purple-visible_size_xs
+  @media screen and (min-width: 401px)
+    display: none !important
+
+
+//Small screens
+.purple-hidden_size_s-minor
+  @media screen and (max-width: 480px)
+    display: none !important
+
+.purple-visible_size_s-minor
+  @media screen and (min-width: 481px)
+    display: none !important
+
+.purple-hidden_size_s-major
+  @media screen and (max-width: 640px)
+    display: none !important
+
+.purple-visible_size_s-major
+  @media screen and (min-width: 641px)
+    display: none !important
+
+
+//Medium screens
+.purple-hidden_size_m-minor
+  @media screen and (max-width: 800px)
+    display: none !important
+
+.purple-visible_size_m-minor
+  @media screen and (min-width: 801px)
+    display: none !important
+
+.purple-hidden_size_m-major
+  @media screen and (max-width: 960px)
+    display: none !important
+
+.purple-visible_size_m-major
+  @media screen and (min-width: 961px)
+    display: none !important
+
+
+//Large screens
+.purple-hidden_size_l-minor
+  @media screen and (max-width: 1120px)
+    display: none !important
+
+.purple-visible_size_l-minor
+  @media screen and (min-width: 1121px)
+    display: none !important
+
+.purple-hidden_size_l-major
+  @media screen and (max-width: 1280px)
+    display: none !important
+
+.purple-visible_size_l-major
+  @media screen and (min-width: 1281px)
+    display: none !important
+
+
+//Extra large screens
+.purple-hidden_size_xl
+  @media screen and (max-width: 1360px)
+    display: none !important
+
+.purple-visible_size_xl
+  @media screen and (min-width: 1361px)
+    display: none !important

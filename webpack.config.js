@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const dotenv = require('dotenv');
 
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -30,17 +29,17 @@ const plugins = [
   }),
 ];
 
-module.exports = env => {
-  const envs = dotenv.config().parsed;
-  const envKeys = envs
-    ? Object.keys(envs).reduce(
+module.exports = (env, dotenvs = {}) => {
+  const envKeys = dotenvs
+    ? Object.keys(dotenvs).reduce(
         (prev, next) => ({
           ...prev,
-          [`process.env.${next}`]: JSON.stringify(envs[next]),
+          [`process.env.${next}`]: JSON.stringify(dotenvs[next]),
         }),
         {},
       )
     : {};
+  console.log(envKeys);
   plugins.push(new webpack.DefinePlugin(envKeys));
 
   if (env && env.analyze) {

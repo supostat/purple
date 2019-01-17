@@ -1,0 +1,226 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Error
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-error"
+
+#{$block}
+  display: block
+  width: 100%
+
+  &_role_stack
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+    max-width: 960px
+    margin: 0 auto
+
+  // $Error MOD: role modal
+  &_role_modal
+    max-width: 960px
+    margin-left: auto
+    margin-right: auto
+    padding: 40px
+    background-color: $c-bg-light
+    border-radius: 10px
+
+    @media screen and (max-width: 960px)
+      padding: 30px
+
+    @media screen and (max-width: 640px)
+      padding: 20px
+
+  &_space_m
+    margin-top: 100px
+    margin-bottom: 100px
+
+    @media screen and (max-width: 640px)
+      margin-top: 50px
+      margin-bottom: 50px
+
+    @media screen and (max-width: 480px)
+      margin-top: 25px
+      margin-bottom: 25px
+
+  &_space_l
+    margin-top: 200px
+    margin-bottom: 200px
+
+    @media screen and (max-width: 640px)
+      margin-top: 100px
+      margin-bottom: 100px
+
+    @media screen and (max-width: 480px)
+      margin-top: 50px
+      margin-bottom: 50px
+
+
+
+  // $Error group
+  &__group
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    width: 100%
+
+    @media screen and (max-width: 640px)
+      flex-direction: column
+      align-items: center
+
+
+  // $Error icon
+  &__icon
+    flex-grow: 0
+    flex-shrink: 0
+    display: block
+    width: 240px
+
+    @media screen and (max-width: 960px)
+      width: 210px
+
+    @media screen and (max-width: 800px)
+      width: 180px
+
+    @media screen and (max-width: 640px)
+      width: 150px
+      margin-bottom: 20px
+
+
+  // $Error image
+  &__image
+    display: block
+    width: 100%
+    max-width: 100%
+
+    #{$block}_role_stack &
+      margin-bottom: 30px
+
+
+  // $Error information
+  &__info
+    flex-grow: 1
+    flex-shrink: 1
+    display: block
+    width: calc(100% - 240px)
+    padding-left: 40px
+
+    @media screen and (max-width: 960px)
+      width: calc(100% - 210px)
+      padding-left: 30px
+
+    @media screen and (max-width: 800px)
+      width: calc(100% - 180px)
+
+    @media screen and (max-width: 640px)
+      width: 100%
+      padding-left: 0
+
+
+  // $Error title
+  &__title
+    font-family: $f-sans
+    font-size: 40px
+    line-height: 1
+    color: $c-text-primary
+    font-weight: 400
+
+    #{$block}_role_stack &
+      margin-bottom: 30px
+      text-align: center
+
+    @media screen and (max-width: 960px)
+      font-size: 36px
+
+    @media screen and (max-width: 640px)
+      font-size: 32px
+      text-align: center
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+
+  // $Error title code
+  &__title-code
+    font-weight: 600
+    white-space: nowrap
+
+    &:after
+      content: '.'
+      display: inline-block
+      font-weight: 400
+
+
+  // $Error text
+  &__text
+    font-family: $f-sans
+    font-size: 20px
+    line-height: 1.2
+    color: $c-text-primary
+    font-weight: 300
+
+    #{$block}_role_stack &
+      margin-bottom: 20px
+      text-align: center
+
+    @media screen and (max-width: 960px)
+      font-size: 18px
+
+    @media screen and (max-width: 640px)
+      font-size: 16px
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+
+  // $Error text line
+  &__text-line
+    display: block
+
+    &:not(:last-child)
+      margin-bottom: 10px
+
+
+  // $Error text link
+  &__text-link
+    font-size: inherit
+    line-height: inherit
+    color: $c-link-primary
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
+      color: $c-link-primary
+
+
+  // $Error actions
+  &__actions
+    margin-top: 40px
+    text-align: left
+
+    @media screen and (max-width: 960px)
+      margin-top: 30px
+
+    @media screen and (max-width: 640px)
+      text-align: center
+
+
+  // $Error action
+  &__action
+
+
+  // $Error button
+  &__button
+
+

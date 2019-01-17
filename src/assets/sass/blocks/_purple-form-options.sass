@@ -1,0 +1,251 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Form options
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-options"
+
+#{$block}
+  display: block
+  width: 100%
+
+  // $Common form options MOD: role control
+  &_role_control
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+  // $Common form options MOD: role control reverse
+  &_role_control-reverse
+    display: flex
+    flex-direction: row-reverse
+    justify-content: flex-end
+    align-items: center
+
+  // $Common form options MOD: adjust no top label
+  &_adjust_no-label
+    padding-top: 20px
+
+
+  // $Form options radio
+  &__radio
+    display: none
+
+
+  // $Form options checkbox
+  &__checkbox
+    display: none
+
+
+  // $Common form options label
+  &__label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1
+    text-align: left
+
+    // $Common form options label text CONTEXT: $Common form options MOD: role control
+    #{$block}_role_control &,
+    #{$block}_role_control-reverse &
+      flex-grow: 0
+      flex-shrink: 0
+      width: auto
+      margin-bottom: 0
+      font-weight: 600
+      white-space: nowrap
+
+    #{$block}_role_control &
+      margin-right: 10px
+
+    #{$block}_role_control-reverse &
+      margin-left: 10px
+
+    // $Common form options label-text CONTEXT: $Common form options MOD: type required field
+    #{$block}_type_required &
+      &:after
+        content: '*'
+        margin-left: 2px
+
+    @media screen and (max-width: 960px)
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        width: 90px
+        white-space: normal
+
+    // $Common form options label MOD: adjust control fluid
+    &_adjust_control-fluid
+      @media screen and (max-width: 960px)
+        #{$block}_role_control &,
+        #{$block}_role_control-reverse &
+          width: auto
+
+    // $Common form options label MOD: adjust control wrap
+    &_adjust_control-wrap
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        white-space: normal
+
+    // $Common form options label MOD: size small
+    &_size_s
+      font-size: 12px
+
+    // $Common form options label MOD: size large
+    &_size_l
+      font-size: 16px
+
+    // $Common form options label MOD: no wrap
+    &_adjust_no-wrap
+      white-space: nowrap
+
+
+  // $Common form options label text
+  &__label-text
+
+
+  // $Common form options label text faded
+  &__label-text-faded
+    color: $c-text-secondary
+
+
+  // $Common form options control
+  &__control
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+    width: 100%
+
+
+  // $Form options option
+  &__option
+    flex-grow: 1
+    flex-shrink: 1
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+    margin-left: -1px
+
+    &:first-child
+      margin-left: 0
+
+      @media screen and (max-width: 960px)
+        margin-left: -1px
+
+
+  // $Form options option text
+  &__option-text
+    position: relative
+    flex-grow: 1
+    flex-shrink: 1
+    display: block
+    width: 100%
+    min-height: 50px
+    padding: 13px 20px
+    border: 1px solid $c-border-primary
+    border-radius: 2px
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1.5
+    white-space: nowrap
+    text-align: center
+    cursor: pointer
+    background-color: $c-bg-light
+    transition: all .3s
+
+    // $Form options option CONTEXT: $Common form options radio STATE: checked
+    // $Form options option CONTEXT: $Common form options checkbox STATE: checked
+    #{$block}__radio:checked ~ &,
+    #{$block}__checkbox:checked ~ &,
+    &_state_active
+      background-color: $c-accent-primary
+      color: $c-text-light
+      cursor: default
+
+    #{$block}__radio:checked ~ &_type_border,
+    #{$block}__checkbox:checked ~ &_type_border,
+    &_type_border#{&}_state_active
+      background-color: $c-bg-light
+      color: $c-text-primary
+
+    // $Form options option CONTEXT: $Common form options option first
+    #{$block}__option:first-of-type &
+      border-left: 1px solid $c-border-primary
+
+    @media screen and (min-width: 641px) and (max-width: 960px)
+      #{$block}__option:nth-of-type(4n + 1) &
+        border-left: 1px solid $c-border-primary
+
+    @media screen and (max-width: 640px)
+      #{$block}__option:nth-of-type(2n + 1) &
+        border-left: 1px solid $c-border-primary
+
+    @media screen and (max-width: 480px)
+      padding-left: 10px
+      padding-right: 10px
+
+    &:hover
+      color: $c-text-primary
+      background-color: $c-gray-ultra-light
+
+      #{$block}__radio:checked ~ &,
+      #{$block}__checkbox:checked ~ &
+        background-color: $c-accent-primary
+        color: $c-text-light
+
+    // $Form options option text MOD: type border
+    &_type_border
+      &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        right: 0
+        left: 0
+        height: 5px
+        background-color: transparent
+        transition: all .3s
+
+        #{$block}__radio:checked ~ &,
+        #{$block}__checkbox:checked ~ &
+          background-color: $c-accent-primary
+
+      &:hover
+        background-color: $c-bg-light
+
+        #{$block}__radio:checked ~ &,
+        #{$block}__checkbox:checked ~ &
+          color: $c-text-primary
+          background-color: $c-bg-light
+
+        &:after
+          background-color: $c-gray-ultra-light
+
+    // $Form options option text MOD: state active
+    &_state_active
+      &:hover
+        color: $c-text-light
+        background-color: $c-accent-primary
+
+    // $Form options option text MOD: type border state active
+    &_type_border#{&}_state_active
+      &:hover
+        color: $c-text-primary
+        background-color: $c-bg-light
+
+      &:after
+        background-color: $c-accent-primary

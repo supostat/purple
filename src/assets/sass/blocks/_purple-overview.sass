@@ -1,0 +1,226 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Overview
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-overview"
+
+#{$block}
+  display: block
+  width: 100%
+
+  &:not(:last-child)
+    margin-bottom: 30px
+
+    @media screen and (max-width: 480px)
+      margin-bottom: 25px
+
+
+  // $Overview group
+  &__group
+    display: block
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 25px
+
+
+  &__group-header
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    white-space: nowrap
+
+
+  &__group-title
+    display: inline-block
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    font-weight: 400
+    text-transform: uppercase
+    vertical-align: middle
+    white-space: normal
+    color: $c-text-secondary
+
+
+
+  // $Overview cards
+  &__cards
+    display: block
+    width: 100%
+
+
+  // $Overview cards group
+  &__cards-group
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+    width: 100%
+
+    @media screen and (max-width: 960px)
+      flex-direction: column
+      align-items: flex-start
+
+    &:not(:last-child)
+      margin-bottom: 30px
+
+      @media screen and (max-width: 480px)
+        margin-bottom: 25px
+
+
+  // $Overview cards item
+  &__cards-item
+    flex-grow: 1
+    flex-shrink: 1
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+
+    &:not(:last-child)
+      padding-right: 30px
+
+      @media screen and (max-width: 960px)
+        padding-right: 0
+        padding-bottom: 30px
+
+      @media screen and (max-width: 480px)
+        padding-bottom: 25px
+
+    // $Overview cards item MOD: size half
+    &_size_half
+      width: 50%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+    // $Overview cards item MOD: size third
+    &_size_third
+      width: 33.3%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+    // $Overview cards item MOD: size fourth
+    &_size_fourth
+      width: 25%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+
+  // $Overview flow
+  &__flow
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+    flex-wrap: wrap
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 30px
+
+      @media screen and (max-width: 480px)
+        margin-bottom: 25px
+
+
+  // $Overview flow item
+  &__flow-item
+    flex-grow: 0
+    flex-shrink: 1
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+
+    &:not(:last-child)
+      padding-right: 30px
+      padding-bottom: 60px
+
+      @media screen and (max-width: 960px)
+        padding-right: 0
+
+
+    // $Overview flow item MOD: size half
+    &_size_half
+      width: 50%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+    // $Overview flow item MOD: size third
+    &_size_third
+      width: 33.3%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+    // $Overview flow item MOD: size fourth
+    &_size_fourth
+      width: 25%
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+
+  // $overview activity
+  &__activity
+
+
+  // $overview text
+  &__text
+    display: block
+    max-width: 100%
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1.4
+    font-weight: 400
+    color: $c-text-primary
+
+    &:before
+      margin-right: 5px
+
+    &_adjust_wrap
+      overflow-wrap: break-word
+      word-wrap: break-word
+      word-break: break-word
+      hyphens: auto
+
+
+  // $overview text faded
+  &__text-faded
+    color: $c-text-secondary
+
+
+  // $overview text bold
+  &__text-bold
+    font-weight: 600
+
+
+  // $overview text light
+  &__text-light
+    font-weight: 300
+
+
+  // $overview text link
+  &__text-link
+    font-family: inherit
+    font-size: inherit
+    color: inherit
+    text-decoration: none
+    cursor: pointer
+
+    &:hover
+      text-decoration: underline

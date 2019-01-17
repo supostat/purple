@@ -1,0 +1,856 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Panel
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-panel"
+
+#{$block}
+  position: relative
+  z-index: 10
+  display: block
+  width: 100%
+  overflow: hidden
+  background-color: $c-bg-light
+  border-radius: 10px
+
+  &:not(:last-child)
+    margin-bottom: 30px
+
+    @media screen and (max-width: 480px)
+      margin-bottom: 25px
+
+  // $Panel MOD: highlight red medium
+  &_highlight_accent-red-medium
+    background-color: $c-accent-red-medium
+
+  // $Panel MOD: highlight orange medium
+  &_highlight_accent-orange-medium
+    background-color: $c-accent-orange-medium
+
+  // $Panel MOD: highlight yellow medium
+  &_highlight_accent-yellow-medium
+    background-color: $c-accent-yellow-medium
+
+  // $Panel MOD: highlight green medium
+  &_highlight_accent-green-medium
+    background-color: $c-accent-green-medium
+
+  // $Panel MOD: highlight blue medium
+  &_highlight_accent-blue-medium
+    background-color: $c-accent-blue-medium
+
+  // $Panel MOD: highlight purple medium
+  &_highlight_accent-purple-medium
+    background-color: $c-accent-purple-medium
+
+  // $Panel MOD: highlight pink medium
+  &_highlight_accent-pink-medium
+    background-color: $c-accent-pink-medium
+
+  // $Panel MOD: highlight gray medium
+  &_highlight_gray-medium
+    background-color: $c-gray-extra-light
+
+  // $Panel MOD: highlight red light
+  &_highlight_accent-red-light
+    background-color: $c-accent-red-light
+
+  // $Panel MOD: highlight orange light
+  &_highlight_accent-orange-light
+    background-color: $c-accent-orange-light
+
+  // $Panel MOD: highlight yellow light
+  &_highlight_accent-yellow-light
+    background-color: $c-accent-yellow-light
+
+  // $Panel MOD: highlight green light
+  &_highlight_accent-green-light
+    background-color: $c-accent-green-light
+
+  // $Panel MOD: highlight blue light
+  &_highlight_accent-blue-light
+    background-color: $c-accent-blue-light
+
+  // $Panel MOD: highlight purple light
+  &_highlight_accent-purple-light
+    background-color: $c-accent-purple-light
+
+  // $Panel MOD: highlight pink light
+  &_highlight_accent-pink-light
+    background-color: $c-accent-pink-light
+
+  // $Panel MOD: highlight gray light
+  &_highlight_gray-light
+    background-color: $c-gray-ultra-light
+
+  &_role_manager
+    box-shadow: none
+    border: 1px solid $c-border-secondary
+
+  &_role_overview-group
+    border-radius: 4px
+    box-shadow: 0px 2px 8px 0 $c-shadow-secondary
+
+  &_role_form-group
+    border: 1px solid $c-border-primary
+    border-radius: 0
+    box-shadow: 0px 2px 8px 0 $c-shadow-secondary
+
+  &_role_board-group
+    box-shadow: 0 5px 15px 0 $c-shadow-secondary
+
+  &_page_invites-index
+
+  &_page_users-index
+
+  &_page_user-profile-history
+
+  &_page_counting-history
+
+  &_page_counting-totals
+
+  &_page_counting-bundle-check
+
+  &_page_contacts-index
+
+
+  // $Panel header
+  &__header
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+    width: 100%
+    padding: 20px
+    border-bottom: 1px solid $c-border-primary
+
+    #{$block}_role_manager &
+      border-color: $c-border-secondary
+
+    @media screen and (max-width: 640px)
+      #{$block}_page_contacts-index &
+        flex-wrap: wrap
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+    @media screen and (max-width: 400px)
+      #{$block}_page_counting-history &
+        flex-wrap: wrap
+
+    // $Panel header MOD: adjust left corner
+    &_adjust_corner-left
+      padding-left: 40px
+
+      @media screen and (max-width: 480px)
+        padding-left: 30px
+
+    // $Panel header MOD: adjust right corner
+    &_adjust_corner-right
+      padding-right: 40px
+
+      @media screen and (max-width: 480px)
+        padding-right: 30px
+
+    // $Panel header MOD: type marked
+    &_type_marked
+      background-color: $c-gray-hyper-light
+
+
+  // $Panel header group
+  &__header-group
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+
+  // $Panel header info
+  &__header-info
+    flex-grow: 1
+    flex-shrink: 1
+    display: block
+    width: 100%
+
+
+  // $Panel header meta
+  &__header-meta
+    display: block
+    margin-top: 10px
+    padding: 0
+    list-style: none
+
+    &:not(:last-child)
+      @media screen and (max-width: 640px)
+        border-bottom: 1px solid $c-border-primary
+
+  // $Panel header meta item
+  &__header-meta-item
+    display: inline-block
+    margin-bottom: 5px
+
+    @media screen and (max-width: 640px)
+      display: block
+      width: 100%
+
+    &:not(:last-child)
+      margin-right: 20px
+
+      @media screen and (max-width: 640px)
+        margin-right: 0
+
+
+  // $Panel header indicator
+  &__header-indicator
+    flex-grow: 0
+    flex-shrink: 0
+
+
+  // $Panel header status
+  &__header-status
+    flex-grow: 0
+    flex-shrink: 0
+
+
+  // $Panel header actions
+  &__header-actions
+    flex-grow: 0
+    flex-shrink: 0
+
+    #{$block}_page_contacts-index &
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+      align-items: stretch
+      padding-left: 40px
+
+    @media screen and (max-width: 640px)
+      #{$block}_page_contacts-index &
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        width: 100%
+        padding-left: 0
+        margin-top: 20px
+        padding-top: 20px
+        border-top: 1px solid $c-border-primary
+        text-align: center
+
+    @media screen and (max-width: 480px)
+      #{$block}_page_contacts-index &
+        flex-direction: column
+        align-items: stretch
+
+    @media screen and (max-width: 400px)
+      #{$block}_page_counting-history &
+        flex-grow: 1
+        margin-top: 15px
+
+
+  // $Panel header action
+  &__header-action
+    #{$block}_page_contacts-index &
+      text-align: left
+
+    @media screen and (max-width: 640px)
+      #{$block}_page_contacts-index &
+        text-align: center
+
+    &:not(:last-child)
+      #{$block}_page_contacts-index &
+        margin-bottom: 15px
+
+      @media screen and (max-width: 640px)
+        #{$block}_page_contacts-index &
+          margin-right: 15px
+          margin-bottom: 0
+
+      @media screen and (max-width: 480px)
+        #{$block}_page_contacts-index &
+          margin-right: 0
+          margin-bottom: 15px
+
+
+  // $Panel header toggle
+  &__header-toggle
+    flex-grow: 0
+    flex-shrink: 0
+
+
+  // $Panel dropdown
+  &__dropdown
+    display: block
+    width: 100%
+
+    &_state_closed
+      display: none
+
+
+  // $Panel inner
+  &__inner
+    display: block
+    width: 100%
+    padding: 20px 20px 30px
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+
+  // $Panel content
+  &__content
+    display: block
+    width: 100%
+
+
+  // $Panel content inner
+  &__content-inner
+    display: block
+    width: 100%
+    padding: 20px 20px 30px
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+
+  // $Panel group
+  &__group
+    display: block
+    width: 100%
+
+    &:not(:last-child)
+      border-bottom: 1px solid $c-border-primary
+
+    &_type_no-border,
+    &_type_no-border:not(:last-child)
+      border-bottom: none
+
+    &_type_marked
+      background-color: $c-gray-hyper-light
+
+      #{$block}_highlight_accent-red-medium &,
+      #{$block}_highlight_accent-orange-medium &,
+      #{$block}_highlight_accent-yellow-medium &,
+      #{$block}_highlight_accent-green-medium &,
+      #{$block}_highlight_accent-blue-medium &,
+      #{$block}_highlight_accent-purple-medium &,
+      #{$block}_highlight_accent-pink-medium &,
+      #{$block}_highlight_gray-medium &,
+      #{$block}_highlight_accent-red-light &,
+      #{$block}_highlight_accent-orange-light &,
+      #{$block}_highlight_accent-yellow-light &,
+      #{$block}_highlight_accent-green-light &,
+      #{$block}_highlight_accent-blue-light &,
+      #{$block}_highlight_accent-purple-light &,
+      #{$block}_highlight_accent-pink-light &,
+      #{$block}_highlight_gray-light &
+        background-color: transparent
+
+
+  // $Panel group content
+  &__group-content
+    display: block
+    width: 100%
+    padding: 15px 20px
+
+    @media screen and (max-width: 960px)
+      padding: 15px
+
+
+  // $Panel group line
+  &__group-line
+    display: block
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+  // $Panel row
+  &__row
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: stretch
+
+    &:not(:last-child)
+      border-bottom: 1px solid $c-border-primary
+
+    &_type_no-border,
+    &_type_no-border:not(:last-child)
+      border-bottom: none
+
+    // $Panel row MOD: marked
+    &_type_marked
+      background-color: $c-gray-hyper-light
+
+      #{$block}_highlight_accent-red-medium &,
+      #{$block}_highlight_accent-orange-medium &,
+      #{$block}_highlight_accent-yellow-medium &,
+      #{$block}_highlight_accent-green-medium &,
+      #{$block}_highlight_accent-blue-medium &,
+      #{$block}_highlight_accent-purple-medium &,
+      #{$block}_highlight_accent-pink-medium &,
+      #{$block}_highlight_gray-medium &,
+      #{$block}_highlight_accent-red-light &,
+      #{$block}_highlight_accent-orange-light &,
+      #{$block}_highlight_accent-yellow-light &,
+      #{$block}_highlight_accent-green-light &,
+      #{$block}_highlight_accent-blue-light &,
+      #{$block}_highlight_accent-purple-light &,
+      #{$block}_highlight_accent-pink-light &,
+      #{$block}_highlight_gray-light &
+        background-color: transparent
+
+
+  // $Panel cell
+  &__cell
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 100%
+    padding: 15px 20px
+    text-align: center
+
+    @media screen and (max-width: 960px)
+      padding: 15px
+
+    &:not(:last-child)
+      border-right: 1px solid $c-border-primary
+
+    &_size_half
+      width: 50%
+
+    &_size_third
+      width: 33%
+
+    &_size_fourth
+      width: 25%
+
+    &_size_half#{&}_delimiter_light,
+    &_size_third#{&}_delimiter_light,
+    &_size_fourth#{&}_delimiter_light
+      position: relative
+
+      &:not(:last-child)
+        border-right: none
+
+        &:after
+          content: ""
+          position: absolute
+          top: 10px
+          bottom: 10px
+          right: 0
+          display: block
+          width: 0
+          border-right: 1px solid $c-border-primary
+
+    // $Panel cell MOD: no border
+    &_type_no-border:not(:last-child)
+      border: none
+
+
+  &__cell-content
+    flex-grow: 0
+    flex-shrink: 1
+    display: block
+    width: auto
+    max-width: 100%
+    text-align: left
+
+
+  &__cell-group
+    display: block
+    width: auto
+
+    &:not(:last-child)
+      margin-bottom: 10px
+
+
+  // $panel info list
+  &__info-list
+    display: block
+    width: 100%
+    padding: 10px 0
+
+
+  // $panel info item
+  &__info-item
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: stretch
+
+
+  // $panel info key
+  // $panel info value
+  &__info-key,
+  &__info-value
+    flex-grow: 1
+    flex-shrink: 1
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 50%
+    padding: 10px 15px
+
+  &__info-key
+    align-items: flex-end
+    text-align: right
+
+  &__info-value
+    align-items: flex-start
+    text-align: left
+
+
+  // $Panel actions
+  &__actions
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: flex-start
+
+    // $Panel actions MOD: position above
+    &_position_above
+      margin-bottom: 30px
+
+    // $Panel actions MOD: position below
+    &_position_below
+      margin-top: 30px
+
+
+  // $Panel action
+  &__action
+    &:not(:last-child)
+      margin-right: 15px
+
+
+  // $Panel labels
+  &__labels
+    max-width: 100%
+
+
+  // $Panel label
+  &__label
+
+
+  &__title,
+  &__text
+    display: block
+    max-width: 100%
+    font-family: $f-sans
+    color: $c-text-primary
+
+    &:before
+      display: inline-block
+      font-family: 'icons'
+      font-size: inherit
+      line-height: inherit
+      color: inherit
+      vertical-align: baseline
+
+    &_icon_date
+      &:before
+        content: '\e900'
+
+    &_icon_user
+      &:before
+        content: '\e904'
+
+    &_icon_venue
+      &:before
+        content: '\e901'
+
+    &_icon_email
+      &:before
+        content: '\e91f'
+
+    &_icon_alert
+      &:before
+        content: '\e911'
+
+    &:not(:last-child)
+      margin-bottom: 5px
+
+    &_adjust_wrap
+      overflow-wrap: break-word
+      word-wrap: break-word
+      word-break: break-word
+      hyphens: auto
+
+    &_adjust_action
+      cursor: pointer
+      text-decoration: underline
+
+      &:hover
+        text-decoration: none
+
+    &_color_accent-red
+      color: $c-accent-red
+
+    &_color_accent-blue
+      color: $c-accent-blue
+
+    &_space_l
+      &:not(:last-child)
+        margin-bottom: 20px
+
+
+  // $Panel title
+  &__title
+    font-size: 18px
+    line-height: 1.2
+    font-weight: 600
+
+    #{$block}_page_invites-index &,
+    #{$block}_page_users-index &,
+    #{$block}_page_counting-totals &,
+    #{$block}_page_counting-bundle-check &
+      text-align: center
+
+    #{$block}_page_counting-totals &,
+    #{$block}_page_counting-bundle-check &
+      margin-top: 10px
+      margin-bottom: 20px
+
+    &:before
+      margin-right: 10px
+
+    // $Panel title MOD: size small
+    &_size_s
+      font-size: 16px
+
+    // $Panel title MOD: size large
+    &_size_l
+      font-size: 20px
+
+    // $Panel title MOD: size extra large
+    &_size_xl
+      font-size: 22px
+
+
+  // $Panel title faded
+  &__title-faded
+    color: $c-text-secondary
+
+
+  // $Panel title regular
+  &__title-regular
+    font-weight: 400
+
+
+  // $Panel title light
+  &__title-light
+    font-weight: 300
+
+
+  // $Panel title link
+  &__title-link
+    font-family: inherit
+    font-size: inherit
+    color: inherit
+    text-decoration: none
+    cursor: pointer
+
+    &:hover
+      text-decoration: underline
+
+
+  // $Panel text
+  &__text
+    font-size: 14px
+    line-height: 1.2
+    font-weight: 400
+
+    &:before
+      margin-right: 5px
+
+
+  // $Panel text faded
+  &__text-faded
+    color: $c-text-secondary
+
+
+  // $Panel text bold
+  &__text-bold
+    font-weight: 600
+
+
+  // $Panel text light
+  &__text-light
+    font-weight: 300
+
+
+  // $Panel text link
+  &__text-link
+    font-family: inherit
+    font-size: inherit
+    color: inherit
+    text-decoration: none
+    cursor: pointer
+
+    &:hover
+      text-decoration: underline
+
+
+  // $Panel link
+  &__link
+    display: inline-block
+    max-width: 100%
+    font-family: $f-sans
+    font-size: 14px
+    font-weight: 400
+    color: $c-link-primary
+    vertical-align: middle
+    text-decoration: none
+    transition: color .3s
+    cursor: pointer
+
+    &:hover,
+    &:focus
+      outline: none
+      text-decoration: underline
+      color: $c-accent-blue
+
+  // $Panel toggle
+  &__toggle
+    display: inline-block
+    font-size: 0
+    line-height: 0
+    color: transparent
+    vertical-align: middle
+    outline: none
+    text-decoration: none
+    white-space: nowrap
+    cursor: pointer
+    transition: all .3s
+
+    &:before
+      content: ''
+      display: inline-block
+      font-family: 'icons'
+      font-size: 0
+      line-height: 18px
+      color: $c-gray-medium
+      vertical-align: middle
+      transition: all .3s
+
+    &:hover
+      &:before
+        color: $c-gray-dark
+
+    // $Panel toggle MOD: role dropdown
+    &_role_dropdown
+      &:before
+        content: '\e91a'
+        font-size: 30px
+
+    &_role_dropdown#{&}_state_closed
+      &:before
+        content: '\e919'
+
+
+  // $Panel numbers
+  &__numbers
+    flex-grow: 0
+    flex-shrink: 1
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: flex-start
+    max-width: 100%
+
+    @media screen and (max-width: 960px)
+      flex-direction: column
+
+
+  // $Panel number
+  &__number
+    flex-grow: 0
+    flex-shrink: 1
+    width: 100%
+    max-width: 160px
+
+    @media screen and (max-width: 960px)
+      max-width: 100%
+
+    &:not(:last-child)
+      margin-right: 30px
+
+      @media screen and (max-width: 960px)
+        margin-right: 0
+        margin-bottom: 15px
+
+
+  // $Panel list
+  &__list
+    display: block
+    width: 100%
+    list-style: none
+
+
+  // $Panel list item
+  &__list-item
+    position: relative
+    display: block
+    width: 100%
+    padding-left: 15px
+
+    &:before
+      content: "-"
+      position: absolute
+      left: 0
+      top: 0
+      display: inline-block
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+
+  // $Panel counter
+  &__counter
+    display: block
+    font-family: $f-sans
+    font-size: 16px
+    line-height: 1
+    color: $c-text-primary
+    text-align: center
+
+    // $Panel counter MOD: position above
+    &_position_above
+      margin-bottom: 15px
+
+    // $Panel counter MOD: position below
+    &_position_below
+      margin-top: 15px
+
+
+  &__counter-bold
+    font-weight: 800
+
+
+  // $Panel text placeholder
+  &__text-placeholder
+    display: block
+    width: 100%
+    font-family: $f-sans
+    font-size: 16px
+    line-height: 1.2
+    color: $c-text-secondary
+

@@ -21,10 +21,11 @@ export const setAuthUserFromJwt = ({ params, context }) => {
 };
 
 export const userLogout = () => async (dispatch, getState) => {
+  const { logoutParams } = ApiService;
   const logoutResponse = await dispatch({
     [RSAA]: {
-      endpoint: ApiService.logoutApiUrl,
-      method: 'DELETE',
+      endpoint: logoutParams.getPath(),
+      method: logoutParams.method,
       headers: { 'Content-Type': 'application/json' },
       types: [USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILURE],
     },
