@@ -1,0 +1,19 @@
+[ignore]
+.*/dist
+.*/docs
+.*/node_modules/.*
+.*/public
+
+[include]
+
+[libs]
+flow-typed
+tools/flow/definitions
+
+[lints]
+
+[options]
+include_warnings=true
+module.system.node.resolve_dirname=node_modules
+module.name_mapper='found' ->'<PROJECT_ROOT>/node_modules/found'
+[strict]
