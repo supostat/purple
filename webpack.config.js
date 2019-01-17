@@ -39,7 +39,7 @@ module.exports = (env, dotenvs = {}) => {
         {},
       )
     : {};
-  console.log(envKeys);
+  console.log(process.env);
   plugins.push(new webpack.DefinePlugin(envKeys));
 
   if (env && env.analyze) {
