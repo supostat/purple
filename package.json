@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "webpack-dev-server --hot --config ./webpack/dev.config.js",
     "build:production": "webpack --config ./webpack/production.config.js",
-    "start": "yarn build:production"
+    "start": "yarn build:production",
+    "postinstall": "if [ $BUILD_ASSETS ]; then yarn build-assets; fi",
+    "build-assets": "yarn start"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
