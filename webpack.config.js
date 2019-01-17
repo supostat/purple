@@ -17,6 +17,7 @@ const plugins = [
     template: require('html-webpack-template'),
 
     // Optional
+    title: 'Purple App',
     appMountId: 'app',
     meta: [
       {
@@ -31,10 +32,15 @@ const plugins = [
 
 module.exports = env => {
   const envs = dotenv.config().parsed;
-  const envKeys = Object.keys(envs).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(envs[next]);
-    return prev;
-  }, {});
+  const envKeys = envs
+    ? Object.keys(envs).reduce(
+        (prev, next) => ({
+          ...prev,
+          [`process.env.${next}`]: JSON.stringify(envs[next]),
+        }),
+        {},
+      )
+    : {};
   plugins.push(new webpack.DefinePlugin(envKeys));
 
   if (env && env.analyze) {
