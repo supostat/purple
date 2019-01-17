@@ -29,10 +29,11 @@ export const acceptInvintation = ({ password, passwordConfirmation, authCode, in
   dispatch,
   getState,
 ) => {
+  const { acceptInviteParams } = ApiService;
   const acceptInvintaionResponse = await dispatch({
     [RSAA]: {
-      endpoint: ApiService.acceptInviteApiUrl,
-      method: 'POST',
+      endpoint: acceptInviteParams.getPath(),
+      method: acceptInviteParams.method,
       fetch: async (...args) => {
         const res = await fetch(...args);
         const headerAuthData = res.headers.get('Authorization');
