@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 const getConfig = require('../webpack.config');
 
 module.exports = env => {
-  const config = getConfig(env);
+  const dotenvs = dotenv.config({ path: '.env.production' }).parsed;
+  const config = getConfig(env, dotenvs);
 
   config.mode = 'none';
   config.devtool = 'source-map';
