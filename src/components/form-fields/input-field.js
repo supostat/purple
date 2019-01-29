@@ -1,65 +1,46 @@
-// @flow
 import * as React from 'react';
-import type { FieldRenderProps } from 'react-final-form';
 import cn from 'classnames';
+import oFetch from 'o-fetch';
+import { Input } from '~/components/fields';
 
-type Props = {
-  input: FieldRenderProps.input,
-  meta: FieldRenderProps.meta,
-  placeholder?: string,
-  label?: string,
-  type?: string,
-};
-
-class InputField extends React.Component<Props> {
-  static defaultProps = {
-    type: 'text',
-    label: null,
-    placeholder: null,
-  };
-
-  onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = e;
-    const {
-      input: { onChange },
-    } = this.props;
+class InputField extends React.Component {
+  onChange = value => {
+    const onChange = oFetch(this.props, 'input.onChange');
     onChange(value === '' ? null : value);
   };
 
   render() {
-    const {
-      input: { name, value },
-      meta: { error, submitError, touched },
-      label,
-      placeholder,
-      type,
-    } = this.props;
-
-    const hasError = error || submitError;
-    const inputFormFieldClassNames = cn('purple-form-field__input', { 'purple-form-field_state_error': hasError });
+    const [input, meta, label, placeholder, type, fieldClassName] = oFetch(
+      this.props,
+      'input',
+      'meta',
+      'label',
+      'placeholder',
+      'type',
+      'fieldClassName',
+    );
+    const errors = meta.error || meta.submitError;
 
     return (
-      <div className="purple-form__field">
-        <div className="purple-form-field">
-          {label && (
-            <p className="purple-form-field__label">
-              <span className="purple-form-field__label-text">{label}</span>
-            </p>
-          )}
-          <div className={inputFormFieldClassNames}>
-            <input value={value} name={name} onChange={this.onChange} type={type} placeholder={placeholder} />
-          </div>
-          {(error || submitError) && (
-            <div className="purple-form-error purple-form-error_position_below">
-              <p className="purple-form-error__text">{error || submitError}</p>
-            </div>
-          )}
-        </div>
-      </div>
+      <Input
+        value={input.value}
+        errors={errors}
+        label={label}
+        name={input.name}
+        onChange={this.onChange}
+        type={type}
+        placeholder={placeholder}
+        fieldClassName={fieldClassName}
+      />
     );
   }
 }
+
+InputField.defaultProps = {
+  type: 'text',
+  label: null,
+  placeholder: null,
+  fieldClassName: null,
+};
 
 export default InputField;
