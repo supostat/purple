@@ -7,11 +7,21 @@ import { hot } from 'react-hot-loader';
 import { Route } from 'found';
 import AuthorizedRoute from './authorized-route';
 import UnauthorizedRoute from './unauthorized-route';
-import { LoginPage, AcceptInvitePage, AppPage, HomePage, WidgetsPage, InvitesPage, UsersPage } from './pages';
+import {
+  LoginPage,
+  AcceptInvitePage,
+  AppPage,
+  HomePage,
+  WidgetsPage,
+  InvitesPage,
+  UsersPage,
+  UserProfilePage,
+} from './pages';
 
 import { getAcceptInvintationPageData } from './pages/accept-invite';
 import { getInvitesPageData } from './pages/invites';
 import { getUsersPageData } from './pages/users';
+import { getUserProfilePageData } from './pages/user-profile';
 import { setAuthUserFromJwt } from './redux/actions/auth-user';
 
 export const routeConfig = makeRouteConfig(
@@ -21,7 +31,8 @@ export const routeConfig = makeRouteConfig(
     <Route path="accept-invite/:invitationToken" getData={getAcceptInvintationPageData} Component={AcceptInvitePage} />
     <AuthorizedRoute path="widgets" Component={WidgetsPage} />
     <AuthorizedRoute path="users" Component={UsersPage} getData={getUsersPageData} />
-    <AuthorizedRoute getData={getInvitesPageData} path="invites" Component={InvitesPage} />
+    <AuthorizedRoute path="invites" Component={InvitesPage} getData={getInvitesPageData} />
+    <AuthorizedRoute path="users/:id" Component={UserProfilePage} getData={getUserProfilePageData} />
   </Route>,
 );
 

@@ -12,7 +12,7 @@ module.exports = env => {
     historyApiFallback: true,
     overlay: {
       errors: true,
-      warnings: true,
+      warnings: false,
     },
   };
   return config;

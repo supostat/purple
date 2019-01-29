@@ -39,7 +39,6 @@ module.exports = (env, dotenvs = {}) => {
         {},
       )
     : {};
-  console.log(process.env);
   plugins.push(new webpack.DefinePlugin(envKeys));
 
   if (env && env.analyze) {
@@ -154,6 +153,9 @@ module.exports = (env, dotenvs = {}) => {
     resolve: {
       extensions: ['.js', '.jsx', '.js.jsx', '.ts', '.tsx'],
       modules: [path.resolve('node_modules')],
+      alias: {
+        '~': path.resolve(__dirname, 'src'),
+      },
     },
     plugins,
   };

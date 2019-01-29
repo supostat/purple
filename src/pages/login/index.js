@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import LoginForm from './components/login-form';
+import { userLogin } from './redux/actions';
 import Link from 'found/lib/Link';
 import { connect } from 'react-redux';
 import NotAuthorizedLayout from '../../layouts/not-authorized-layout';
-import LoginForm from './components/login-form';
-import { userLogin } from './redux/actions';
 import lockImage from '~/assets/images/illustration-lock-accent-primary.svg';
 
 class LoginPage extends Component {
   render() {
-    const { userLogin } = this.props;
+    const { handleUserLogin } = this.props;
     const initialValues = {
       email: null,
       password: null,
@@ -27,7 +27,7 @@ class LoginPage extends Component {
             <p className="purple-modal__subtitle">Please enter your jsm login credentials</p>
           </header>
           <div className="purple-modal__content">
-            <LoginForm onSubmit={userLogin} initialValues={initialValues} />
+            <LoginForm onSubmit={handleUserLogin} initialValues={initialValues} />
           </div>
           <div className="purple-modal__actions">
             <Link to="/widgets" className="purple-modal__link">
@@ -41,7 +41,7 @@ class LoginPage extends Component {
 }
 
 const mapDispatchToProps = {
-  userLogin,
+  handleUserLogin: userLogin,
 };
 
 export default connect(

@@ -5,7 +5,7 @@ import { InputField, CheckboxField } from '~/components/form-fields';
 export default class LoginForm extends Component {
   onSubmit = values => {
     const { onSubmit } = this.props;
-    return onSubmit(values).then(response => {});
+    return onSubmit(values);
   };
 
   render() {

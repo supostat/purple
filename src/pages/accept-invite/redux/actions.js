@@ -19,7 +19,6 @@ export const getAcceptInvintationPageData = ({ params, context }) => {
     [RSAA]: {
       endpoint: acceptInvitePageDataParams.getPath(invitationToken),
       method: acceptInvitePageDataParams.method,
-      headers: { 'Content-Type': 'application/json' },
       types: [PAGE_DATA_REQUEST, PAGE_DATA_SUCCESS, PAGE_DATA_FAILURE],
     },
   });
@@ -43,8 +42,7 @@ export const acceptInvintation = ({ password, passwordConfirmation, authCode, in
         }
         return res;
       },
-      body: JSON.stringify({ password, passwordConfirmation, authCode, invitationToken }),
-      headers: { 'Content-Type': 'application/json' },
+      body: { password, passwordConfirmation, authCode, invitationToken },
       types: [ACCEPT_INVITE_REQUEST, ACCEPT_INVITE_SUCCESS, ACCEPT_INVITE_FAILURE],
     },
   });

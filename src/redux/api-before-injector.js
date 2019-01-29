@@ -4,10 +4,14 @@ import AuthService from '~/utils/auth-service';
 export default () => next => action => {
   const callApi = action[RSAA];
   if (callApi) {
-    const { headers } = callApi;
+    const { body } = callApi;
+    callApi.headers = { ...callApi.headers, 'Content-Type': 'application/json' };
+    if (body !== undefined) {
+      callApi.body = JSON.stringify(body);
+    }
     const jwtToken = AuthService.getJwtToken();
     if (jwtToken) {
-      callApi.headers = { ...headers, Authorization: `Bearer ${jwtToken}` };
+      callApi.headers = { ...callApi.headers, Authorization: `Bearer ${jwtToken}` };
     }
   }
 

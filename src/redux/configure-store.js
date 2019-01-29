@@ -4,22 +4,30 @@ import thunkMiddleware from 'redux-thunk';
 import foundReducer from 'found/lib/foundReducer';
 import createHistoryEnhancer from 'farce/lib/createHistoryEnhancer';
 import BrowserProtocol from 'farce/lib/BrowserProtocol';
-import queryMiddleware from 'farce/lib/queryMiddleware';
+import createQueryMiddleware from 'farce/lib/createQueryMiddleware';
 import Matcher from 'found/lib/Matcher';
 import createMatchEnhancer from 'found/lib/createMatchEnhancer';
-
-import apiAuthInjector from './api-auth-injector';
+import queryString from 'query-string';
+import apiBeforeInjector from './api-before-injector';
 import apiErrorsMiddleware from './api-errors-middleware';
 
-import rootReducer from './reducers';
+import globalReducer from './reducers';
 import { routeConfig } from '../router';
+import { usersPageReducers } from '~/pages/users';
+import { userProfileReducer } from '~/pages/user-profile';
+import { invitesReducers } from '~/pages/invites';
 
 export default function configureStore(preloadedState) {
-  const middlewares = [thunkMiddleware, apiAuthInjector, apiMiddleware, apiErrorsMiddleware];
+  const middlewares = [thunkMiddleware, apiBeforeInjector, apiMiddleware, apiErrorsMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
   const historyEnhancer = createHistoryEnhancer({
     protocol: new BrowserProtocol(),
-    middlewares: [queryMiddleware],
+    middlewares: [
+      createQueryMiddleware({
+        parse: query => queryString.parse(query, { arrayFormat: 'bracket' }),
+        stringify: params => queryString.stringify(params, { arrayFormat: 'bracket' }),
+      }),
+    ],
   });
   const matchEnhancer = createMatchEnhancer(new Matcher(routeConfig));
 
@@ -33,7 +41,10 @@ export default function configureStore(preloadedState) {
 
   const reducers = combineReducers({
     found: foundReducer,
-    rootReducer,
+    global: globalReducer,
+    usersPage: usersPageReducers,
+    userProfilePage: userProfileReducer,
+    invitesPage: invitesReducers,
   });
   const store = createStore(reducers, preloadedState, composedEnhancers(...enhancers));
 
