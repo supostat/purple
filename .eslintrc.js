@@ -6,9 +6,11 @@ module.exports = {
     'prettier',
     'prettier/flowtype',
     'prettier/react',
+    'plugin:import/errors',
+    'plugin:import/warnings'
   ],
 
-  plugins: ['flowtype', 'flowtype-errors', 'prettier'],
+  plugins: ['flowtype', 'flowtype-errors', 'prettier', 'import'],
 
   globals: {
     __DEV__: true,
@@ -20,7 +22,10 @@ module.exports = {
   },
 
   rules: {
+    'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
+    'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
     'flowtype-errors/show-errors': 2,
     'flowtype-errors/enforce-min-coverage': [2, 30],
     // Forbid the use of extraneous packages
