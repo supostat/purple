@@ -1,4 +1,6 @@
-export InvitesHeader from './invites-header';
-export InviteForm from './invite-form';
-export DesktopInvitersList from './desktop-inviters-list';
-export DesktopInviterItem from './desktop-inviter-item';
+export { default as InvitesHeader } from './invites-header';
+export { default as InviteForm } from './invite-form';
+export { default as DesktopInvitedList } from './desktop-invited-list';
+export { default as DesktopInvitedItem } from './desktop-invited-item';
+export { default as CreateInvite } from './create-invite';
+export { default as Filter } from './filter';

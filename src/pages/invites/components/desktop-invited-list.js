@@ -15,10 +15,10 @@ function renderHeader() {
   );
 }
 
-function renderInvitersList(inviters, inviterRenderer) {
-  return inviters.map(inviter => {
-    const id = oFetch(inviter, 'id');
-    return React.cloneElement(inviterRenderer(inviter), {
+function renderInvitersList(invitedUsers, invitedRenderer) {
+  return invitedUsers.map(invited => {
+    const id = oFetch(invited, 'id');
+    return React.cloneElement(invitedRenderer(invited), {
       key: id,
     });
   });
@@ -26,11 +26,11 @@ function renderInvitersList(inviters, inviterRenderer) {
 
 export default class DesktopInvitersList extends Component {
   render() {
-    const [inviters, inviterRenderer] = oFetch(this.props, 'inviters', 'inviterRenderer');
+    const [invitedUsers, invitedRenderer] = oFetch(this.props, 'invitedUsers', 'invitedRenderer');
     return (
       <div className="purple-table purple-table_page_invites-index purple-hidden_size_m-major">
         {renderHeader()}
-        {renderInvitersList(inviters, inviterRenderer)}
+        {renderInvitersList(invitedUsers, invitedRenderer)}
       </div>
     );
   }

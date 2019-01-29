@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
 import oFetch from 'o-fetch';
+import { FORM_ERROR } from 'final-form';
 
-import { InputField } from '~/components/form-fields';
+import { InputField, SelectField } from '~/components/form-fields';
 
 export default class InviteForm extends Component {
+  handleSubmit = values => {
+    const onSubmit = oFetch(this.props, 'onSubmit');
+    return onSubmit(values).then(response => {
+      if (response.error) {
+        const serverErrors = oFetch(response, 'payload.response.errors');
+        if (serverErrors.base) {
+          return { [FORM_ERROR]: serverErrors.base, ...serverErrors };
+        }
+        return serverErrors;
+      }
+      return response;
+    });
+  };
+
   render() {
-    const [initialValues, onSubmit] = oFetch(this.props, 'initialValues', 'onSubmit');
+    const [initialValues, rolesOptions, venues] = oFetch(this.props, 'initialValues', 'rolesOptions', 'venues');
     return (
-      <Form initialValues={initialValues} onSubmit={onSubmit}>
+      <Form initialValues={initialValues} onSubmit={this.handleSubmit}>
         {({ handleSubmit, submitting, submitError }) => {
-          console.log(submitting);
           return (
             <form onSubmit={handleSubmit} className="purple-form">
               {submitError && (
@@ -20,8 +34,18 @@ export default class InviteForm extends Component {
               )}
               <Field name="firstName" label="First Name" type="text" component={InputField} placeholder="First Name" />
               <Field name="surname" label="Surname" type="text" component={InputField} placeholder="Surname" />
-              <Field name="role" label="Role" type="text" component={InputField} placeholder="Role" />
+              <Field name="role" label="Role" options={rolesOptions} component={SelectField} placeholder="Role" />
               <Field name="email" label="Email" type="email" component={InputField} placeholder="Email" />
+              <Field
+                name="venues"
+                label="Venues"
+                valueKey="id"
+                labelKey="name"
+                isMulti
+                options={venues}
+                component={SelectField}
+                placeholder="Venues"
+              />
               <div className="purple-form__field purple-form__field_justify_center-s-major purple-form__field_position_last">
                 <button
                   type="submit"
