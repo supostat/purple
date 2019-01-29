@@ -11,7 +11,6 @@ export const getUsersPageData = ({ params, context }) => {
     [RSAA]: {
       endpoint: usersPageDataParams.getPath(),
       method: usersPageDataParams.method,
-      headers: { 'Content-Type': 'application/json' },
       types: [PAGE_DATA_REQUEST, PAGE_DATA_SUCCESS, PAGE_DATA_FAILURE],
     },
   });

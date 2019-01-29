@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import oFetch from 'o-fetch';
 import { PageWrapper, FilterWrapper } from '~/components/wrappers';
+import UsersFilter from './users-filter';
 
 export default class InvitesHeader extends Component {
   render() {
-    const onManageInvitesClick = oFetch(this.props, 'onManageInvitesClick');
+    const [onManageInvitesClick, count] = oFetch(this.props, 'onManageInvitesClick', 'count');
     return (
       <PageWrapper>
         <div className="purple-page-main__info-group">
           <h1 className="purple-page-main__title">
             Users
-            <span className="purple-page-main__title-info">0</span>
+            <span className="purple-page-main__title-info">{count}</span>
           </h1>
           <div className="purple-page-main__info-group-actions">
             <button
@@ -23,7 +24,7 @@ export default class InvitesHeader extends Component {
           </div>
         </div>
         <FilterWrapper>
-          <h1>I'm a filter</h1>
+          <UsersFilter />
         </FilterWrapper>
       </PageWrapper>
     );
