@@ -1,7 +1,5 @@
 const { BASE_API_URL } = process.env;
 
-console.log('BASE_API_URL: ', BASE_API_URL);
-
 export default {
   baseApiUrl: BASE_API_URL,
   loginParams: {
@@ -22,16 +20,42 @@ export default {
       return `${BASE_API_URL}/api/v1/accept_invites?invitationToken=${invitationToken}`;
     },
   },
-  invitesPageDataParams: {
-    method: 'GET',
-    getPath() {
-      return `${BASE_API_URL}/api/v1/invites`;
+  invitesPage: {
+    indexData: {
+      method: 'GET',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/invites${location.search}`;
+      },
+    },
+    createInvite: {
+      method: 'POST',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/invites`;
+      },
+    },
+    loadMoreInvited: {
+      method: 'GET',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/invites${location.search}`;
+      },
     },
   },
   usersPageDataParams: {
     method: 'GET',
     getPath() {
       return `${BASE_API_URL}/api/v1/users`;
+    },
+  },
+  userProfilePageDataParams: {
+    method: 'GET',
+    getPath(id) {
+      return `${BASE_API_URL}/api/v1/users/${id}`;
+    },
+  },
+  userProfileHistoryParams: {
+    method: 'GET',
+    getPath(id) {
+      return `${BASE_API_URL}/api/v1/users/${id}/history`;
     },
   },
   acceptInviteParams: {
