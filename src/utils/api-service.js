@@ -30,7 +30,13 @@ export default {
     createInvite: {
       method: 'POST',
       getPath() {
-        return `${BASE_API_URL}/api/v1/invites`;
+        return `${BASE_API_URL}/api/v1/invites${location.search}`;
+      },
+    },
+    revokeInvite: {
+      method: 'DELETE',
+      getPath(invitedId) {
+        return `${BASE_API_URL}/api/v1/invites/${invitedId}${location.search}`;
       },
     },
     loadMoreInvited: {
