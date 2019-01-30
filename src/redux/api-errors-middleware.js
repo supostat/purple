@@ -1,9 +1,12 @@
-import { RSAA } from 'redux-api-middleware';
-import { Actions as FarceActions } from 'farce';
 import { HttpError } from 'found';
 import AuthService from '~/utils/auth-service';
+import { showNotification } from '~/components/notification';
 
 export default store => next => action => {
+  if (action.meta && action.meta.message) {
+    const type = action.error === true ? 'error' : 'success';
+    showNotification({ text: action.meta.message, type, position: 'topCenter' });
+  }
   if (action.payload && action.payload.name === 'ApiError') {
     const { status } = action.payload;
     switch (status) {
