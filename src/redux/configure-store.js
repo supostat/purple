@@ -16,18 +16,18 @@ import { routeConfig } from '../router';
 import { usersPageReducers } from '~/pages/users';
 import { userProfileReducer } from '~/pages/user-profile';
 import { invitesReducers } from '~/pages/invites';
+import { forgotPasswordReducers } from '~/pages/forgot-password';
 
 export default function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware, apiBeforeInjector, apiMiddleware, apiErrorsMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
+  const queryMiddleware = createQueryMiddleware({
+    parse: query => queryString.parse(query, { arrayFormat: 'bracket' }),
+    stringify: params => queryString.stringify(params, { arrayFormat: 'bracket' }),
+  });
   const historyEnhancer = createHistoryEnhancer({
     protocol: new BrowserProtocol(),
-    middlewares: [
-      createQueryMiddleware({
-        parse: query => queryString.parse(query, { arrayFormat: 'bracket' }),
-        stringify: params => queryString.stringify(params, { arrayFormat: 'bracket' }),
-      }),
-    ],
+    middlewares: [queryMiddleware],
   });
   const matchEnhancer = createMatchEnhancer(new Matcher(routeConfig));
 
@@ -45,6 +45,7 @@ export default function configureStore(preloadedState) {
     usersPage: usersPageReducers,
     userProfilePage: userProfileReducer,
     invitesPage: invitesReducers,
+    forgotPasswordPage: forgotPasswordReducers,
   });
   const store = createStore(reducers, preloadedState, composedEnhancers(...enhancers));
 

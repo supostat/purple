@@ -16,6 +16,7 @@ import {
   InvitesPage,
   UsersPage,
   UserProfilePage,
+  ForgotPasswordPage,
 } from './pages';
 
 import { getAcceptInvintationPageData } from './pages/accept-invite';
@@ -28,6 +29,7 @@ export const routeConfig = makeRouteConfig(
   <Route path="/" Component={AppPage} getData={setAuthUserFromJwt}>
     <Route Component={HomePage} />
     <UnauthorizedRoute path="login" Component={LoginPage} />
+    <UnauthorizedRoute path="forgot-password" Component={ForgotPasswordPage} />
     <Route path="accept-invite/:invitationToken" getData={getAcceptInvintationPageData} Component={AcceptInvitePage} />
     <AuthorizedRoute path="widgets" Component={WidgetsPage} />
     <AuthorizedRoute path="users" Component={UsersPage} getData={getUsersPageData} />
