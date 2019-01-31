@@ -19,6 +19,7 @@ export default class WithLoadMore extends Component {
               className="purple-button purple-button_size_m purple-button_border_accent-blue purple-button_size_full-xs purple-board__action"
               type="button"
               text="Load More"
+              pendingText="Loading ..."
               onClick={onLoadMore}
             />
           </div>

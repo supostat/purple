@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import oFetch from 'o-fetch';
 import AuthorizedLayout from '~/layouts/authorized-layout';
 import { WithLoadMore } from '~/components';
-import { openContentModal } from '~/components/modals';
+import { openContentModal, openConfirmModal } from '~/components/modals';
+import { WarningContent } from '~/components/modals/content';
 import { InvitesHeader, DesktopInvitedList, DesktopInvitedItem, CreateInvite, Filter } from './components';
 import {
   getInvitedUsers,
@@ -14,12 +15,17 @@ import {
   getStatusesOptions,
   getPaginationData,
 } from './redux/selectors';
-import { createInviteAction, filterInvitesAction, loadMoreInvitedAction } from './redux/actions';
+import { createInviteAction, filterInvitesAction, loadMoreInvitedAction, revokeInviteAction } from './redux/actions';
 
 class InvitesPage extends Component {
   handleCreateInvite = (handleClose, values) => {
     const createInvite = oFetch(this.props, 'createInvite');
-    return createInvite(values);
+    return createInvite(values).then(response => {
+      if (!response.error) {
+        handleClose();
+      }
+      return response;
+    });
   };
 
   handleNewInviteModalOpen = () => {
@@ -54,14 +60,31 @@ class InvitesPage extends Component {
     );
   };
 
+  handleRevokeInvite = (handleClose, invitedId) => {
+    const revokeInvite = oFetch(this.props, 'revokeInvite');
+    return revokeInvite(invitedId).then(() => {
+      handleClose();
+    });
+  };
+
+  openRevokeConfirm = invitedId => {
+    openConfirmModal({
+      onSubmit: handleClose => this.handleRevokeInvite(handleClose, invitedId),
+      titleColor: 'red',
+      props: { invitedId },
+      contentTitle: 'Are you sure ?',
+      title: 'Warning!',
+    })(WarningContent);
+  };
+
   render() {
-    const [invitedUsers, invitedUsersCount, pagination, loadMoreInvited] = oFetch(
+    const [invitedUsers, pagination, loadMoreInvited] = oFetch(
       this.props,
       'invitedUsers',
-      'invitedUsersCount',
       'pagination',
       'loadMoreInvited',
     );
+    const invitedUsersCount = oFetch(pagination, 'count');
     return (
       <AuthorizedLayout
         headerRenderer={() => (
@@ -77,7 +100,7 @@ class InvitesPage extends Component {
             <WithLoadMore pagination={pagination} onLoadMore={loadMoreInvited}>
               <DesktopInvitedList
                 invitedUsers={invitedUsers}
-                invitedRenderer={invited => <DesktopInvitedItem inviter={invited} />}
+                invitedRenderer={invited => <DesktopInvitedItem inviter={invited} onRevoke={this.openRevokeConfirm} />}
               />
             </WithLoadMore>
           </div>
@@ -103,6 +126,7 @@ const mapDispatchToProps = {
   createInvite: createInviteAction,
   filterInvites: filterInvitesAction,
   loadMoreInvited: loadMoreInvitedAction,
+  revokeInvite: revokeInviteAction,
 };
 
 export default connect(

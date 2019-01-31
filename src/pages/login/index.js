@@ -3,7 +3,7 @@ import LoginForm from './components/login-form';
 import { userLogin } from './redux/actions';
 import Link from 'found/lib/Link';
 import { connect } from 'react-redux';
-import NotAuthorizedLayout from '../../layouts/not-authorized-layout';
+import NotAuthorizedLayout from '~/layouts/not-authorized-layout';
 import lockImage from '~/assets/images/illustration-lock-accent-primary.svg';
 
 class LoginPage extends Component {
@@ -27,12 +27,14 @@ class LoginPage extends Component {
             <p className="purple-modal__subtitle">Please enter your jsm login credentials</p>
           </header>
           <div className="purple-modal__content">
-            <LoginForm onSubmit={handleUserLogin} initialValues={initialValues} />
-          </div>
-          <div className="purple-modal__actions">
-            <Link to="/widgets" className="purple-modal__link">
-              Forgot your password?
-            </Link>
+            <div className="purple-modal__group">
+              <LoginForm onSubmit={handleUserLogin} initialValues={initialValues} />
+            </div>
+            <div className="purple-modal__actions">
+              <Link to="/forgot-password" className="purple-modal__link">
+                Forgot your password?
+              </Link>
+            </div>
           </div>
         </div>
       </NotAuthorizedLayout>

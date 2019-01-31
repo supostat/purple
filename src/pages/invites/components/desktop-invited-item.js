@@ -13,8 +13,9 @@ function Cell({ children }) {
 
 export default class DesktopInviterItem extends Component {
   render() {
-    const inviter = oFetch(this.props, 'inviter');
+    const [inviter, onRevoke] = oFetch(this.props, 'inviter', 'onRevoke');
     const [
+      id,
       email,
       roleTitle,
       venues,
@@ -24,6 +25,7 @@ export default class DesktopInviterItem extends Component {
       invitationStatus,
     ] = oFetch(
       inviter,
+      'id',
       'email',
       'roleTitle',
       'venues',
@@ -67,6 +69,7 @@ export default class DesktopInviterItem extends Component {
           {!isAccepted && (
             <div className="purple-table__actions">
               <button
+                onClick={() => onRevoke(id)}
                 type="button"
                 className="purple-button purple-button_size_xs purple-button_color_accent-red purple-button_icon_close purple-table__action"
               >

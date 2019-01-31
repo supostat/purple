@@ -19,7 +19,6 @@ export const getStatusesOptions = createSelector(invitationStatusesSelector, sta
 });
 
 export const getInitialFilterData = createSelector(foundSelector, found => {
-  console.log(found);
   const query = oFetch(found, 'match.location.query');
   const { venues, email, status, role } = query;
   return {

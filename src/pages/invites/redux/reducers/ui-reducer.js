@@ -10,7 +10,7 @@ const initialState = {
 };
 export default handleActions(
   {
-    [types.PAGE_DATA_SUCCESS]: (state, action) => {
+    [combineActions(types.PAGE_DATA_SUCCESS, types.LOAD_MORE_SUCCESS)]: (state, action) => {
       const [roles, venues, invitationStatuses] = oFetch(
         action,
         'payload.roles',
