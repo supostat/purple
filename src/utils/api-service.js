@@ -20,6 +20,14 @@ export default {
       return `${BASE_API_URL}/api/v1/accept_invites?invitationToken=${invitationToken}`;
     },
   },
+  resetPasswordPage: {
+    resetPassword: {
+      method: 'POST',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/passwords/reset_password`;
+      },
+    },
+  },
   forgotPasswordPage: {
     sendResetPasswordEmail: {
       method: 'POST',

@@ -7,3 +7,4 @@ export { default as WidgetsPage } from './widgets';
 export { default as UsersPage } from './users';
 export { default as UserProfilePage } from './user-profile';
 export { default as ForgotPasswordPage } from './forgot-password';
+export { default as ResetPasswordPage } from './reset-password';

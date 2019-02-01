@@ -17,6 +17,7 @@ import { usersPageReducers } from '~/pages/users';
 import { userProfileReducer } from '~/pages/user-profile';
 import { invitesReducers } from '~/pages/invites';
 import { forgotPasswordReducers } from '~/pages/forgot-password';
+import { resetPasswordReducers } from '~/pages/reset-password';
 
 export default function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware, apiBeforeInjector, apiMiddleware, apiErrorsMiddleware];
@@ -46,6 +47,7 @@ export default function configureStore(preloadedState) {
     userProfilePage: userProfileReducer,
     invitesPage: invitesReducers,
     forgotPasswordPage: forgotPasswordReducers,
+    resetPasswordPage: resetPasswordReducers,
   });
   const store = createStore(reducers, preloadedState, composedEnhancers(...enhancers));
 

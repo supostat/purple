@@ -7,7 +7,6 @@ import { InputField } from '~/components/form-fields';
 
 export default class ForgotPasswordForm extends Component {
   onSubmit = values => {
-    console.log(values);
     const { onSubmit } = this.props;
     return onSubmit(values).then(response => {
       if (response.error) {

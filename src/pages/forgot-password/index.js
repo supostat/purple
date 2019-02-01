@@ -6,7 +6,7 @@ import Link from 'found/lib/Link';
 import NotAuthorizedLayout from '~/layouts/not-authorized-layout';
 import resetPassword from '~/assets/images/illustration-lock-refresh-accent-primary.svg';
 import { ForgotPasswordForm, AlmostDone } from './components';
-import { sendResetPasswordEmailLinkAction } from './redux/actions';
+import { sendResetPasswordEmailLinkAction, goBackAction } from './redux/actions';
 import { showAlmostDoneSelector } from './redux/selectors';
 
 class ForgotPasswordPage extends Component {
@@ -37,15 +37,18 @@ class ForgotPasswordPage extends Component {
   };
 
   render() {
-    const showAlmostDone = oFetch(this.props, 'showAlmostDone');
+    const [showAlmostDone, goBack] = oFetch(this.props, 'showAlmostDone', 'goBack');
     return (
-      <NotAuthorizedLayout>{showAlmostDone ? <AlmostDone /> : this.renderSendPasswordResetForm()}</NotAuthorizedLayout>
+      <NotAuthorizedLayout>
+        {showAlmostDone ? <AlmostDone onGoBackClick={goBack} /> : this.renderSendPasswordResetForm()}
+      </NotAuthorizedLayout>
     );
   }
 }
 
 const mapDispatchToProps = {
   sendResetPasswordEmailLink: sendResetPasswordEmailLinkAction,
+  goBack: goBackAction,
 };
 
 const mapStateToProps = state => {

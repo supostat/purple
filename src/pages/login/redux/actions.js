@@ -23,7 +23,7 @@ export const userLogin = ({ email, password, authCode }) => async (dispatch, get
         }
         return res;
       },
-      body: JSON.stringify({ user: { email, password, otp_attempt: authCode } }),
+      body: { user: { email, password, otp_attempt: authCode } },
       types: [USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE],
     },
   });
