@@ -35,12 +35,15 @@ export default class DesktopInviterItem extends Component {
       'invitationStatus',
     );
     const isAccepted = invitationStatus === constants.USER_INVITE_ACCEPTED_STATUS;
-    const inviteStatusClassNames = cn('purple-indicator purple-table__label', {
-      'purple-indicator_color_gray': invitationStatus === constants.USER_INVITE_PENDING_STATUS,
-      'purple-indicator_color_accent-green': invitationStatus === constants.USER_INVITE_ACCEPTED_STATUS,
-      'purple-indicator_color_accent-red': invitationStatus === constants.USER_INVITE_REVOKED_STATUS,
-    });
+    const isRevoked = invitationStatus === constants.USER_INVITE_REVOKED_STATUS;
+    const isPending = invitationStatus === constants.USER_INVITE_PENDING_STATUS;
 
+    const inviteStatusClassNames = cn('purple-indicator purple-table__label', {
+      'purple-indicator_color_gray': isPending,
+      'purple-indicator_color_accent-green': isAccepted,
+      'purple-indicator_color_accent-red': isRevoked,
+    });
+    const isShowRevokeButton = !isAccepted && !isRevoked;
     return (
       <div className="purple-table__row">
         <Cell>
@@ -66,7 +69,7 @@ export default class DesktopInviterItem extends Component {
           <p className="purple-table__text">{invitedAtFormatted}</p>
         </Cell>
         <Cell>
-          {!isAccepted && (
+          {isShowRevokeButton && (
             <div className="purple-table__actions">
               <button
                 onClick={() => onRevoke(id)}

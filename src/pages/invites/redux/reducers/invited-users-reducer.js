@@ -14,6 +14,17 @@ export default handleActions(
       const invitedUsers = oFetch(action, 'payload.invitedUsers');
       return invitedUsers;
     },
+    [types.REVOKE_INVITE_SUCCESS]: (state, action) => {
+      const revokedInvited = oFetch(action, 'payload.invitedUser');
+      const revokedInvitedId = oFetch(revokedInvited, 'id');
+      return state.map(invited => {
+        const invitedId = oFetch(invited, 'id');
+        if (invitedId === revokedInvitedId) {
+          return revokedInvited;
+        }
+        return invited;
+      });
+    },
   },
   initialState,
 );
