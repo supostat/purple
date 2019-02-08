@@ -13,6 +13,8 @@ import { getUsersPageData } from './pages/users';
 import { getUserProfilePageData } from './pages/user-profile';
 import { setAuthUserFromJwt } from './redux/actions/auth-user';
 
+import { Page401, Page403, Page404 } from '~/components/pages';
+
 export const routeConfig = makeRouteConfig(
   <Route path="/" getComponent={() => import('./pages').then(module => module.AppPage)} getData={setAuthUserFromJwt}>
     <Route getComponent={() => import('./pages').then(module => module.HomePage)} />
@@ -52,9 +54,11 @@ const render = createRender({
   renderError: ({ error }) => {
     switch (error.status) {
       case 404:
-        return <div>Not found</div>;
+        return <Page404 />;
+      case 403:
+        return <Page403 />;
       case 401:
-        return <LoginPage />;
+        return <Page401 />;
       default:
         return null;
     }
