@@ -26,7 +26,7 @@ export default class ResetPasswordForm extends Component {
       <Form
         onSubmit={this.onSubmit}
         initialValues={initialValues}
-        render={({ handleSubmit, submitting, pristine, submitError, values }) => {
+        render={({ handleSubmit, submitting, submitError, values }) => {
           const { showPassword } = values;
           const passwordType = showPassword ? 'text' : 'password';
           return (

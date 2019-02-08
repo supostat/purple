@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import oFetch from 'o-fetch';
-import Link from 'found/lib/Link';
 
 import NotAuthorizedLayout from '~/layouts/not-authorized-layout';
 import changePassword from '~/assets/images/illustration-lock-gear-accent-primary.svg';

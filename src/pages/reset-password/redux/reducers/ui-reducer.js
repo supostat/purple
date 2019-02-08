@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import oFetch from 'o-fetch';
 
 import * as types from '../actions';
 

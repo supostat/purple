@@ -47,7 +47,7 @@ export const acceptInvintation = ({ password, passwordConfirmation, authCode, in
     },
   });
   if (!acceptInvintaionResponse.error) {
-    dispatch(FarceActions.push('/widgets'));
+    dispatch(FarceActions.push('/users'));
   }
   return acceptInvintaionResponse;
 };

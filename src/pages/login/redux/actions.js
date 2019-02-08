@@ -29,7 +29,7 @@ export const userLogin = ({ email, password, authCode }) => async (dispatch, get
   });
   if (!loginResponse.error) {
     const pathName = oFetch(getState(), 'found.resolvedMatch.location.pathname');
-    dispatch(FarceActions.push(pathName || '/widgets'));
+    dispatch(FarceActions.push(pathName || '/users'));
   }
   return loginResponse;
 };
