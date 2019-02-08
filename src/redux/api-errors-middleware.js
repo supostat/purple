@@ -11,9 +11,12 @@ export default store => next => action => {
     const { status } = action.payload;
     switch (status) {
       case 404:
-        return next(action);
+        throw new HttpError(404);
+      case 403:
+        showNotification({ text: 'This action is not permitted', type: 'error', position: 'topCenter' });
+        throw new HttpError(403);
       case 401:
-        // AuthService.clearJwtToken();
+        AuthService.clearJwtToken();
         throw new HttpError(401);
       default:
         return next(action);
