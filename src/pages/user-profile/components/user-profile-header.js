@@ -5,9 +5,9 @@ import { PageWrapper } from '~/components/wrappers';
 
 export default class UserProfileHeader extends Component {
   render() {
-    const [user, onDisableClick] = oFetch(this.props, 'user', 'onDisableClick');
-    const fullName = oFetch(user, 'fullName');
-
+    const [user, onDisableClick, onEnableClick] = oFetch(this.props, 'user', 'onDisableClick', 'onEnableClick');
+    const [fullName, disabled] = oFetch(user, 'fullName', 'disabled');
+    const isDisabled = disabled;
     return (
       <PageWrapper>
         <div className="purple-page-main__info-group">
@@ -26,11 +26,19 @@ export default class UserProfileHeader extends Component {
             </div>
           </div>
           <div className="purple-page-main__info-group-actions">
-            <Button
-              text="Disable"
-              onClick={() => onDisableClick(user)}
-              className="purple-button purple-button_color_accent-red purple-button_size_m purple-button_icon_power purple-page-main__info-group-action"
-            />
+            {isDisabled ? (
+              <Button
+                text="Enable"
+                onClick={() => onEnableClick(user)}
+                className="purple-button purple-button_color_accent-green purple-button_size_m purple-button_icon_power purple-page-main__info-group-action"
+              />
+            ) : (
+              <Button
+                text="Disable"
+                onClick={() => onDisableClick(user)}
+                className="purple-button purple-button_color_accent-red purple-button_size_m purple-button_icon_power purple-page-main__info-group-action"
+              />
+            )}
           </div>
         </div>
       </PageWrapper>
