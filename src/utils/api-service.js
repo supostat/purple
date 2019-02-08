@@ -20,6 +20,44 @@ export default {
       return `${BASE_API_URL}/api/v1/accept_invites?invitationToken=${invitationToken}`;
     },
   },
+  userProfilePage: {
+    userProfile: {
+      method: 'GET',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}`;
+      },
+    },
+    updatePersonalDetails: {
+      method: 'POST',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}/update_personal_details`;
+      },
+    },
+    updateAccessDetails: {
+      method: 'POST',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}/update_access_details`;
+      },
+    },
+    disableUser: {
+      method: 'POST',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}/disable`;
+      },
+    },
+    enableUser: {
+      method: 'POST',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}/enable`;
+      },
+    },
+    getUserHistory: {
+      method: 'get',
+      getPath(userId) {
+        return `${BASE_API_URL}/api/v1/users/${userId}/history${location.search}`;
+      },
+    },
+  },
   resetPasswordPage: {
     resetPassword: {
       method: 'POST',
@@ -50,9 +88,9 @@ export default {
       },
     },
     revokeInvite: {
-      method: 'DELETE',
+      method: 'POST',
       getPath(invitedId) {
-        return `${BASE_API_URL}/api/v1/invites/${invitedId}${location.search}`;
+        return `${BASE_API_URL}/api/v1/invites/${invitedId}/revoke${location.search}`;
       },
     },
     loadMoreInvited: {
@@ -62,22 +100,18 @@ export default {
       },
     },
   },
-  usersPageDataParams: {
-    method: 'GET',
-    getPath() {
-      return `${BASE_API_URL}/api/v1/users`;
+  usersPage: {
+    indexData: {
+      method: 'GET',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/users${location.search}`;
+      },
     },
-  },
-  userProfilePageDataParams: {
-    method: 'GET',
-    getPath(id) {
-      return `${BASE_API_URL}/api/v1/users/${id}`;
-    },
-  },
-  userProfileHistoryParams: {
-    method: 'GET',
-    getPath(id) {
-      return `${BASE_API_URL}/api/v1/users/${id}/history`;
+    loadMoreUsers: {
+      method: 'GET',
+      getPath() {
+        return `${BASE_API_URL}/api/v1/users${location.search}`;
+      },
     },
   },
   acceptInviteParams: {
