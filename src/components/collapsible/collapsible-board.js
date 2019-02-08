@@ -29,7 +29,7 @@ export default class CollapsibleBoard extends PureComponent {
           </div>
         </div>
         <Collapse className="purple-board__content" style={{ display: 'block' }} isOpened={isCollapsed}>
-          <div className="purple-board__content-inner">{children}</div>
+          <div className="purple-board__content-inner">{isCollapsed && children}</div>
         </Collapse>
       </div>
     );
