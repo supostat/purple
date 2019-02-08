@@ -2,21 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import oFetch from 'o-fetch';
 import AuthorizedLayout from '~/layouts/authorized-layout';
-import { getUsers, getUsersCount } from './redux/selectors';
-import { DesktopUsersList, DesktopUsersItem, UsersHeader } from './components';
+import { WithLoadMore } from '~/components';
+import { getUsers, getPaginationData } from './redux/selectors';
+import { DesktopUsersList, DesktopUsersItem, UsersHeader, Filter } from './components';
+import { loadMoreUsersAction, filterUsersAction } from './redux/actions';
 
 export class UsersPage extends Component {
-  handleManageInvites = () => {
-    console.log('manage invites clicked!');
-  };
-
   render() {
-    const [users, usersCount] = oFetch(this.props, 'users', 'usersCount');
+    const [users, pagination, loadMoreUsers, filterUsers] = oFetch(
+      this.props,
+      'users',
+      'pagination',
+      'loadMoreUsers',
+      'filterUsers',
+    );
+    const usersCount = oFetch(pagination, 'count');
     return (
       <AuthorizedLayout
-        headerRenderer={() => <UsersHeader count={usersCount} onManageInvitesClick={this.handleManageInvites} />}
+        headerRenderer={() => (
+          <UsersHeader count={usersCount} filterRenderer={() => <Filter onFilter={filterUsers} />} />
+        )}
       >
-        <DesktopUsersList users={users} itemRenderer={user => <DesktopUsersItem user={user} />} />
+        {' '}
+        <div className="purple-board">
+          <div className="purple-board__inner">
+            <WithLoadMore pagination={pagination} onLoadMore={loadMoreUsers}>
+              <DesktopUsersList users={users} itemRenderer={user => <DesktopUsersItem user={user} />} />
+            </WithLoadMore>
+          </div>
+        </div>
       </AuthorizedLayout>
     );
   }
@@ -24,10 +38,13 @@ export class UsersPage extends Component {
 
 const mapStateToProps = state => ({
   users: getUsers(state),
-  usersCount: getUsersCount(state),
+  pagination: getPaginationData(state),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loadMoreUsers: loadMoreUsersAction,
+  filterUsers: filterUsersAction,
+};
 
 export default connect(
   mapStateToProps,

@@ -27,13 +27,9 @@ export default class DesktopUsersList extends Component {
   render() {
     const users = oFetch(this.props, 'users');
     return (
-      <div className="purple-board">
-        <div className="purple-board__inner">
-          <div className="purple-table purple-table_page_users-index purple-hidden_size_m-major">
-            {this.renderHeader()}
-            {this.renderList(users)}
-          </div>
-        </div>
+      <div className="purple-table purple-table_page_users-index purple-hidden_size_m-major">
+        {this.renderHeader()}
+        {this.renderList(users)}
       </div>
     );
   }

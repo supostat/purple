@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import oFetch from 'o-fetch';
-import { PageWrapper, FilterWrapper } from '~/components/wrappers';
-import UsersFilter from './users-filter';
+import Link from 'found/lib/Link';
+import { PageWrapper } from '~/components/wrappers';
+import { RoutesService } from '~/utils';
 
 export default class InvitesHeader extends Component {
+  renderFilter = filterRenderer => {
+    return React.cloneElement(filterRenderer());
+  };
+
   render() {
-    const [onManageInvitesClick, count] = oFetch(this.props, 'onManageInvitesClick', 'count');
+    const [count, filterRenderer] = oFetch(this.props, 'count', 'filterRenderer');
     return (
       <PageWrapper>
         <div className="purple-page-main__info-group">
@@ -14,18 +19,15 @@ export default class InvitesHeader extends Component {
             <span className="purple-page-main__title-info">{count}</span>
           </h1>
           <div className="purple-page-main__info-group-actions">
-            <button
-              onClick={onManageInvitesClick}
-              type="button"
+            <Link
+              to={RoutesService.invitesPage()}
               className="purple-button purple-button_color_accent-primary purple-button_size_m purple-page-main__info-group-action"
             >
               <span className="purple-button__text">Manage Invites</span>
-            </button>
+            </Link>
           </div>
         </div>
-        <FilterWrapper>
-          <UsersFilter />
-        </FilterWrapper>
+        {this.renderFilter(filterRenderer)}
       </PageWrapper>
     );
   }

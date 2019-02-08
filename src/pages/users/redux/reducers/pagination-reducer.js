@@ -3,12 +3,18 @@ import oFetch from 'o-fetch';
 
 import * as types from '../actions';
 
-const initialState = [];
+const initialState = {
+  page: 1,
+  next: null,
+  showing: null,
+  count: null,
+};
+
 export default handleActions(
   {
     [combineActions(types.PAGE_DATA_SUCCESS, types.LOAD_MORE_SUCCESS)]: (state, action) => {
-      const users = oFetch(action, 'payload.users');
-      return users;
+      const pagination = oFetch(action, 'payload.pagination');
+      return pagination;
     },
   },
   initialState,

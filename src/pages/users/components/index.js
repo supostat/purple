@@ -1,4 +1,4 @@
-export UsersHeader from './users-header';
-export UsersFilter from './users-filter';
-export DesktopUsersList from './desktop-users-list';
-export DesktopUsersItem from './desktop-users-item';
+export { default as UsersHeader } from './users-header';
+export { default as DesktopUsersList } from './desktop-users-list';
+export { default as DesktopUsersItem } from './desktop-users-item';
+export { default as Filter } from './filter';
