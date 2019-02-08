@@ -20,7 +20,7 @@ export const setAuthUserFromJwt = ({ params, context }) => {
   return null;
 };
 
-export const userLogout = () => async dispatch => {
+export const userLogoutAction = () => async dispatch => {
   const { logoutParams } = ApiService;
   const logoutResponse = await dispatch({
     [RSAA]: {

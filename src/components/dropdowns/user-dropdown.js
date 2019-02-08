@@ -4,7 +4,9 @@ import DropdownButton from '../dropdown-button';
 
 export default class UserDropdown extends Component {
   render() {
-    const [fullName, onLogout] = oFetch(this.props, 'fullName', 'onLogout');
+    const [user, onLogout] = oFetch(this.props, 'user', 'onLogout');
+    const fullName = oFetch(user, 'fullName');
+
     return (
       <DropdownButton
         render={(ref, handleClick, show) => (

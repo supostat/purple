@@ -30,7 +30,6 @@ export class UsersPage extends Component {
           <UsersHeader count={usersCount} filterRenderer={() => <Filter onFilter={filterUsers} />} />
         )}
       >
-        {' '}
         <div className="purple-board">
           <div className="purple-board__inner">
             <WithLoadMore pagination={pagination} onLoadMore={loadMoreUsers}>

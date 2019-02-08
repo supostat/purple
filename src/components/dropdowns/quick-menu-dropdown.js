@@ -64,17 +64,17 @@ export default class QuickMenuDropdown extends Component {
                           <div className="purple-quick-access__aliases">
                             <div className="purple-quick-access__alias">
                               <div className="purple-alias">
-                                <Link to="/invites" className="purple-alias__link">
-                                  <span className="purple-alias__icon purple-alias__icon_type_solid">Li</span>
+                                <Link onClick={handleClick} to="/invites" className="purple-alias__link">
+                                  <span className="purple-alias__icon purple-alias__icon_type_solid">In</span>
                                   <span className="purple-alias__text">Invites</span>
                                 </Link>
                               </div>
                             </div>
                             <div className="purple-quick-access__alias">
                               <div className="purple-alias">
-                                <Link to="/widgets" className="purple-alias__link">
-                                  <span className="purple-alias__icon purple-alias__icon_type_solid">Li</span>
-                                  <span className="purple-alias__text">Widgets</span>
+                                <Link onClick={handleClick} to="/users" className="purple-alias__link">
+                                  <span className="purple-alias__icon purple-alias__icon_type_solid">Us</span>
+                                  <span className="purple-alias__text">Users</span>
                                 </Link>
                               </div>
                             </div>

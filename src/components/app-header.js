@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import Link from 'found/lib/Link';
 import oFetch from 'o-fetch';
+import { connect } from 'react-redux';
+import { getAuthUser } from '~/redux/selectors';
+import { userLogoutAction } from '~/redux/actions/auth-user';
 
 import UserDropdown from './dropdowns/user-dropdown';
 import QuickMenuDropdown from './dropdowns/quick-menu-dropdown';
 
-export default class AppHeader extends Component {
+class AppHeader extends Component {
   render() {
-    const [user, onLogout] = oFetch(this.props, 'user', 'onLogout');
-    const [firstName, surname] = oFetch(user, 'firstName', 'surname');
-    const fullName = `${firstName} ${surname}`;
+    const [authUser, handleUserLogout] = oFetch(this.props, 'authUser', 'handleUserLogout');
 
     return (
       <header className="purple-page-header">
@@ -20,9 +21,22 @@ export default class AppHeader extends Component {
             </Link>
           </div>
           <QuickMenuDropdown />
-          <UserDropdown onLogout={onLogout} fullName={fullName} />
+          <UserDropdown onLogout={handleUserLogout} user={authUser} />
         </div>
       </header>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  authUser: getAuthUser(state),
+});
+
+const mapDispatchToProps = {
+  handleUserLogout: userLogoutAction,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AppHeader);
