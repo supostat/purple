@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import oFetch from 'o-fetch';
 import successImage from '~/assets/images/illustration-check-accent-green.svg';
 import { Button } from '~/components';
+import wrapper from './wrapper';
 
-export default class SuccessPage extends Component {
+class SuccessPage extends Component {
   render() {
     const [title, text, buttonText, onButtonClick] = oFetch(this.props, 'title', 'text', 'buttonText', 'onButtonClick');
     return (
@@ -28,3 +29,5 @@ export default class SuccessPage extends Component {
     );
   }
 }
+
+export default wrapper(SuccessPage);
