@@ -21,7 +21,11 @@ const plugins = [
     meta: [
       {
         name: 'description',
-        content: 'A better default template for html-webpack-plugin.',
+        content: 'Purple App',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0',
       },
     ],
     // And any other config options from html-webpack-plugin:
