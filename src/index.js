@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { resolver } from 'found';
 import { Provider } from 'react-redux';
 import FarceActions from 'farce/lib/Actions';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 import './styles.css';
 import '~/assets/sass/index.sass';
