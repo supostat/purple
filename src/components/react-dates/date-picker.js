@@ -7,7 +7,7 @@ import oFetch from 'o-fetch';
 import MonthElement from './month-element';
 import CalendarInfo from './calendar-info';
 
-class BossDatePicker extends PureComponent {
+class DatePicker extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -100,7 +100,7 @@ class BossDatePicker extends PureComponent {
   }
 }
 
-BossDatePicker.propTypes = {
+DatePicker.propTypes = {
   id: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.instanceOf(moment), PropTypes.string]),
   onApply: PropTypes.func.isRequired,
@@ -111,7 +111,7 @@ BossDatePicker.propTypes = {
   invalid: PropTypes.bool,
 };
 
-BossDatePicker.defaultProps = {
+DatePicker.defaultProps = {
   className: 'date-control date-control_type_icon',
   numberOfMonths: 1,
   isOutsideRange: null,
@@ -120,4 +120,4 @@ BossDatePicker.defaultProps = {
   id: 'date',
 };
 
-export default BossDatePicker;
+export default DatePicker;

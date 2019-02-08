@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { DateRangePicker } from 'react-dates';
+import { DateRangePicker as ReactDatesRangePicker } from 'react-dates';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { DateFormats } from '~/utils';
@@ -8,14 +8,27 @@ import { START_DATE, END_DATE } from 'react-dates/constants';
 import MonthElement from './month-element';
 import CalendarInfo from './calendar-info';
 
-class BossDateRangePicker extends PureComponent {
+class DateRangePicker extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      focusedInput: null,
-      startDate: oFetch(props, 'startDate') || null,
-      endDate: oFetch(props, 'endDate') || null,
-    };
+    const resultFormat = oFetch(props, 'resultFormat');
+
+    const startDate = oFetch(props, 'startDate');
+    const endDate = oFetch(props, 'endDate');
+
+    if (resultFormat !== null) {
+      this.state = {
+        focusedInput: null,
+        startDate: startDate ? moment(startDate, resultFormat) : null,
+        endDate: endDate ? moment(endDate, resultFormat) : null,
+      };
+    } else {
+      this.state = {
+        focusedInput: null,
+        startDate: startDate || null,
+        endDate: endDate || null,
+      };
+    }
   }
 
   handleFocusChange = focusedInput => {
@@ -25,12 +38,30 @@ class BossDateRangePicker extends PureComponent {
     }
   };
 
+  getResult = state => {
+    const { startDate, endDate } = state;
+    const resultFormat = oFetch(this.props, 'resultFormat');
+    if (resultFormat) {
+      const formattedStartsDate = startDate ? startDate.format(resultFormat) : startDate;
+      const formattedEndsDate = endDate ? endDate.format(resultFormat) : endDate;
+      return {
+        startDate: formattedStartsDate,
+        endDate: formattedEndsDate,
+      };
+    }
+    return {
+      startDate,
+      endDate,
+    };
+  };
+
   handleApplyChanges = () => {
-    const { startDate, endDate } = this.state;
+    const { startDate, endDate } = this.getResult(this.state);
 
     if (!startDate || !endDate) {
       return;
     }
+
     const returnFn = oFetch(this.props, 'onApply')({ startDate, endDate });
     if (returnFn && typeof returnFn.then === 'function') {
       return returnFn.then(() => {
@@ -98,7 +129,7 @@ class BossDateRangePicker extends PureComponent {
     );
     const [focusedInput, startDate, endDate] = oFetch(this.state, 'focusedInput', 'startDate', 'endDate');
     return (
-      <DateRangePicker
+      <ReactDatesRangePicker
         readOnly={readOnly}
         initialVisibleMonth={this.initialVisibleMonth}
         numberOfMonths={numberOfMonths}
@@ -123,25 +154,29 @@ class BossDateRangePicker extends PureComponent {
   }
 }
 
-BossDateRangePicker.propTypes = {
+DateRangePicker.propTypes = {
   startDateId: PropTypes.string,
   endDateId: PropTypes.string,
-  startDate: PropTypes.instanceOf(moment),
-  endDate: PropTypes.instanceOf(moment),
+  startDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(moment)]),
+  endDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(moment)]),
   onApply: PropTypes.func.isRequired,
   numberOfMonths: PropTypes.number,
   isOutsideRange: PropTypes.func,
   readOnly: PropTypes.bool,
   showClearDates: PropTypes.bool,
+  resultFormat: PropTypes.string,
 };
 
-BossDateRangePicker.defaultProps = {
+DateRangePicker.defaultProps = {
   numberOfMonths: 1,
   isOutsideRange: null,
   readOnly: false,
   showClearDates: true,
   startDateId: 'startDateId',
   endDateId: 'endDateId',
+  resultFormat: null,
+  startDate: null,
+  endDate: null,
 };
 
-export default BossDateRangePicker;
+export default DateRangePicker;

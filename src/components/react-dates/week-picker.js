@@ -8,7 +8,7 @@ import { DateFormats } from '~/utils';
 import MonthElement from './month-element';
 import CalendarInfo from './calendar-info';
 
-class BossWeekPicker extends PureComponent {
+class WeekPicker extends PureComponent {
   constructor(props) {
     super(props);
     const selectionStartUIDate = oFetch(props, 'selectionStartUIDate');
@@ -98,10 +98,10 @@ class BossWeekPicker extends PureComponent {
   }
 }
 
-BossWeekPicker.propTypes = {
+WeekPicker.propTypes = {
   selectionStartUIDate: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
 };
 
-export default BossWeekPicker;
+export default WeekPicker;
