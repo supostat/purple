@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
 import oFetch from 'o-fetch';
+import { connect } from 'react-redux';
 import { InputField, SelectField } from '~/components/form-fields';
+import { getRolesOptions, getStatusesOptions } from '../redux/selectors';
 
-export default class FilterForm extends Component {
+class FilterForm extends Component {
   render() {
-    const [initialValues, rolesOptions, venues, invitationStatusesOptions, onSubmit] = oFetch(
+    const [initialValues, rolesOptions, venues, statusesOptions, onSubmit] = oFetch(
       this.props,
       'initialValues',
       'rolesOptions',
       'venues',
-      'invitationStatusesOptions',
+      'statusesOptions',
       'onSubmit',
     );
     return (
@@ -40,7 +42,7 @@ export default class FilterForm extends Component {
                 <Field
                   name="status"
                   label="Status"
-                  options={invitationStatusesOptions}
+                  options={statusesOptions}
                   fieldClassName="purple-form__field_size_third"
                   component={SelectField}
                   placeholder="Status"
@@ -73,3 +75,12 @@ export default class FilterForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    rolesOptions: getRolesOptions(state),
+    statusesOptions: getStatusesOptions(state),
+  };
+};
+
+export default connect(mapStateToProps)(FilterForm);

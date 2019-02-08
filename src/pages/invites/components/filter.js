@@ -5,24 +5,11 @@ import { FilterWrapper } from '~/components/wrappers';
 
 export default class Filter extends Component {
   render() {
-    const [initialFilterData, onFilter, rolesOptions, venues, invitationStatusesOptions] = oFetch(
-      this.props,
-      'initialFilterData',
-      'onFilter',
-      'rolesOptions',
-      'venues',
-      'invitationStatusesOptions',
-    );
+    const [initialFilterData, onFilter, venues] = oFetch(this.props, 'initialFilterData', 'onFilter', 'venues');
 
     return (
       <FilterWrapper>
-        <FilterForm
-          initialValues={initialFilterData}
-          onSubmit={onFilter}
-          rolesOptions={rolesOptions}
-          venues={venues}
-          invitationStatusesOptions={invitationStatusesOptions}
-        />
+        <FilterForm initialValues={initialFilterData} onSubmit={onFilter} venues={venues} />
       </FilterWrapper>
     );
   }

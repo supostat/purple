@@ -55,7 +55,3 @@ export const getInvitedUsers = createSelector(
     });
   },
 );
-
-export const getInvitedUsersCount = createSelector([getInvitedUsers], invitedUsers => {
-  return invitedUsers.length;
-});

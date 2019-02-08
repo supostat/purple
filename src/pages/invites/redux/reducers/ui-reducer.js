@@ -8,6 +8,7 @@ const initialState = {
   venues: [],
   invitationStatuses: {},
 };
+
 export default handleActions(
   {
     [combineActions(types.PAGE_DATA_SUCCESS, types.LOAD_MORE_SUCCESS)]: (state, action) => {

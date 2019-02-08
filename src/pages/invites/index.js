@@ -8,7 +8,6 @@ import { WarningContent } from '~/components/modals/content';
 import { InvitesHeader, DesktopInvitedList, DesktopInvitedItem, CreateInvite, Filter } from './components';
 import {
   getInvitedUsers,
-  getInvitedUsersCount,
   getRolesOptions,
   venuesSelector,
   getInitialFilterData,
@@ -113,7 +112,6 @@ class InvitesPage extends Component {
 const mapStateToProps = state => {
   return {
     invitedUsers: getInvitedUsers(state),
-    invitedUsersCount: getInvitedUsersCount(state),
     rolesOptions: getRolesOptions(state),
     venues: venuesSelector(state),
     initialFilterData: getInitialFilterData(state),
