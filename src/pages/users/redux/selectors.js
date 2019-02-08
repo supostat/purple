@@ -35,11 +35,13 @@ export const getStatusesOptions = createSelector(statusesSelector, statuses => {
   return getValueLabelArrayFromObject(statuses);
 });
 
-export const getUsers = createSelector([usersSelector], users => {
+export const getUsers = createSelector([usersSelector, statusesSelector], (users, statuses) => {
   return users.map(user => {
+    const status = oFetch(user, 'status');
     return {
       ...user,
       fullName: `${oFetch(user, 'firstName')} ${oFetch(user, 'surname')}`,
+      statusTitle: statuses[status],
     };
   });
 });

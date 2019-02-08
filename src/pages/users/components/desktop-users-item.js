@@ -11,7 +11,15 @@ import { RoutesService } from '~/utils';
 export default class DesktopUsersItem extends Component {
   render() {
     const user = oFetch(this.props, 'user');
-    const [id, fullName, email, status, role] = oFetch(user, 'id', 'fullName', 'email', 'status', 'role');
+    const [id, fullName, email, status, role, statusTitle] = oFetch(
+      user,
+      'id',
+      'fullName',
+      'email',
+      'status',
+      'role',
+      'statusTitle',
+    );
     const statusClassNames = cn('purple-indicator purple-table__label', {
       'purple-indicator_color_accent-green': status === constants.USER_ENABLED_STATUS,
       'purple-indicator_color_accent-red': status === constants.USER_DISABLED_STATUS,
@@ -27,7 +35,7 @@ export default class DesktopUsersItem extends Component {
         <TableCell>
           <div className="purple-table__text">
             <div className={statusClassNames}>
-              <div className="purple-indicator__label">{constants.USER_STATUSES[status]}</div>
+              <div className="purple-indicator__label">{statusTitle}</div>
             </div>
           </div>
         </TableCell>

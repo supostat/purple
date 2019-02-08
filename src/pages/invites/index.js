@@ -5,7 +5,15 @@ import AuthorizedLayout from '~/layouts/authorized-layout';
 import { WithLoadMore } from '~/components';
 import { openContentModal, openConfirmModal } from '~/components/modals';
 import { WarningContent } from '~/components/modals/content';
-import { InvitesHeader, DesktopInvitedList, DesktopInvitedItem, CreateInvite, Filter } from './components';
+import {
+  InvitesHeader,
+  DesktopInvitedList,
+  DesktopInvitedItem,
+  CreateInvite,
+  Filter,
+  MobileInvitedItem,
+  MobileInvitedList,
+} from './components';
 import {
   getInvitedUsers,
   getRolesOptions,
@@ -100,6 +108,10 @@ class InvitesPage extends Component {
               <DesktopInvitedList
                 invitedUsers={invitedUsers}
                 invitedRenderer={invited => <DesktopInvitedItem inviter={invited} onRevoke={this.openRevokeConfirm} />}
+              />
+              <MobileInvitedList
+                invitedUsers={invitedUsers}
+                invitedRenderer={invited => <MobileInvitedItem inviter={invited} onRevoke={this.openRevokeConfirm} />}
               />
             </WithLoadMore>
           </div>
