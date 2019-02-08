@@ -6,7 +6,7 @@ import { LoadingIndicator } from './components';
 export default class UnauthorizedRoute extends Route {
   render({ Component, props }) {
     if (Component && props) {
-      if (AuthService.getJwtToken()) throw new RedirectException('/widgets');
+      if (AuthService.getJwtToken()) throw new RedirectException('/users');
       return <Component {...props} />;
     }
     return <LoadingIndicator />;
