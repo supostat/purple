@@ -5,7 +5,17 @@ export { default as ApiService } from './api-service';
 export { default as RoutesService } from './routes-service';
 export { default as AuthService } from './auth-service';
 export { default as DateFormats } from './date-formats';
+
+export * from './filtering';
 export * from './type-checkers';
+
+export const getSafe = (fn, defaultVal) => {
+  try {
+    return fn();
+  } catch (e) {
+    return defaultVal;
+  }
+};
 
 export const mapCount = (count = 10, callback) => new Array(count).fill(null).map(callback);
 
