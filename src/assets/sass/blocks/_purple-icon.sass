@@ -1,0 +1,119 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Icon
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-icon"
+
+#{$block}
+  flex-grow: 0
+  flex-shrink: 0
+  display: inline-block
+  white-space: nowrap
+  font-size: 0
+  line-height: 0
+  color: transparent
+
+  &:before
+    content: ''
+    font-family: icons
+    font-size: 20px
+    line-height: 20px
+    color: $c-text-primary
+    text-align: center
+    vertical-align: middle
+
+  // $Icon MOD: role action
+  &_role_action
+    cursor: pointer
+    transition: opacity .4s
+
+    &:hover
+      opacity: 0.8
+
+  // $Icon MOD: size large
+  &_size_l
+    &:before
+      font-size: 25px
+      line-height: 25px
+
+  // $Icon MOD: extra large
+  &_size_xl
+    &:before
+      font-size: 30px
+      line-height: 30px
+
+  // $Icon MOD: close
+  &_close
+    &:before
+      content: '\e937'
+
+  // $Icon MOD: pencil
+  &_pencil
+    &:before
+      content: '\e91d'
+      font-size: 16px
+
+  // $Icon MOD: pencil size large
+  &_pencil#{&}_size_l
+    &:before
+      font-size: 20px
+
+  // $Icon MOD: pencil size extra large
+  &_pencil#{&}_size_xl
+    &:before
+      font-size: 24px
+
+  // $Icon MOD: check
+  &_check
+    &:before
+      content: '\e914'
+
+  // $Icon MOD: color blue
+  &_color_accent-blue
+    &:before
+      color: $c-accent-blue
+
+  // $Icon MOD: color red
+  &_color_accent-red
+    &:before
+      color: $c-accent-red
+
+  // $Icon MOD: color orange
+  &_color_accent-orange
+    &:before
+      color: $c-accent-orange
+
+  // $Icon MOD: color yellow
+  &_color_accent-yellow
+    &:before
+      color: $c-accent-yellow
+
+  // $Icon MOD: color green
+  &_color_accent-green
+    &:before
+      color: $c-accent-green
+
+  // $Icon MOD: color purple
+  &_color_accent-purple
+    &:before
+      color: $c-accent-purple
+
+  // $Icon MOD: color pink
+  &_color_accent-pink
+    &:before
+      color: $c-accent-pink
+
+  // $Icon MOD: color gray
+  &_color_gray
+    &:before
+      color: $c-gray-medium

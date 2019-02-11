@@ -1,0 +1,88 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Chart
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-chart"
+
+#{$block}
+  display: block
+  width: 100%
+
+
+  // $Chart header
+  &__header
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+    width: 100%
+    padding-bottom: 25px
+
+
+  // $Chart legend
+  &__legend
+    flex-grow: 1
+    flex-shrink: 1
+
+
+  // $Chart switches
+  &__switches
+    flex-grow: 0
+    flex-shrink: 0
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+
+
+  // $Chart switch
+  &__switch
+    &:not(:last-child)
+      margin-right: 30px
+
+      @media screen and (max-width: 1280px)
+        margin-right: 25px
+
+      @media screen and (max-width: 960px)
+        margin-right: 20px
+
+
+  // $Chart content
+  &__content
+    display: block
+    width: 100%
+
+
+  // $Chart scroll
+  &__scroll
+    display: block
+    width: 100%
+    overflow: hidden
+
+    // $Chart scroll MOD: type horizontal
+    &_type_horizontal
+      overflow-x: auto
+
+
+  // $Chart component
+  &__component
+    position: relative
+    display: block
+    min-width: 100%
+
+
+  // $Chart placeholder image
+  &__placeholder
+    display: block
+    width: 100%
+    max-width: 100%

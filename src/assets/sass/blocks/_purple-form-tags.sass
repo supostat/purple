@@ -1,0 +1,173 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form tags
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-tags"
+
+#{$block}
+  display: block
+  width: 100%
+
+  // $Common form tags MOD: state error
+  &_state_error
+
+
+  // $Common form tags control
+  &__control
+    display: block
+    width: 100%
+
+
+  // $Common form tags tag
+  &__tag
+    position: relative
+    display: inline-block
+    height: 25px
+    margin-bottom: 10px
+    margin-right: 10px
+    padding: 0 35px 0 10px
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 25px
+    vertical-align: middle
+    text-align: center
+    white-space: nowrap
+    background-color: $c-accent-pink-medium
+    border: 1px solid $c-gray-extra-light
+    border-radius: 4px
+    overflow: hidden
+
+    &_type_sortable
+      cursor: move
+
+
+  // $Common form tags tag remove
+  &__tag-remove
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    display: block
+    vertical-align: middle
+    height: 25px
+    width: 25px
+    color: transparent
+    line-height: 0
+    font-size: 0
+    text-align: center
+    cursor: pointer
+    background-color: rgba(0, 0, 0, .3)
+    transition: all .3s
+
+    &:before
+      content: "\e909"
+      display: inline-block
+      font-family: icons
+      font-size: 16px
+      line-height: 24px
+      color: $c-text-light
+
+    &:hover
+      background-color: rgba(0, 0, 0, .6)
+
+    &:focus
+      color: #FFF
+
+
+  // $Common form tags input
+  &__input
+    display: block
+    width: 100%
+
+
+  // $Common form tags input field
+  &__input-field
+    display: block
+    width: 100%
+    min-height: 50px
+    padding: 13px 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 400
+    line-height: 1.5
+    background-color: $c-bg-light
+    border: 1px solid $c-border-primary
+    border-radius: 2px
+
+    #{$block}_state_error &
+      border-color: $c-accent-red
+      color: $c-accent-red
+
+    &:invalid
+      box-shadow: none
+
+    &:focus
+      outline: none
+      box-shadow: 0 0 3px -1px $c-accent-blue
+
+    &:disabled
+      background-color: $c-gray-ultra-light
+      cursor: not-allowed
+
+    &:read-only
+      background-color: $c-gray-ultra-light
+
+    &::-webkit-input-placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &:-moz-placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &::-moz-placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &:-ms-input-placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &::-ms-input-placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &::placeholder
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important
+
+    &:placeholder-shown
+      color: $c-text-faded !important
+      opacity:  1 !important
+
+      #{$block}_state_error &
+        color: $c-accent-red !important

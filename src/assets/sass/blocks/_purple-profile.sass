@@ -1,0 +1,379 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Profile
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-profile"
+
+#{$block}
+  position: relative
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: flex-start
+  width: 100%
+  transition: all .3s
+
+  @media screen and (max-width: 960px)
+    flex-direction: column
+    align-items: center
+
+  // $Profile MOD: layout column
+  &_layout_column
+    flex-direction: column
+    align-items: center
+
+  &_page_user-profile
+
+  &_page_contacts-index
+    @media screen and (max-width: 960px)
+      flex-direction: row
+      align-items: flex-start
+
+    @media screen and (max-width: 640px)
+      flex-direction: column
+      align-items: center
+
+
+  // $Profile service area
+  &__service
+    flex-grow: 0
+    flex-shrink: 0
+    display: block
+
+
+  // $Profile avatar
+  &__avatar
+    flex-shrink: 0
+    position: relative
+    display: block
+    width: 120px
+    height: 120px
+    text-align: center
+
+    @media screen and (max-width: 960px)
+      width: 110px
+      height: 110px
+
+    @media screen and (max-width: 480px)
+      width: 100px
+      height: 100px
+
+    // $Profile avatar MOD: size extra small
+    &_size_xs
+      width: 60px
+      height: 60px
+
+    // $Profile avatar MOD: size small
+    &_size_s
+      width: 80px
+      height: 80px
+
+      @media screen and (max-width: 960px)
+        width: 70px
+        height: 70px
+
+      @media screen and (max-width: 480px)
+        width: 60px
+        height: 60px
+
+    // $Profile avatar MOD: size large
+    &_size_l
+      width: 160px
+      height: 160px
+
+      @media screen and (max-width: 960px)
+        width: 150px
+        height: 150px
+
+      @media screen and (max-width: 480px)
+        width: 140px
+        height: 140px
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+
+  // $Profile avatar inner
+  &__avatar-inner
+    display: block
+    width: 100%
+    height: 100%
+    border-radius: 50%
+    overflow: hidden
+    background-image: url('../images/avatar-placeholder.svg')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: contain
+
+
+  // $Profile avatar image
+  &__avatar-image
+    display: block
+    width: 100%
+    max-width: 100%
+
+
+  // $Profile avatar overlay
+  &__avatar-overlay
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 1
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    background-color: rgba(255,255,255,.5)
+    border-radius: 50%
+
+
+  // $Profile avatar overlay text
+  &__avatar-overlay-text
+    display: block
+    max-width: 100%
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    color: $c-text-primary
+    text-align: center
+
+    // $Profile avatar overlay text MOD: role alert
+    &_role_alert
+      font-size: 16px
+      font-weight: 600
+      color: $c-accent-red
+      text-transform: uppercase
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff
+
+
+  // $Profile content area
+  &__content
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    align-self: center
+    width: 100%
+
+    #{$block}_layout_column &
+      align-items: center
+
+
+  // $Profile content area CONTEXT: next to the service area
+  &__service + #{&}__content
+    padding-left: 20px
+
+    #{$block}_layout_column &
+      padding-left: 0
+      padding-top: 20px
+
+    @media screen and (max-width: 960px)
+      padding-left: 0
+      padding-top: 20px
+
+      #{$block}_page_contacts-index &
+        padding-left: 20px
+        padding-top: 0
+
+    @media screen and (max-width: 640px)
+      #{$block}_page_contacts-index &
+        padding-left: 0
+        padding-top: 20px
+
+
+  // $Profile header area
+  &__header
+    display: block
+    width: 100%
+    max-width: 100%
+    text-align: left
+
+    #{$block}_layout_column &
+      text-align: center
+
+    @media screen and (max-width: 960px)
+      text-align: center
+
+      #{$block}_page_contacts-index &
+        text-align: left
+
+    @media screen and (max-width: 640px)
+      #{$block}_page_contacts-index &
+        text-align: center
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+
+  // $Profile name
+  &__name
+    display: block
+    font-family: $f-sans
+    font-size: 20px
+    line-height: 1
+    color: $c-text-primary
+    font-weight: 400
+
+    #{$block}_layout_column &
+      text-align: center
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+    // $Profile name MOD: size small
+    &_size_s
+      font-size: 16px
+
+    // $Profile name MOD: size large
+    &_size_l
+      font-size: 24px
+
+  // $Profile status
+  &__status
+    text-transform: uppercase
+
+  // $Profile status CONTEXT: inside name element
+  &__name > #{&}__status
+    margin-left: 10px
+
+
+  // $Profile info
+  &__info
+    display: block
+    width: 100%
+    list-style: none
+    margin: 0
+    padding: 0
+    text-align: left
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+    // $Profile info MOD: role panel
+    &_role_panel
+      padding: 15px
+      border-radius: 4px
+      box-shadow: 0px 2px 8px 0 $c-shadow-secondary
+
+
+  // $Profile info item
+  &__info-item
+    display: block
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+    // $Profile info item MOD: layout row
+    &_layout_row
+      display: flex
+      flex-direction: row
+      justify-content: flex-start
+      align-items: flex-start
+      width: 100%
+
+      @media screen and (max-width: 400px)
+        flex-direction: column
+
+
+  // $Profile info key
+  &__info-key
+    flex-grow: 0
+    flex-shrink: 0
+    width: 120px
+
+    @media screen and (max-width: 400px)
+      flex-grow: 1
+      flex-shrink: 1
+      width: 100%
+      margin-bottom: 5px
+
+
+  // $Profile info value
+  &__info-value
+    flex-grow: 1
+    flex-shrink: 1
+    width: calc(100% - 120px)
+
+    @media screen and (max-width: 400px)
+      width: 100%
+
+
+  // $Profile text
+  &__text
+    display: block
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1.2
+    font-weight: 400
+    color: $c-text-primary
+
+    &:before
+      margin-right: 5px
+
+
+  // $Profile text faded
+  &__text-faded
+    color: $c-text-secondary
+    vertical-align: top
+
+
+  // $Profile text bold
+  &__text-bold
+    font-weight: 600
+
+
+  // $Profile text light
+  &__text-light
+    font-weight: 300
+
+
+  // $Profile text wrap
+  &__text-wrap
+    overflow-wrap: break-word
+    word-wrap: break-word
+    word-break: break-word
+    hyphens: auto
+
+
+  // $Profile actions
+  &__actions
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    width: 100%
+
+    #{$block}_layout_column &
+      justify-content: center
+
+    @media screen and (max-width: 400px)
+      flex-direction: column
+
+      #{$block}_layout_column &
+        justify-content: flex-start
+        align-items: center
+
+
+  // $Profile action
+  &__action
+    &:not(:last-child)
+      margin-right: 15px
+
+      @media screen and (max-width: 400px)
+        margin-right: 0
+        margin-bottom: 15px
+
+

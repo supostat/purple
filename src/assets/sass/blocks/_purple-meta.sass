@@ -1,0 +1,122 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Meta
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-meta"
+
+#{$block}
+  display: inline-block
+  font-family: $f-sans
+  color: $c-text-primary
+  font-size: 14px
+  line-height: 1.2
+  font-weight: 400
+
+  @media screen and (max-width: 480px)
+    display: block
+
+  &:not(:last-of-type)
+    margin-right: 30px
+    margin-top: 2px
+    margin-bottom: 2px
+
+    @media screen and (max-width: 480px)
+      margin-right: 0
+      margin-top: 5px
+      margin-bottom: 5px
+
+  &:before
+    display: inline-block
+    margin-right: 5px
+    font-family: 'icons'
+    font-size: inherit
+    line-height: inherit
+    color: inherit
+    vertical-align: baseline
+
+  // $Meta MOD: type faded
+  &_type_faded
+    color: $c-text-secondary
+
+  // $Meta MOD: type bold
+  &_type_bold
+    font-weight: 600
+
+  // $Meta MOD: type light
+  &_type_light
+    font-weight: 300
+
+  // $Meta MOD: icon date
+  &_icon_date
+    &:before
+      content: '\e900'
+
+  // $Meta MOD: icon user
+  &_icon_user
+    &:before
+      content: '\e904'
+
+  // $Meta MOD: icon venue
+  &_icon_venue
+    &:before
+      content: '\e901'
+
+  // $Meta MOD: size large
+  &_size_l
+    font-size: 16px
+
+  // $Meta MOD: size extra large
+  &_size_xl
+    font-size: 18px
+
+  // $Meta MOD: size extra extra large
+  &_size_xxl
+    font-size: 20px
+
+  // $Meta MOD: adjust wrap
+  &_adjust_wrap
+    overflow-wrap: break-word
+    word-wrap: break-word
+    word-break: break-word
+    hyphens: auto
+
+  // $Meta MOD: adjustaction
+  &_adjust_action
+    cursor: pointer
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
+
+
+  // $Meta text
+  &__text
+    margin: 0
+    padding: 0
+    display: inline-block
+    vertical-align: middle
+
+
+  // $Meta text faded
+  &__text-faded
+    color: $c-text-secondary
+
+
+  // $Meta text bold
+  &__text-bold
+    font-weight: 600
+
+
+  // $Meta text light
+  &__text-light
+    font-weight: 300

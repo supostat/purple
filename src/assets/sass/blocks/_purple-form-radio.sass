@@ -1,0 +1,219 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form radio
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-radio"
+
+#{$block}
+  display: inline-block
+
+  // $Common form radio MOD: role control
+  &_role_control
+
+  // $Common form radio MOD: role control reversed
+  &_role_control-reverse
+
+  // $Common form radio MOD: adjust no top label
+  &_adjust_no-label
+    padding-top: 20px
+
+
+  // $Common form radio label
+  &__label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1.2
+    text-align: left
+
+    // $Common form field label-text CONTEXT: $Common form field MOD: type required field
+    #{$block}_type_required &
+      &:after
+        content: '*'
+        margin-left: 2px
+
+
+  // $Common form radio label text
+  &__label-text
+
+
+  // $Common form radio label text faded
+  &__label-text-faded
+    color: $c-text-secondary
+
+
+  // $Common form radio input
+  &__input
+    display: none
+
+
+  // $Common form radio input label
+  // $Common form radio value
+  &__input-label,
+  &__value
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    cursor: default
+
+    // Fix nowrap issue in IE11
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+      display: block
+
+    // $Common form radio input label MOD: adjust field
+    // $Common form radio input label MOD: adjust field fluid
+    &_adjust_field,
+    &_adjust_field-fluid
+      height: 50px
+      justify-content: center
+
+      #{$block}__label + &
+        justify-content: flex-start
+
+    // $Common form radio input label MOD: adjust fluid field
+    &_adjust_field-fluid
+      @media screen and (max-width: 960px)
+        height: auto
+
+
+  // $Common form radio input label text
+  // $Common form radio value
+  &__input-label-text,
+  &__value-text
+    position: relative
+    display: inline-block
+    min-height: 25px
+    padding-left: 35px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 400
+    line-height: 25px
+
+    #{$block}__input:disabled ~ &
+      cursor: not-allowed
+
+    &:before
+      content: ""
+      box-sizing: border-box
+      position: absolute
+      top: 0
+      left: 0
+      display: block
+      width: 25px
+      height: 25px
+      background-color: $c-bg-light
+      border: 1px solid $c-border-primary
+      border-radius: 50%
+
+    &:after
+      content: ""
+      box-sizing: border-box
+      position: absolute
+      top: 5px
+      left: 5px
+      display: block
+      width: 15px
+      height: 15px
+      background-color: $c-accent-primary
+      border-radius: 50%
+      text-align: center
+      visibility: hidden
+
+    // $Common form radio input label text MOD: no-label text
+    &:empty
+      padding-left: 25px
+
+    // $Common form radio input label text MOD: no-wrap text
+    &_adjust_no-wrap
+      white-space: nowrap
+
+    // $Common form radio input label text MOD: type reversed label text
+    &_type_reversed
+      padding-left: 0
+      padding-right: 35px
+
+      &:before
+        left: auto
+        right: 0
+
+      &:after
+        left: auto
+        right: 0
+        padding-left: 0
+        padding-right: 2px
+
+      &:empty
+        padding-left: 0
+        padding-right: 25px
+
+    // $Common form radio input label text MOD: small text
+    &_size_s
+      font-size: 12px
+
+
+  &__input-label-text
+    cursor: pointer
+
+    #{$block}__input:disabled ~ &
+      cursor: not-allowed
+
+    &:before
+      #{$block}__input:disabled ~ &
+        background-color: $c-gray-ultra-light
+        border-color: $c-border-primary
+
+      #{$block}__input:checked ~ &
+        background-color: $c-bg-light
+        border-color: $c-accent-primary
+
+      #{$block}__input:checked:disabled ~ &
+        background-color: $c-bg-light
+        border-color: $c-gray-light
+
+    &:after
+      #{$block}__input:checked ~ &
+        visibility: visible
+
+      #{$block}__input:checked:disabled ~ &
+        background-color: $c-gray-light
+
+
+  &__value-text
+    cursor: default
+
+    &_type_disabled
+      &:before
+        background-color: $c-gray-ultra-light
+        border-color: $c-border-primary
+
+    &_type_checked
+      &:before
+        background-color: $c-bg-light
+        border-color: $c-accent-primary
+
+      &:after
+        visibility: visible
+
+    &_type_checked#{&}_type_disabled
+      &:before
+        background-color: $c-bg-light
+        border-color: $c-gray-light
+
+      &:after
+        background-color: $c-gray-light

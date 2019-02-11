@@ -1,0 +1,203 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Indicator
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-indicator"
+
+#{$block}
+  flex-grow: 0
+  flex-shrink: 0
+  display: inline-block
+  white-space: nowrap
+
+  // $Indicator MOD: position before
+  &_position_before
+    margin-right: 20px
+
+  // $Indicator MOD: position after
+  &_position_after
+    margin-left: 20px
+
+  // $Indicator MOD: role action
+  &_role_action
+    cursor: pointer
+    transition: opacity .4s
+
+    &:hover
+      opacity: 0.8
+
+  // $Indicator MOD: color blue
+  &_color_accent-blue
+
+  // $Indicator MOD: color red
+  &_color_accent-red
+
+  // $Indicator MOD: color orange
+  &_color_accent-orange
+
+  // $Indicator MOD: color yellow
+  &_color_accent-yellow
+
+  // $Indicator MOD: color green
+  &_color_accent-green
+
+  // $Indicator MOD: color purple
+  &_color_accent-purple
+
+  // $Indicator MOD: color pink
+  &_color_accent-pink
+
+  // $Indicator MOD: color gray
+  &_color_gray
+
+
+  // $Indicator marker
+  &__marker
+    display: inline-block
+    width: 30px
+    height: 30px
+    font-family: $f-sans
+    font-size: 20px
+    border-radius: 50%
+    line-height: 30px
+    text-align: center
+    color: $c-text-light
+    vertical-align: middle
+    background-color: $c-gray-dark
+    background-position:  center center
+    background-repeat: no-repeat
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color blue
+    #{$block}_color_accent-blue &
+      background-color: $c-accent-blue
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color red
+    #{$block}_color_accent-red &
+      background-color: $c-accent-red
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color orange
+    #{$block}_color_accent-orange &
+      background-color: $c-accent-orange
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color yellow
+    #{$block}_color_accent-yellow &
+      background-color: $c-accent-yellow
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color green
+    #{$block}_color_accent-green &
+      background-color: $c-accent-green
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color purple
+    #{$block}_color_accent-purple &
+      background-color: $c-accent-purple
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color pink
+    #{$block}_color_accent-pink &
+      background-color: $c-accent-pink
+
+    // $Indicator marker CONTEXT: $Indicator MOD: color gray
+    #{$block}_color_gray &
+      background-color: $c-gray-medium
+
+    #{$block}_adjust_select &
+      width: 12px
+      height: 12px
+      line-height: 12px
+
+    // $Indicator marker MOD: icon check
+    // $Indicator marker MOD: icon hourglass
+    &_icon_check,
+    &_icon_hourglass
+      &:before
+        content: ''
+        font-family: icons
+        font-size: 18px
+        line-height: 30px
+        color: $c-text-light
+        text-align: center
+        vertical-align: middle
+
+    &_icon_check
+      &:before
+        content: '\e90d'
+
+    &_icon_hourglass
+      &:before
+        content: '\e922'
+        font-size: 16px
+
+
+  // $Indicator MOD: marker label
+  &__label
+    display: inline-block
+    font-family: $f-sans
+    font-size: 18px
+    line-height: 1
+    font-weight: 600
+    vertical-align: middle
+    white-space: normal
+
+    // $Indicator label CONTEXT: $Indicator MOD: color blue
+    #{$block}_color_accent-blue &
+      color: $c-accent-blue
+
+    // $Indicator label CONTEXT: $Indicator MOD: color red
+    #{$block}_color_accent-red &
+      color: $c-accent-red
+
+    // $Indicator label CONTEXT: $Indicator MOD: color orange
+    #{$block}_color_accent-orange &
+      color: $c-accent-orange
+
+    // $Indicator label CONTEXT: $Indicator MOD: color yellow
+    #{$block}_color_accent-yellow &
+      color: $c-accent-yellow
+
+    // $Indicator label CONTEXT: $Indicator MOD: color green
+    #{$block}_color_accent-green &
+      color: $c-accent-green
+
+    // $Indicator label CONTEXT: $Indicator MOD: color purple
+    #{$block}_color_accent-purple &
+      color: $c-accent-purple
+
+    // $Indicator label CONTEXT: $Indicator MOD: color pink
+    #{$block}_color_accent-pink &
+      color: $c-accent-pink
+
+    // $Indicator label CONTEXT: $Indicator MOD: color gray
+    #{$block}_color_gray &
+      color: $c-gray-medium
+
+    // $Indicator label MOD: adjust board title
+    &_adjust_board-title
+      font-size: inherit
+      line-height: inherit
+      vertical-align: baseline
+
+      @media screen and (max-width: 640px)
+        font-size: inherit
+        line-height: inherit
+
+    #{$block}_adjust_select &
+      font-size: 14px
+      line-height: 1.2
+      font-weight: 400
+      color: $c-text-primary
+
+
+  // $Indicator label after marker
+  // $Indicator marker after label
+  &__marker + #{&}__label,
+  &__label + #{&}__marker
+    margin-left: 5px

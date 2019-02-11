@@ -1,0 +1,613 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form"
+
+#{$block}
+  display: block
+  width: 100%
+
+
+  &__title
+    font-family: $f-sans
+    font-size: 18px
+    line-height: 1
+    font-weight: 400
+    color: $c-text-primary
+
+    @media screen and (max-width: 960px)
+      line-height: 1
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+    &_adjust_row
+      line-height: 50px
+
+      @media screen and (max-width: 960px)
+        line-height: 1
+
+      &:not(:last-child)
+        margin-bottom: 0
+
+
+  // $Common form panel
+  &__panel
+    display: block
+    width: 100%
+    background-color: $c-bg-light
+    border: 1px solid $c-border-primary
+    box-shadow: 0px 2px 8px 0 $c-shadow-secondary
+
+
+  // $Common form panel header
+  &__panel-header
+    padding: 20px
+    background-color: $c-bg-light
+    border-bottom: 1px solid $c-border-primary
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+    // $Common form panel header MOD: type marked
+    &_type_marked
+      background-color: $c-gray-hyper-light
+
+
+  // $Common form panel title
+  &__panel-title
+    font-family: $f-sans
+    font-size: 18px
+    line-height: 1
+    font-weight: 400
+    color: $c-text-primary
+
+    @media screen and (max-width: 480px)
+      line-height: 1
+
+
+  // $Common form panel content
+  &__panel-content
+    padding: 20px 20px 30px
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+
+  // $Common form row
+  &__row
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    width: 100%
+    margin-bottom: 30px
+
+    @media screen and (max-width: 960px)
+      flex-direction: column
+
+    @media screen and (max-width: 480px)
+      margin-bottom: 25px
+
+    // $Common form row MOD: position last
+    &_position_last
+      margin-right: 0
+      margin-bottom: 0
+
+      @media screen and (max-width: 960px)
+        margin-right: 0
+        margin-bottom: 0
+
+    // $Common form row MOD: justify end
+    &_justify_end
+      justify-content: flex-end
+
+    // $Common form row MOD: justify space
+    &_justify_space
+      justify-content: space-between
+
+    // $Common form row MOD: align middle
+    &_align_middle
+      align-items: center
+
+    // $Common form row MOD: align end
+    &_align_end
+      align-items: flex-end
+
+    // $Common form row MOD: adjust nowrap
+    &_adjust_no-wrap
+      @media screen and (max-width: 960px)
+        flex-direction: row
+
+    // $Common form row MOD: adjust wrap-xs
+    // $Common form row MOD: adjust wrap-s-major
+    &_adjust_wrap-s-major,
+    &_adjust_wrap-s-minor,
+    &_adjust_wrap-xs
+      flex-direction: row
+
+      @media screen and (max-width: 960px)
+        flex-direction: row
+
+    &_adjust_wrap-s-major
+      @media screen and (max-width: 640px)
+        flex-direction: column
+
+    &_adjust_wrap-s-minor
+      @media screen and (max-width: 480px)
+        flex-direction: column
+
+    &_adjust_wrap-xs
+      @media screen and (max-width: 400px)
+        flex-direction: column
+
+    // $Common form row MOD: adjust flow
+    &_adjust_flow
+      flex-wrap: wrap
+
+      @media screen and (max-width: 960px)
+        flex-direction: row
+
+
+  // $Common form group
+  // $Common form field
+  &__group,
+  &__field
+    position: relative
+    display: block
+    width: 100%
+    margin-bottom: 30px
+
+    @media screen and (max-width: 480px)
+      margin-bottom: 25px
+
+    // $Common form group MOD: size half
+    &_size_half
+      flex-grow: 0
+      flex-shrink: 1
+      width: 50%
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: 50%
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    // $Common form group MOD: size third
+    &_size_third
+      flex-grow: 0
+      flex-shrink: 1
+      width: 33%
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: 33%
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    // $Common form group MOD: size fourth
+    &_size_fourth
+      flex-grow: 0
+      flex-shrink: 1
+      width: 25%
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: 33%
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    // $Common form group MOD: size fifth
+    &_size_fifth
+      flex-grow: 0
+      flex-shrink: 1
+      width: 20%
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: 20%
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    // $Common form group MOD: size sixth
+    &_size_sixth
+      flex-grow: 0
+      flex-shrink: 1
+      width: 16.6%
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: 16.6%
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    // $Common form group MOD: size max
+    &_size_max
+      flex-grow: 1
+      flex-shrink: 1
+      width: auto
+
+      @media screen and (max-width: 960px)
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          width: auto
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          width: 100%
+
+    // $Common form group MOD: size min
+    &_size_min
+      flex-grow: 0
+      flex-shrink: 1
+      width: auto
+
+      @media screen and (max-width: 960px)
+        flex-shrink: 1
+        flex-grow: 1
+        width: 100%
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          flex-grow: 0
+          flex-shrink: 1
+          width: auto
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 480px)
+        #{$block}__row_adjust_wrap-s-minor > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          flex-shrink: 1
+          flex-grow: 1
+          width: 100%
+
+    &_size_half,
+    &_size_third,
+    &_size_fourth,
+    &_size_fifth,
+    &_size_sixth,
+    &_size_max,
+    &_size_min
+      margin-right: 30px
+      margin-bottom: 0
+
+      #{$block}__row_adjust_flow &
+        margin-bottom: 20px
+
+      @media screen and (max-width: 960px)
+        margin-right: 0
+        margin-bottom: 30px
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &
+          margin-right: 30px
+          margin-bottom: 0
+
+        #{$block}__row_adjust_flow &
+          margin-right: 30px
+          margin-bottom: 20px
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          margin-right: 0
+          margin-bottom: 30px
+
+      @media screen and (max-width: 480px)
+        margin-bottom: 25px
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-xs > &
+          margin-right: 25px
+
+        #{$block}__row_adjust_wrap-s-major > &
+          margin-bottom: 25px
+
+        #{$block}__row_adjust_wrap-s-minor > &
+          margin-right: 0
+          margin-bottom: 25px
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          margin-right: 0
+          margin-bottom: 25px
+
+    // $Common form group: MOD: position last
+    &_position_last
+      margin-right: 0
+      margin-bottom: 0
+
+      @media screen and (max-width: 960px)
+        margin-right: 0
+        margin-bottom: 0
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-s-major > &,
+        #{$block}__row_adjust_wrap-s-minor > &,
+        #{$block}__row_adjust_wrap-xs > &,
+        #{$block}__row_adjust_flow &
+          margin-right: 0
+          margin-bottom: 0
+
+      @media screen and (max-width: 640px)
+        #{$block}__row_adjust_wrap-s-major > &
+          margin-right: 0
+          margin-bottom: 0
+
+      @media screen and (max-width: 480px)
+        margin-bottom: 0
+
+        #{$block}__row_adjust_wrap-s-minor > &
+          margin-right: 0
+          margin-bottom: 0
+
+        #{$block}__row_adjust_no-wrap > &,
+        #{$block}__row_adjust_wrap-xs > &
+          margin-right: 0
+
+      @media screen and (max-width: 400px)
+        #{$block}__row_adjust_wrap-xs > &
+          margin-right: 0
+          margin-bottom: 0
+
+    // $Common form groupMOD: justify center
+    // $Common form field MOD: justify center
+    &_justify_center
+      text-align: center
+
+    // $Common form groupMOD: justify center
+    // $Common form field MOD: justify center
+    &_justify_center-s-major
+      @media screen and (max-width: 640px)
+        text-align: center
+
+    // $Common form group MOD: justify end
+    // $Common form field MOD: justify end
+    &_justify_end
+      text-align: right
+
+
+  // $Common form actions
+  &__actions
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+    &_justify_center
+      justify-content: center
+
+
+  // $Common form action
+  &__action
+    display: block
+    flex-grow: 0
+    flex-shrink: 1
+
+    &:not(:last-child)
+      margin-right: 20px
+
+    // $Common form action MOD: state hidden
+    &_state_hidden
+      display: none
+
+  // $Common form text
+  &__text
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    font-weight: 600
+    color: $c-text-primary
+
+    @media screen and (max-width: 960px)
+      text-align: center
+
+
+  // $Common form link
+  &__link
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    font-weight: 400
+    color: $c-link-primary
+    text-decoration: none
+    opacity: 1
+    transition: all .3s
+
+    &:hover
+      opacity: 0.8
+
+    // $Common form link MOD: role inline
+    &_role_inline
+      font-size: inherit
+      text-decoration: underline
+
+      &:hover
+        text-decoration: none
+        opacity: 1
+
+
+  // $Common form image
+  &__image
+    display: inline-block
+    width: auto
+    max-width: 100%
+
+    // $Common form image MOD: size actual
+    &_size_actual
+      max-width: none
+
+
+
+
+
+
+

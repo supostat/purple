@@ -1,0 +1,570 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form field
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-field"
+
+#{$block}
+  position: relative
+  display: block
+  width: 100%
+
+  // $Common form field MOD: role control
+  &_role_control
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+  // $Common form field MOD: role control reversed
+  &_role_control-reverse
+    display: flex
+    flex-direction: row-reverse
+    justify-content: flex-end
+    align-items: center
+
+  // $Common form field MOD: state error
+  &_state_error
+
+  // $Common form field MOD:  adjust quick access search
+  &_adjust_quick-access-search
+
+  // $Common form field MOD: adjust no top label
+  &_adjust_no-label
+    padding-top: 20px
+
+  // $Common form field MOD: adjust clearable
+  &_adjust_clear
+
+  &_adjust_table-cell
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+  &_justify_center
+
+  &_justify_end
+
+  &_highlight_accent-red-light
+
+  &_highlight_accent-orange-light
+
+  &_highlight_accent-yellow-light
+
+  &_highlight_accent-green-light
+
+  &_highlight_accent-blue-light
+
+  &_highlight_accent-purple-light
+
+  &_highlight_accent-pink-light
+
+  &_highlight_gray-light
+
+
+  // $Common form field label
+  &__label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1
+    text-align: left
+
+    #{$block}_justify_center &
+      text-align: center
+
+    #{$block}_justify_end &
+      text-align: right
+
+    // $Common form field label text CONTEXT: $Common form MOD: role control
+    #{$block}_role_control &,
+    #{$block}_role_control-reverse &
+      flex-grow: 0
+      flex-shrink: 0
+      width: auto
+      margin-bottom: 0
+      font-weight: 600
+      white-space: nowrap
+
+    #{$block}_role_control &
+      margin-right: 10px
+
+    #{$block}_role_control-reverse &
+      margin-left: 10px
+
+    // $Common form field label-text CONTEXT: $Common form field MOD: type required field
+    #{$block}_type_required &
+      &:after
+        content: '*'
+        margin-left: 2px
+
+    @media screen and (max-width: 960px)
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        width: 90px
+
+    // $Common form field label MOD: adjust control fluid
+    &_adjust_control-fluid
+      width: auto
+      @media screen and (max-width: 960px)
+        #{$block}_role_control &,
+        #{$block}_role_control-reverse &
+          width: auto
+
+    // $Common form field label MOD: adjust control wrap
+    &_adjust_control-wrap
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        white-space: normal
+
+    // $Common form field label MOD: size small
+    &_size_s
+      font-size: 12px
+
+    // $Common form field label MOD: size large
+    &_size_l
+      font-size: 16px
+
+    // $Common form field label MOD: size large on m-major
+    &_size_l-m-major
+      font-size: 16px
+
+      @media screen and (max-width: 960px)
+        font-size: 14px
+
+    // $Common form field label MOD: size extra large
+    &_size_xl
+      font-size: 18px
+
+    // $Common form field label MOD: no wrap
+    &_adjust_no-wrap
+      white-space: nowrap
+
+    &_type_border
+      #{$block}_role_control &,
+      #{$block}_role_control-reverse &
+        align-self: stretch
+        width: auto
+        min-height: 50px
+        padding: 15px
+        margin: 0
+        border: 1px solid $c-border-primary
+        border-radius: 2px
+        white-space: nowrap
+
+        @media screen and (max-width: 960px)
+          padding-right: 10px
+          padding-left: 10px
+
+      #{$block}_role_control &
+        border-right: none
+
+      #{$block}_role_control-reverse &
+        border-left: none
+
+
+  // $Common form field label text
+  &__label-text
+
+
+  // $Common form field label text faded
+  &__label-text-faded
+    color: $c-text-secondary
+
+
+  // $Common form field label icon
+  &__label-icon
+    font-family: 'icons'
+    line-height: 1
+    font-weight: 400
+    font-size: inherit
+    color: inherit
+
+
+  // $Common form field tags
+  &__tags
+    display: block
+    width: 100%
+
+
+  // $Common form field tag
+  &__tag
+
+
+  // $Common form field input
+  &__input
+    position: relative
+
+    #{$block}_adjust_clear &
+      padding-right: 22px
+
+    #{$block}_adjust_table-cell &
+      display: block
+      width: 100%
+      height: 100%
+
+    &:before
+      #{$block}_role_search &,
+      #{$block}_role_date &
+        content: ""
+        position: absolute
+        top: 50%
+        left: 10px
+        display: block
+        font-family: icons
+        font-size: 18px
+        line-height: 1
+        color: $c-text-secondary
+        transform: translateY(-50%)
+
+      #{$block}_role_search &
+        content: "\e90e"
+
+      #{$block}_role_date &
+        content: "\e900"
+
+      #{$block}_role_search#{$block}_state_error &,
+      #{$block}_role_date#{$block}_state_error &
+        color: $c-accent-red
+
+    // $Common form field input CONTEXT: $Common form MOD: role control
+    #{$block}_role_control &,
+    #{$block}_role_control-reverse &
+      flex-grow: 1
+      flex-shrink: 1
+
+    & input
+      display: block
+      width: 100%
+      min-height: 50px
+      padding: 13px 10px
+      font-family: $f-sans
+      font-size: 14px
+      color: $c-text-primary
+      font-weight: 400
+      line-height: 1.5
+      background-color: $c-bg-light
+      border: 1px solid $c-border-primary
+      border-radius: 2px
+
+      #{$block}_adjust_quick-access-search &
+        min-height: 40px
+        padding: 10px
+
+      #{$block}_adjust_table-cell &
+        width: 100%
+        height: 100%
+        padding: 10px
+        border: none
+        border-radius: 0
+
+      #{$block}_justify_center &
+        text-align: center
+
+      #{$block}_justify_end &
+        text-align: right
+
+      #{$block}_role_search &,
+      #{$block}_role_date &
+        padding-left: 35px
+
+      #{$block}_highlight_accent-red-light &
+        background-color: $c-accent-red-light
+        border-color: $c-accent-red
+
+      #{$block}_highlight_accent-orange-light &
+        background-color: $c-accent-orange-light
+        border-color: $c-accent-orange
+
+      #{$block}_highlight_accent-yellow-light &
+        background-color: $c-accent-yellow-light
+        border-color: $c-accent-yellow
+
+      #{$block}_highlight_accent-green-light &
+        background-color: $c-accent-green-light
+        border-color: $c-accent-green
+
+      #{$block}_highlight_accent-blue-light &
+        background-color: $c-accent-blue-light
+        border-color: $c-accent-blue
+
+      #{$block}_highlight_accent-purple-light &
+        background-color: $c-accent-purple-light
+        border-color: $c-accent-purple
+
+      #{$block}_highlight_accent-pink-light &
+        background-color: $c-accent-pink-light
+        border-color: $c-accent-pink
+
+      #{$block}_highlight_gray-light &
+        background-color: $c-gray-ultra-light
+        border-color: $c-border-primary
+
+      #{$block}_state_error &
+        border-color: $c-accent-red
+        color: $c-accent-red
+
+      &:invalid
+        box-shadow: none
+
+      &:focus
+        outline: none
+        box-shadow: 0 0 3px -1px $c-accent-blue
+
+        #{$block}_adjust_table-cell &
+          box-shadow: inset 0 0 3px 0 $c-accent-blue
+
+      &:disabled
+        background-color: $c-gray-ultra-light
+        cursor: not-allowed
+
+      &:not([type="date"]):read-only
+        background-color: $c-gray-ultra-light
+
+      &::-webkit-input-placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &:-moz-placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &::-moz-placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &:-ms-input-placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &::-ms-input-placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &::placeholder
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+      &:placeholder-shown
+        color: $c-text-faded !important
+        opacity:  1 !important
+
+        #{$block}_state_error &
+          color: $c-accent-red !important
+
+    &_size_s
+      & input
+        padding-top: 14px
+        padding-bottom: 14px
+        font-size: 12px
+
+    &_size_l
+      & input
+        padding-top: 12px
+        padding-bottom: 12px
+        font-size: 16px
+
+    &_size_xl
+      & input
+        padding-top: 11px
+        padding-bottom: 11px
+        font-size: 18px
+
+
+  // $Common form field box
+  &__box
+    width: 100%
+    min-height: 50px
+    padding: 13px 10px
+    font-family: $f-sans
+    font-size: 14px
+    color: $c-text-primary
+    font-weight: 400
+    line-height: 1.5
+    background-color: $c-bg-light
+    border: 1px solid $c-border-primary
+    border-radius: 2px
+    cursor: default
+
+    #{$block}_adjust_table-cell &
+      display: flex
+      flex-direction: row
+      justify-content: flex-start
+      align-items: center
+      width: 100%
+      height: 100%
+      padding: 10px
+      border: none
+      border-radius: 0
+
+    #{$block}_justify_center &
+      justify-content: center
+      text-align: center
+
+    #{$block}_justify_end &
+      justify-content: flex-end
+      text-align: right
+
+    #{$block}_highlight_accent-red-light &
+      background-color: $c-accent-red-light
+      border-color: $c-accent-red
+
+    #{$block}_highlight_accent-orange-light &
+      background-color: $c-accent-orange-light
+      border-color: $c-accent-orange
+
+    #{$block}_highlight_accent-yellow-light &
+      background-color: $c-accent-yellow-light
+      border-color: $c-accent-yellow
+
+    #{$block}_highlight_accent-green-light &
+      background-color: $c-accent-green-light
+      border-color: $c-accent-green
+
+    #{$block}_highlight_accent-blue-light &
+      background-color: $c-accent-blue-light
+      border-color: $c-accent-blue
+
+    #{$block}_highlight_accent-purple-light &
+      background-color: $c-accent-purple-light
+      border-color: $c-accent-purple
+
+    #{$block}_highlight_accent-pink-light &
+      background-color: $c-accent-pink-light
+      border-color: $c-accent-pink
+
+    #{$block}_highlight_gray-light &
+      background-color: $c-gray-ultra-light
+      border-color: $c-border-primary
+
+    #{$block}_state_error &
+      border-color: $c-accent-red
+      color: $c-accent-red
+
+    &_size_s
+      padding-top: 14px
+      padding-bottom: 14px
+      font-size: 12px
+
+    &_size_l
+      padding-top: 12px
+      padding-bottom: 12px
+      font-size: 16px
+
+    &_size_xl
+      padding-top: 11px
+      padding-bottom: 11px
+      font-size: 18px
+
+
+  // $Common form field value
+  &__value
+    width: 100%
+    font-family: $f-sans
+    font-size: 18px
+    color: $c-text-primary
+    font-weight: 600
+    line-height: 1.5
+    background-color: transparent
+    cursor: default
+
+    #{$block}_adjust_table-cell &
+      display: flex
+      flex-direction: row
+      justify-content: flex-start
+      align-items: center
+      width: 100%
+      height: 100%
+      padding: 10px
+      border: none
+
+    #{$block}_justify_center &
+      justify-content: center
+      text-align: center
+
+    #{$block}_justify_end &
+      justify-content: flex-end
+      text-align: right
+
+    #{$block}_state_error &
+      color: $c-accent-red
+
+
+  // $Common form field third-party component wrap
+  &__component
+    display: block
+    width: 100%
+
+
+  // $Common form field note
+  &__note
+    margin-top: 10px
+    font-family: $f-sans
+    font-size: 14px
+    line-height: 1
+    color: $c-text-primary
+
+
+  // $Common form field clear
+  &__clear
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-end
+    width: 22px
+    font-size: 0
+    line-height: 0
+    color: transparent
+    background-color: transparent
+    border: none
+    cursor: pointer
+    opacity: .5
+    transition: all .3s
+
+    &:before
+      content: '\e91e'
+      font-family: icons
+      font-size: 14px
+      line-height: 1
+      color: $c-text-primary
+
+    &:hover
+      opacity: 1

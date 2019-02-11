@@ -1,0 +1,288 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Board
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-board"
+
+#{$block}
+  display: block
+  width: 100%
+  background-color: $c-bg-light
+
+  &:not(:last-child)
+    margin-bottom: 30px
+
+    @media screen and (max-width: 480px)
+      margin-bottom: 25px
+
+
+  // $Board inner
+  &__inner
+    display: block
+    width: 100%
+    padding: 30px 20px
+
+    @media screen and (max-width: 480px)
+      padding: 25px 15px
+
+
+  &__scroll
+    display: block
+    width: 100%
+    overflow: hidden
+
+    &_type_horizontal
+      overflow-x: auto
+
+
+  // $Board header
+  &__header
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    padding: 20px
+    border-bottom: 1px solid $c-border-primary
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+    &_adjust_actions
+      @media screen and (max-width: 960px)
+        flex-wrap: wrap
+
+
+  // $Board header info
+  &__header-info
+    flex-grow: 1
+    flex-shrink: 1
+
+    #{$block}__header_adjust_actions &
+      padding-right: 20px
+
+
+    @media screen and (max-width: 960px)
+      #{$block}__header_adjust_actions &
+        width: 100%
+        padding-right: 0
+
+
+  // $Board header toggle
+  &__header-toggle
+    flex-grow: 0
+    flex-shrink: 0
+
+
+  // $Board header actions
+  &__header-actions
+    flex-grow: 0
+    flex-shrink: 0
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+
+    @media screen and (max-width: 960px)
+      #{$block}__header_adjust_actions &
+        flex-grow: 1
+        flex-shrink: 1
+        order: -99
+        width: 100%
+        padding-bottom: 15px
+        margin-bottom: 15px
+        border-bottom: 1px solid $c-border-primary
+
+    @media screen and (max-width: 480px)
+      flex-direction: column
+
+
+  // $Board header action
+  &__header-action
+    &:not(:last-child)
+      margin-right: 15px
+
+      @media screen and (max-width: 480px)
+        margin-right: 0
+        margin-bottom: 15px
+
+
+  // $Board content
+  &__content
+    display: block
+    width: 100%
+
+    &_state_closed
+      display: none
+
+
+  // $Board content inner
+  &__content-inner
+    display: block
+    width: 100%
+    padding: 20px 20px 30px
+
+    @media screen and (max-width: 480px)
+      padding: 20px 15px
+
+
+  // $Board group
+  &__group
+    display: block
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 30px
+
+    &_type_border:not(:last-child)
+      padding-bottom: 30px
+      border-bottom: 1px solid $c-border-primary
+
+
+  // $Board title
+  &__title
+    font-family: $f-sans
+    font-size: 22px
+    line-height: 1.2
+    font-weight: 400
+    color: $c-text-primary
+
+    @media screen and (max-width: 640px)
+      font-size: 20px
+
+    &:before
+      font-size: 18px
+      line-height: 18px
+      margin-right: 10px
+
+    // $Board title MOD: size small
+    &_size_s
+      font-size: 20px
+
+      @media screen and (max-width: 640px)
+        font-size: 18px
+
+    // $Board title MOD: size large
+    &_size_l
+      font-size: 24px
+
+      @media screen and (max-width: 640px)
+        font-size: 22px
+
+    &_justify_center-m-major
+      @media screen and (max-width: 960px)
+        text-align: center
+
+
+  // $Board title faded
+  &__title-faded
+    color: $c-text-secondary
+
+
+  // $Board title regular
+  &__title-regular
+    font-weight: 400
+
+
+  // $Board title light
+  &__title-light
+    font-weight: 300
+
+  // $Board counter
+  &__counter
+    display: block
+    font-family: $f-sans
+    font-size: 16px
+    line-height: 1
+    color: $c-text-primary
+    text-align: center
+
+    // $Board counter MOD: position above
+    &_position_above
+      margin-bottom: 15px
+
+    // $Board counter MOD: position below
+    &_position_below
+      margin-top: 15px
+
+
+  &__counter-bold
+    font-weight: 800
+
+
+  // $Board actions
+  &__actions
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+
+    // $Board actions MOD: position above
+    &_position_above
+      margin-bottom: 30px
+
+    // $Board actions MOD: position below
+    &_position_below
+      margin-top: 30px
+
+
+  // $Board action
+  &__action
+
+  // $Board toggle
+  &__toggle
+    display: inline-block
+    font-size: 0
+    line-height: 0
+    color: transparent
+    vertical-align: middle
+    outline: none
+    text-decoration: none
+    white-space: nowrap
+    cursor: pointer
+    transition: all .3s
+
+    &:before
+      content: ''
+      display: inline-block
+      font-family: 'icons'
+      font-size: 0
+      line-height: 18px
+      color: $c-gray-medium
+      vertical-align: middle
+      transition: all .3s
+
+    &:hover
+      &:before
+        color: $c-gray-dark
+
+    // $Board toggle MOD: role dropdown
+    &_role_dropdown
+      &:before
+        content: '\e91a'
+        font-size: 30px
+
+    &_role_dropdown#{&}_state_closed
+      &:before
+        content: '\e919'
+
+
+  // $Board text placeholder
+  &__text-placeholder
+    display: block
+    width: 100%
+    font-family: $f-sans
+    font-size: 16px
+    line-height: 1.2
+    color: $c-text-secondary

@@ -1,0 +1,162 @@
+@import '../helpers/settings'
+@import '../helpers/mixins'
+
+////////////////////////////////////////
+// $Common form error message
+////////////////////////////////////////
+
+//////////////////////////////////////// Block variables
+
+
+//////////////////////////////////////// Block mixins and functions
+
+
+//////////////////////////////////////// Block styles
+$block: ".purple-form-error"
+
+#{$block}
+  display: block
+  position: relative
+  padding: 8px 10px 8px 30px
+  background-color: $c-accent-red
+  border-radius: 2px
+
+  &:before
+    content: "\e911"
+    position: absolute
+    top: 10px
+    left: 10px
+    display: block
+    font-family: icons
+    font-size: 10px
+    line-height: 1
+    color: $c-text-light
+
+  // $Common form error message MOD: role general
+  &_role_general
+    padding: 15px 15px 15px 40px
+
+    &:before
+      top: 18px
+      left: 15px
+      font-size: 14px
+
+  // $Common form error message MOD: position above
+  &_position_above
+    margin-bottom: 10px
+
+  &_position_above#{&}_role_general
+    margin-bottom: 30px
+
+  // $Common form error message MOD: position below
+  &_position_below
+    margin-top: 10px
+
+  &_position_below#{&}_role_general
+    margin-top: 30px
+
+  // $Common form error message MOD: tooltip layout
+  &_type_tooltip
+    position: absolute
+    z-index: 10
+
+    &:before
+      top: 10px
+
+    &:after
+      content: ""
+      position: absolute
+      z-index: 11
+      display: block
+
+  // $Common form error message MOD: tooltip top left positioned
+  &_type_tooltip_top-left
+    left: 0
+    bottom: 100%
+    margin-bottom: 5px
+
+    &:after
+      top: 100%
+      left: 15px
+      border-top: 5px solid $c-accent-red
+      border-right: 5px solid transparent
+      border-left: 5px solid transparent
+
+  &_type_tooltip_top-left#{&}_adjust_label
+    bottom: calc(100% - 25px)
+
+  // $Common form error message MOD: tooltip top right positioned
+  &_type_tooltip_top-right
+    right: 0
+    bottom: 100%
+    margin-bottom: 5px
+
+    &:after
+      top: 100%
+      right: 15px
+      border-top: 5px solid $c-accent-red
+      border-right: 5px solid transparent
+      border-left: 5px solid transparent
+
+  &_type_tooltip_top-right#{&}_adjust_label
+    bottom: calc(100% - 25px)
+
+  // $Common form error message MOD: tooltip bottom left positioned
+  &_type_tooltip_bottom-left
+    left: 0
+    top: 100%
+    margin-top: 5px
+
+    &:after
+      bottom: 100%
+      left: 15px
+      border-bottom: 5px solid $c-accent-red
+      border-right: 5px solid transparent
+      border-left: 5px solid transparent
+
+  // $Common form error message MOD: tooltip bottom right positioned
+  &_type_tooltip_bottom-right
+    right: 0
+    top: 100%
+    margin-top: 5px
+
+    &:after
+      bottom: 100%
+      right: 15px
+      border-bottom: 5px solid $c-accent-red
+      border-right: 5px solid transparent
+      border-left: 5px solid transparent
+
+
+  // $Common form error message text
+  &__text
+    position: relative
+    display: block
+    font-family: $f-sans
+    font-size: 12px
+    font-weight: 400
+    color: $c-text-light
+
+    #{$block}_type_tooltip &
+      font-size: 11px
+
+    #{$block}_role_general &
+      font-size: 14px
+
+    &_adjust_no-wrap
+      white-space: nowrap
+
+
+  // $Common form error message text line
+  &__line
+    display: block
+
+
+  // $Common form error message text link
+  &__text-link
+    color: inherit
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
+
