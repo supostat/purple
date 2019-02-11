@@ -1,14 +1,17 @@
 import { createSelector } from 'reselect';
 import oFetch from 'o-fetch';
+import humanizeString from 'humanize-string';
 
 export const authUserSelector = state => oFetch(state, 'global.authUser');
 
 export const getAuthUser = createSelector([authUserSelector], authUser => {
-  const [firstName, surname] = oFetch(authUser, 'firstName', 'surname');
+  if (!authUser) return {};
+  const [firstName, surname, role] = oFetch(authUser, 'firstName', 'surname', 'role');
 
   return {
     ...authUser,
     fullName: `${firstName} ${surname}`,
+    roleTitle: humanizeString(role),
   };
 });
 
