@@ -16,14 +16,13 @@ import { setAuthUserFromJwt } from './redux/actions/auth-user';
 import { Page401, Page403, Page404 } from '~/components/pages';
 
 export const routeConfig = makeRouteConfig(
-  <Route path="/" getComponent={() => import('./pages').then(module => module.AppPage)} getData={setAuthUserFromJwt}>
-    <Route getComponent={() => import('./pages').then(module => module.HomePage)} />
-    <Route
+  <Route getComponent={() => import('./pages').then(module => module.AppPage)} getData={setAuthUserFromJwt}>
+    <UnauthorizedRoute path="/" getComponent={() => import('./pages').then(module => module.LoginPage)} />
+    <UnauthorizedRoute
       path="accept-invite/:invitationToken"
       getData={getAcceptInvintationPageData}
       getComponent={() => import('./pages').then(module => module.AcceptInvitePage)}
     />
-    <UnauthorizedRoute path="login" getComponent={() => import('./pages').then(module => module.LoginPage)} />
     <UnauthorizedRoute
       path="forgot-password"
       getComponent={() => import('./pages').then(module => module.ForgotPasswordPage)}

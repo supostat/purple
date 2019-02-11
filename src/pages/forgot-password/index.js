@@ -27,7 +27,7 @@ class ForgotPasswordPage extends Component {
             <ForgotPasswordForm onSubmit={sendResetPasswordEmailLink} />
           </div>
           <div className="purple-modal__actions">
-            <Link to="/login" className="purple-modal__link">
+            <Link to="/" className="purple-modal__link">
               Log in
             </Link>
           </div>
