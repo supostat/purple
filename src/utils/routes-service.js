@@ -1,4 +1,4 @@
-export default {
+const routes = {
   userProfileUrl(id) {
     return `/users/${id}`;
   },
@@ -9,6 +9,8 @@ export default {
     return `/invites`;
   },
   loginPage() {
-    return `/login`;
+    return `/`;
   },
 };
+
+export default routes;
