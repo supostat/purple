@@ -43,10 +43,11 @@ export const getInvitedUsers = createSelector(
     return invitedUsers.map(invitedUser => {
       const invitedUserVenuesIds = oFetch(invitedUser, 'venuesIds');
       const invitedUserVenues = venues.filter(venue => invitedUserVenuesIds.includes(oFetch(venue, 'id')));
+      const invitedAt = oFetch(invitedUser, 'invitedAt');
       return {
         ...invitedUser,
         inviterFullName: oFetch(invitedUser, 'inviterFullName') || 'N/A',
-        invitedAtFormatted: iso8601Parse(oFetch(invitedUser, 'invitedAt')).format(DateFormats.withShortWeek),
+        invitedAtFormatted: invitedAt ? iso8601Parse(invitedAt).format(DateFormats.withShortWeek) : invitedAt,
         roleTitle: roles[oFetch(invitedUser, 'role')],
         invitationStatusTitle: invitationStatuses[oFetch(invitedUser, 'invitationStatus')],
         venues:
