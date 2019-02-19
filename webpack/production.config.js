@@ -1,10 +1,10 @@
-const dotenv = require('dotenv');
+const oFetch = require('o-fetch');
 
 const getConfig = require('../webpack.config');
 
 module.exports = env => {
-  const dotenvs = dotenv.config({ path: '.env.production' }).parsed;
-  const config = getConfig(env, dotenvs);
+  const BASE_API_URL = oFetch(process.env, 'BASE_API_URL');
+  const config = getConfig(env, { [`process.env.BASE_API_URL`]: BASE_API_URL });
 
   config.mode = 'none';
   config.devtool = 'source-map';

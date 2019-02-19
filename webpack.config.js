@@ -33,18 +33,8 @@ const plugins = [
   }),
 ];
 
-module.exports = (env, dotenvs = {}) => {
-  const envKeys = dotenvs
-    ? Object.keys(dotenvs).reduce(
-        (prev, next) => ({
-          ...prev,
-          [`process.env.${next}`]: JSON.stringify(dotenvs[next]),
-        }),
-        {},
-      )
-    : {};
+module.exports = (env, envKeys = {}) => {
   plugins.push(new webpack.DefinePlugin(envKeys));
-
   if (env && env.analyze) {
     plugins.push(new BundleAnalyzerPlugin());
   }
