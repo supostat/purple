@@ -1,4 +1,5 @@
-const { BASE_API_URL } = process.env;
+import oFetch from 'o-fetch';
+const BASE_API_URL = oFetch(process.env, 'BASE_API_URL');
 
 export default {
   baseApiUrl: BASE_API_URL,
