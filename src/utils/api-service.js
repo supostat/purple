@@ -1,5 +1,7 @@
-import oFetch from 'o-fetch';
-const BASE_API_URL = oFetch(process.env, 'BASE_API_URL');
+const { BASE_API_URL } = process.env;
+if (!BASE_API_URL) {
+  throw new Error('BASE_API_URL must be present');
+}
 
 export default {
   baseApiUrl: BASE_API_URL,
