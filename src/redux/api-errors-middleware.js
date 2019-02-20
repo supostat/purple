@@ -24,10 +24,6 @@ export default store => next => action => {
         });
         throw new HttpError(403);
       }
-      case 401: {
-        AuthService.clearJwtToken();
-        throw new HttpError(401);
-      }
       default: {
         return next(action);
       }
