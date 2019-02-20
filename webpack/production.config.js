@@ -4,7 +4,7 @@ const getConfig = require('../webpack.config');
 
 module.exports = env => {
   const BASE_API_URL = oFetch(process.env, 'BASE_API_URL');
-  const config = getConfig(env, { [`process.env.BASE_API_URL`]: BASE_API_URL });
+  const config = getConfig(env, { [`process.env.BASE_API_URL`]: JSON.stringify(BASE_API_URL) });
 
   config.mode = 'none';
   config.devtool = 'source-map';
