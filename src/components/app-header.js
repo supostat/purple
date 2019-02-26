@@ -21,7 +21,7 @@ class AppHeader extends Component {
             </Link>
           </div>
           <QuickMenuDropdown />
-          <UserDropdown onLogout={handleUserLogout} user={authUser} />
+          {authUser && <UserDropdown onLogout={handleUserLogout} user={authUser} />}
         </div>
       </header>
     );
