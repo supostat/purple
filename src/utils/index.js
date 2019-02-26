@@ -9,11 +9,11 @@ export { default as DateFormats } from './date-formats';
 export * from './filtering';
 export * from './type-checkers';
 
-export const getSafe = (fn, defaultVal) => {
+export const getSafe = fn => {
   try {
     return fn();
-  } catch (e) {
-    return defaultVal;
+  } catch {
+    return undefined;
   }
 };
 
