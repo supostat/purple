@@ -17,6 +17,12 @@ export default store => next => action => {
         throw new HttpError(404);
       }
       case 401: {
+        const message = getSafe(() => action.payload.response.message) || 'You are not authorized to do this action';
+        showNotification({
+          text: `${message}`,
+          type: 'error',
+          position: 'topCenter',
+        });
         AuthService.clearJwtToken();
         return next(action);
       }
