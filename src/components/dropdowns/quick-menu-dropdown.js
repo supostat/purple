@@ -1,9 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import oFetch from 'o-fetch';
+import { connect } from 'react-redux';
 import iScroll from 'boss-iscroll';
 import ReactIScroll from 'react-iscroll';
 import Link from 'found/lib/Link';
 import DropdownButton from '../dropdown-button';
+import { menuSelector } from '~/redux/selectors';
+import { getMenuAction } from '~/redux/actions/menu';
+import { quickMenuFilter, quickMenuHighlightResults, generateQuickMenuAlias } from '~/utils/filtering';
 
 const scrollOptions = {
   mouseWheel: true,
@@ -15,8 +19,32 @@ const scrollOptions = {
   enable_ofscroll: true,
 };
 
-export default class QuickMenuDropdown extends Component {
+class QuickMenuDropdown extends Component {
+  state = {
+    searchString: '',
+  };
+
+  componentDidMount = () => {
+    const getMenu = oFetch(this.props, 'getMenu');
+    getMenu();
+  };
+
+  handleSearch = e => {
+    const value = oFetch(e, 'target.value');
+    this.setState({ searchString: value });
+  };
+
+  getQuickMenu = menu => {
+    const searchString = oFetch(this.state, 'searchString');
+    return quickMenuHighlightResults(quickMenuFilter(searchString, menu), searchString);
+  };
+
   render() {
+    const menu = oFetch(this.props, 'menu');
+    if (!menu || menu.length === 0) {
+      return null;
+    }
+    const searchString = oFetch(this.state, 'searchString');
     return (
       <DropdownButton
         render={(ref, handleClick, show) => (
@@ -39,7 +67,12 @@ export default class QuickMenuDropdown extends Component {
                       <div className="purple-form__field purple-form__field_position_last">
                         <div className="purple-form-field purple-form-field_adjust_quick-access-search">
                           <div className="purple-form-field__input">
-                            <input name="Search" id="Search" type="text" placeholder="" />
+                            <input
+                              onChange={this.handleSearch}
+                              value={searchString}
+                              type="text"
+                              placeholder="Search ..."
+                            />
                           </div>
                         </div>
                       </div>
@@ -57,29 +90,56 @@ export default class QuickMenuDropdown extends Component {
                   <ReactIScroll iScroll={iScroll} options={this.scrollOptions}>
                     <div className="purple-page-header__dropdown-content">
                       <div className="purple-quick-access">
-                        <div className="purple-quick-access__group">
-                          <div className="purple-quick-access__group-header">
-                            <h4 className="purple-quick-access__group-title">Main pages</h4>
-                          </div>
-                          <div className="purple-quick-access__aliases">
-                            <div className="purple-quick-access__alias">
-                              <div className="purple-alias">
-                                <Link onClick={handleClick} to="/invites" className="purple-alias__link">
-                                  <span className="purple-alias__icon purple-alias__icon_type_solid">In</span>
-                                  <span className="purple-alias__text">Invites</span>
-                                </Link>
+                        {this.getQuickMenu(menu).map(group => {
+                          const [title, items, groupName, color] = oFetch(group, 'title', 'items', 'name', 'color');
+                          return (
+                            <div key={groupName} className="purple-quick-access__group">
+                              <div className="purple-quick-access__group-header">
+                                <h4
+                                  className="purple-quick-access__group-title"
+                                  dangerouslySetInnerHTML={{ __html: group.highlightedTitle || group.title }}
+                                />
+                              </div>
+                              <div className="purple-quick-access__aliases">
+                                {items.map(item => {
+                                  const [showInMenu, itemTitle, path, itemName, highlightedTitle] = oFetch(
+                                    item,
+                                    'show_in_menu',
+                                    'title',
+                                    'path',
+                                    'name',
+                                    'highlightedTitle',
+                                  );
+                                  if (!showInMenu) {
+                                    return null;
+                                  }
+                                  return (
+                                    <div key={itemName} className="purple-quick-access__alias">
+                                      <div className="purple-alias">
+                                        <Link onClick={handleClick} to={path} className="purple-alias__link">
+                                          <span
+                                            className="purple-alias__icon purple-alias__icon_type_solid"
+                                            style={{
+                                              backgroundColor: color,
+                                              borderColor: color,
+                                            }}
+                                          >
+                                            {generateQuickMenuAlias(itemTitle)}
+                                          </span>
+                                          <span
+                                            className="purple-alias__text"
+                                            style={{ color }}
+                                            dangerouslySetInnerHTML={{ __html: highlightedTitle || itemTitle }}
+                                          />
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
                               </div>
                             </div>
-                            <div className="purple-quick-access__alias">
-                              <div className="purple-alias">
-                                <Link onClick={handleClick} to="/users" className="purple-alias__link">
-                                  <span className="purple-alias__icon purple-alias__icon_type_solid">Us</span>
-                                  <span className="purple-alias__text">Users</span>
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </ReactIScroll>
@@ -92,3 +152,18 @@ export default class QuickMenuDropdown extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    menu: menuSelector(state),
+  };
+};
+
+const mapDispatchToProps = {
+  getMenu: getMenuAction,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(QuickMenuDropdown);

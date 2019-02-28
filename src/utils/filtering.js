@@ -9,22 +9,31 @@ export const quickMenuFilter = (searchQuery, quickMenu) => {
       const lowerFilter = filter.toLowerCase();
       return menu.map(parentItem => {
         let items = [];
-        if (parentItem.name.toLowerCase().indexOf(lowerFilter) >= 0) {
+        if (parentItem.title.toLowerCase().indexOf(lowerFilter) >= 0) {
           items = parentItem.items;
         } else {
           items = parentItem.items.filter(childItem => {
-            const lowerDescription = childItem.description.toLowerCase();
-            return lowerDescription.indexOf(lowerFilter) >= 0;
+            const lowerTitle = childItem.title.toLowerCase();
+            return lowerTitle.indexOf(lowerFilter) >= 0;
           });
         }
         return {
-          name: parentItem.name,
+          title: parentItem.title,
           color: parentItem.color,
+          name: parentItem.name,
           items,
         };
       });
     }, quickMenu)
     .filter(i => !!i.items.length);
+};
+
+export const generateQuickMenuAlias = text => {
+  const splittedText = text.split(' ');
+  if (splittedText.length > 1) {
+    return splittedText[0][0] + splittedText[1][0].toLowerCase();
+  }
+  return text.slice(0, 2);
 };
 
 export const quickMenuHighlightResults = (result, searchQuery) => {
@@ -37,23 +46,23 @@ export const quickMenuHighlightResults = (result, searchQuery) => {
   const query = new RegExp(uniqueFilter.join('|'), 'gi');
 
   return result.map(parentItem => {
-    if (parentItem.highlightedName) {
-      parentItem.highlightedName = parentItem.highlightedName.replace(
+    if (parentItem.highlightedTitle) {
+      parentItem.highlightedTitle = parentItem.highlightedTitle.replace(
         /(<strong style="background-color:#FF9">|<\/strong>)/gi,
         '',
       );
     }
-    parentItem.highlightedName = parentItem.name.replace(query, matched => {
+    parentItem.highlightedTitle = parentItem.title.replace(query, matched => {
       return `<strong style="background-color:#FF9">${matched}</strong>`;
     });
     const childItems = parentItem.items.map(childItem => {
-      if (childItem.highlightedDescription) {
-        childItem.highlightedDescription = childItem.highlightedDescription.replace(
+      if (childItem.highlightedTitle) {
+        childItem.highlightedTitle = childItem.highlightedTitle.replace(
           /(<strong style="background-color:#FF9">|<\/strong>)/gi,
           '',
         );
       }
-      childItem.highlightedDescription = childItem.description.replace(query, matched => {
+      childItem.highlightedTitle = childItem.title.replace(query, matched => {
         return `<strong style="background-color:#FF9">${matched}</strong>`;
       });
       return childItem;

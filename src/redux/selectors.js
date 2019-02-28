@@ -15,6 +15,12 @@ export const getAuthUser = createSelector([authUserSelector], authUser => {
   };
 });
 
+export const getQuickMenu = createSelector([getAuthUser], authUser => {
+  if (!authUser) {
+    return {};
+  }
+});
+
 export default {
   getAuthUser,
 };

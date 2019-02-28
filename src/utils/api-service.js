@@ -5,6 +5,12 @@ if (!BASE_API_URL) {
 
 export default {
   baseApiUrl: BASE_API_URL,
+  menu: {
+    method: 'GET',
+    getPath() {
+      return `${BASE_API_URL}/api/v1/menu`;
+    },
+  },
   loginParams: {
     method: 'POST',
     getPath() {
