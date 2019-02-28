@@ -1,8 +1,16 @@
 import { createSelector } from 'reselect';
 import oFetch from 'o-fetch';
-import humanizeString from 'humanize-string';
+
+export const MANAGER_ROLE = 'manager';
+export const ADMIN_ROLE = 'admin';
+
+export const ROLES_TITLES = {
+  [MANAGER_ROLE]: 'Manager',
+  [ADMIN_ROLE]: 'Admin',
+};
 
 export const authUserSelector = state => oFetch(state, 'global.authUser');
+export const menuSelector = state => oFetch(state, 'global.menu');
 
 export const getAuthUser = createSelector([authUserSelector], authUser => {
   if (!authUser) return null;
@@ -11,7 +19,7 @@ export const getAuthUser = createSelector([authUserSelector], authUser => {
   return {
     ...authUser,
     fullName: `${firstName} ${surname}`,
-    roleTitle: humanizeString(role),
+    roleTitle: ROLES_TITLES[role],
   };
 });
 

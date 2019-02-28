@@ -4,18 +4,22 @@ import groupBy from 'lodash/groupBy';
 import { getValueLabelArrayFromObject, safeJSONParse, safeSeparate, DateFormats } from '~/utils';
 import { iso8601Parse } from '~/utils/safe-moment';
 
-const FIRST_NAME_KEY = 'first_name';
-const SURNAME_KEY = 'surname';
-const WORK_VENUES_KEY = 'work_venues';
-const ROLE_KEY = 'role';
-const EMAIL_KEY = 'email';
+export const FIRST_NAME_KEY = 'first_name';
+export const SURNAME_KEY = 'surname';
+export const WORK_VENUES_KEY = 'work_venues';
+export const ROLE_KEY = 'role';
+export const EMAIL_KEY = 'email';
+export const ENABLED_KEY = 'enabled';
+export const DISABLED_KEY = 'disabled';
 
-const HISTORY_FIELD_NAMES = {
+export const HISTORY_FIELD_NAMES = {
   [FIRST_NAME_KEY]: 'First name',
   [SURNAME_KEY]: 'Surname',
   [WORK_VENUES_KEY]: 'Work venues',
   [ROLE_KEY]: 'Role',
   [EMAIL_KEY]: 'Email address',
+  [ENABLED_KEY]: 'Enabled',
+  [DISABLED_KEY]: 'Disabled',
 };
 
 export const userSelector = state => oFetch(state, 'userProfilePage.user');
@@ -23,6 +27,27 @@ export const rolesSelector = state => oFetch(state, 'userProfilePage.ui.roles');
 export const venuesSelector = state => oFetch(state, 'userProfilePage.ui.venues');
 export const historySelector = state => oFetch(state, 'userProfilePage.userHistory');
 export const foundSelector = state => oFetch(state, 'found');
+
+const getHistoryOldValue = (key, oldValue) => {
+  return safeSeparate(safeJSONParse(oldValue), 'name', ', ');
+};
+
+const getHistoryNewValue = (key, newValue) => {
+  return safeSeparate(safeJSONParse(newValue), 'name', ', ');
+};
+
+const getDisplayedHistoryKey = key => {
+  return HISTORY_FIELD_NAMES[key];
+};
+
+const getHistoryFields = historyItem => {
+  const [key, oldValue, newValue] = oFetch(historyItem, 'key', 'oldValue', 'newValue');
+  return {
+    displayedOldValue: getHistoryOldValue(key, oldValue),
+    displayedNewValue: getHistoryNewValue(key, newValue),
+    displayedKey: getDisplayedHistoryKey(key),
+  };
+};
 
 export const getInitialFilterData = createSelector(foundSelector, found => {
   const query = oFetch(found, 'match.location.query');
@@ -57,14 +82,11 @@ export const getUserHistorySelector = createSelector(historySelector, history =>
   return Object.entries(grouppedHistory).reduce((acc, historyEntry) => {
     const [updatedAtWithUpdatedBy, historyItems] = historyEntry;
     const [updatedAt, updatedBy] = updatedAtWithUpdatedBy.split('___');
-    const displayedUpdatedAt = iso8601Parse(updatedAt).format(DateFormats.withTimeAndShortWeek);
+    const displayedUpdatedAt = iso8601Parse(updatedAt).format(DateFormats.withTimeSecondsAndShortWeek);
     const mappedHistory = historyItems.map(historyItem => {
-      const [key, oldValue, newValue] = oFetch(historyItem, 'key', 'oldValue', 'newValue');
       return {
         ...historyItem,
-        displayedOldValue: safeSeparate(safeJSONParse(oldValue), 'name', ', '),
-        displayedNewValue: safeSeparate(safeJSONParse(newValue), 'name', ', '),
-        displayedKey: HISTORY_FIELD_NAMES[key],
+        ...getHistoryFields(historyItem),
       };
     });
     return {

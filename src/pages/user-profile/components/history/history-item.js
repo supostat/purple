@@ -1,15 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import oFetch from 'o-fetch';
+import { ENABLED_KEY, DISABLED_KEY } from '../../redux/selectors';
 
 export default class HistoryItem extends Component {
   renderHistoryLine = history => {
-    const [id, displayedOldValue, displayedNewValue, displayedKey] = oFetch(
+    const [id, displayedOldValue, displayedNewValue, displayedKey, key] = oFetch(
       history,
       'id',
       'displayedOldValue',
       'displayedNewValue',
       'displayedKey',
+      'key',
     );
+    if (key === ENABLED_KEY) {
+      return (
+        <li key={id} className="purple-panel__list-item">
+          <p className="purple-panel__text">
+            <span className="purple-panel__text-bold">{displayedKey}</span>
+          </p>
+        </li>
+      );
+    }
+    if (key === DISABLED_KEY) {
+      const [wouldRehire, disabledReason] = oFetch(displayedNewValue, 'would_rehire', 'reason');
+      return (
+        <li key={id} className="purple-panel__list-item">
+          <p className="purple-panel__text">
+            <span className="purple-panel__text-bold">{displayedKey}</span>
+            {disabledReason && (
+              <Fragment>
+                <span className="purple-panel__text-light"> with reason </span>
+                <span className="purple-panel__text-bold">{disabledReason}</span>
+              </Fragment>
+            )}
+            {wouldRehire === false && (
+              <Fragment>
+                <span className="purple-panel__text-light"> and </span>
+                <span className="purple-panel__text-bold">will never rehire</span>
+              </Fragment>
+            )}
+          </p>
+        </li>
+      );
+    }
     return (
       <li key={id} className="purple-panel__list-item">
         <p className="purple-panel__text">
